@@ -4,7 +4,7 @@ import "./globals.css";
 //fontes:
 import { Yanone_Kaffeesatz, Open_Sans } from "next/font/google";
 const yanone = Yanone_Kaffeesatz({ subsets: ["latin"], weight: ['200', '400', '500', '600'] });
-const opens = Open_Sans({ subsets: ['latin'], weight: ['400', '500'] })
+const opens = Open_Sans({ subsets: ['latin'], weight: ['300', '400', '500'] })
 export {opens}
 
 export const metadata: Metadata = {
