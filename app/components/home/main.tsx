@@ -7,7 +7,7 @@ import Section5 from './section5'
 const Main = () => {
     return (
 
-        <div className='space-y-64'>
+        <div className='space-y-56'>
             <Section2 />
             <Section3 />
             <Section4 />

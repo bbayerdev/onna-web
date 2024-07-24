@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import logo from '../../../../public/imgs/logo.png'
+import logo from '../../../../public/imgs/logo2.png'
 
 const Logo = () => {
   return (

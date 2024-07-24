@@ -33,7 +33,7 @@ export default function Home() {
     <main className='antialiased'>
       <Header />
 
-      <section className='flex flex-row justify-center py-16 max-md:p-10 max-xl:px-20 gap-32 max-lg:gap-20'>
+      <section className='flex flex-row justify-center py-12 max-md:p-10 max-xl:px-20 gap-32 max-lg:gap-20'>
         <div className='text-left mt-24 space-y-7 w-max max-w-lg'>
           <h1 className='font-bold text-red-900 text-7xl max-[900px]:text-6xl'>Bem-vinda ao ONNA</h1>
           <p className={`font-opensans text-2xl max-[900px]:text-xl`}>
@@ -45,7 +45,6 @@ export default function Home() {
 
 
           <button onClick={() => atualizar(1)} className='max-md:text-2xl transition duration-500 hover:bg-red-100 hover:scale-105 shadow-xl font-bold text-3xl text-red-900 border-red-900 border-[3px] rounded-full px-12 py-1'>
-
             <a href="#anchor">Explore</a>
           </button>
 

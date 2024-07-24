@@ -14,8 +14,8 @@ const Header = () => {
                 <button className='max-md:text-2xl text-3xl drop-shadow-xl hover:font-medium hover:underline'>Ajuda</button>
             </div>
             <div className='flex flex-row gap-10 max-md:gap-5'>
-                <button className='max-md:text-2xl text-3xl underline drop-shadow-xl hover:font-medium'>Login</button>
-                <button className='max-md:text-2xl text-3xl bg-black text-white px-4 py-1 rounded-3xl shadow-xl transition duration-500 hover:scale-105'>Cadastro</button>
+                <Link href='/login' className='max-md:text-2xl mt-1 text-3xl underline drop-shadow-xl hover:font-medium'>Login</Link>
+                <Link href='/cadastro' className='max-md:text-2xl text-3xl bg-black text-white px-4 py-1 rounded-3xl shadow-xl transition duration-500 hover:scale-105'>Cadastro</Link>
             </div>
         </header>
     )

@@ -6,7 +6,7 @@ import LinkIco from './images/linkIco'
 
 const Footer = () => {
   return (
-    <footer className='bg-zinc-900 flex flex-col mt-32 text-zinc-300 p-24 py-32 justify-center items-center'>
+    <footer className='bg-zinc-900 flex flex-col mt-32 text-zinc-300 px-24 pt-36 pb-16 justify-center items-center'>
     <div className='flex flex-row'>
       <div className='space-y-5 py-8 w-3/4'>
         <h1 className='text-3xl font-bold text-white'>Logo</h1>
@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
       </div>
     </div>
-    <div className='w-11/12 h-px bg-white mt-32'/>
+    <div className='w-11/12 h-px mt-32 bg-white'/>
     <h1 className='font-opensans mt-2 text-sm'>&copy; 2024 ONNA. Todos os direitos reservados.</h1>
   </footer>
   )
