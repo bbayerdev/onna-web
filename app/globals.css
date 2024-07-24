@@ -3,5 +3,10 @@
 @tailwind utilities;
 
 ::selection {
-    @apply bg-red-200
+    @apply bg-red-200 text-black
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  
