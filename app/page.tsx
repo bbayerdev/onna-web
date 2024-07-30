@@ -42,22 +42,16 @@ export default function Home() {
           <p className={`font-opensans text-2xl max-[900px]:text-xl`}>
             Cuidado personalizado para todas as fases da saúde feminina!
           </p>
-
-
           <button onClick={() => atualizar(1)} className='max-md:text-2xl transition duration-500 hover:bg-red-100 hover:scale-105 shadow-xl font-bold text-3xl text-red-900 border-red-900 border-[3px] rounded-full px-12 py-1'>
             <a href="#anchor">Explore</a>
           </button>
-
-
         </div>
         <Quadrinho />
       </section>
 
-
       <div className='mt-32' id='anchor'>
         {renderizar()}
       </div>
-
 
       <Footer />
     </main>
