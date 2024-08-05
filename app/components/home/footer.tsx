@@ -4,6 +4,7 @@ import TtIco from './images/ttIco'
 import GitIco from './images/gitIco'
 import LinkIco from './images/linkIco'
 
+
 const Footer = () => {
   return (
     <footer className='bg-zinc-900 flex flex-col mt-32 text-zinc-300 px-24 pt-36 pb-16 justify-center items-center'>

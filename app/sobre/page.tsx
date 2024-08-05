@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../components/home/header'
-import CardMetas from '../components/sobre/cardMetas'
 import Footer from '../components/home/footer'
+import SectionMetas from '../components/sobre/sectionMetas'
 import Mascote from '../components/sobre/imgs/mascote'
 
 const Sobre = () => {
@@ -27,26 +27,20 @@ const Sobre = () => {
           </div>
         </section>
 
-        <section className='flex flex-col w-4/5 justify-center space-y-12 m-auto mt-24'>
-          <h1 className='text-7xl text-red-900 font-bold text-center'>Metas</h1>
+        <SectionMetas />
 
-          <div className='w-full h-[320px] border-black flex flex-row space-x-12 justify-center'>
-            <CardMetas
-              titulo='Aumentar o engajamento do usuário'
-              meta='Aumentar o número de usuárias ativas em nossa plataforma'
-            />
-
-            <CardMetas
-              titulo='Melhorar a acessibilidade'
-              meta='Plataforma mais acessível e fácil de usar para mulheres de todas as origens e níveis de experiência'
-            />
-
-            <CardMetas
-              titulo='Atualizar regularmente os conteúdos'
-              meta='Garantindo que nossas usuárias tenham acesso a conteúdos precisos e úteis em sua jornada de cuidados com a saúde'
-            />
+        <section className='flex flex-col justify-center m-auto w-3/4'>
+          <h1 className='text-7xl font-bold text-red-900'>Conheça nosso mascote</h1>
+          <div className='flex flex-row items-center m-auto mt-12'>
+            <div className='w-full'>
+              <Mascote />
+            </div>
+            <div className='space-y-10'>
+              <h1 className='font-bold text-4xl'>Nosso adorável mascote felino!</h1>
+              <p className='font-opensans text-2xl'>Este simpático gato é o símbolo de conforto e companheirismo aqui no ONNA</p>
+              <p className='font-opensans text-2xl'>Sua presença amigável é uma lembrança de que nossas usuárias nunca estão sozinhas!</p>
+            </div>
           </div>
-
         </section>
 
       </main>
