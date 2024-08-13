@@ -10,17 +10,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 const cadastroUserShema = z.object({
     nome: z.string()
         .nonempty('Nome obrigatório')
-        .min(6),
-    nasc: z.string()
-        .nonempty('Data de nascimento obrigatório'),
+        .min(6, {message: 'Caracteres minimos 6'}),
+    nasc: z.string(),
     email: z.string()
         .nonempty('Email obrigatório')
-        .email(),
+        .email('Email inválido'),
     senha: z.string()
         .nonempty('Senha obrigatória')
-        .min(12)
-        .regex(/[A-Z]/, 'A senha deve conter pelo menos uma letra maiúscula')
-        .regex(/[\W_]/, 'A senha deve conter pelo menos um caractere especial'),
+        .min(12),
     confirmacaoSenha: z.string()
         .nonempty('Confirmação de senha obrigatória')
 })

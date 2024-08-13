@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 const loginUserSchema = z.object({
     email: z.string()
         .nonempty('Email obrigatório')
-        .email(),
+        .email('Email inválido'),
     senha: z.string()
         .nonempty('Senha obrigatória'),
 })
