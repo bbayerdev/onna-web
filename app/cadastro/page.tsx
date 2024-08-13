@@ -6,11 +6,12 @@ import Input from '../components/loginCad/input'
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import api from "../../services/api"
 
 const cadastroUserShema = z.object({
     nome: z.string()
         .nonempty('Nome obrigatório')
-        .min(6, {message: 'Caracteres minimos 6'}),
+        .min(6, { message: 'Caracteres minimos 6' }),
     nasc: z.string(),
     email: z.string()
         .nonempty('Email obrigatório')
@@ -18,9 +19,21 @@ const cadastroUserShema = z.object({
     senha: z.string()
         .nonempty('Senha obrigatória')
         .min(12),
-    confirmacaoSenha: z.string()
+    confirmacaoSenha: z.string()    
         .nonempty('Confirmação de senha obrigatória')
 })
+
+async function cadastrarUsuario() {
+    await api.post('/api/auth/signUp', {
+        email: "CELLY.mendes8472@example.com",
+        senha: "3Rz!bL2#tQ8*",
+        nome: "Clara Mendes",
+        status_Ban: false,
+        dataNasc: "1990-07-15T00:00:00Z",
+        avatar: 2,
+        tipo_Usuario: true
+    })
+}
 
 type loginUserFormData = z.infer<typeof cadastroUserShema>
 
@@ -75,6 +88,7 @@ const Page = () => {
 
                         <div className='flex justify-center p-2'>
                             <button className='max-md:text-2xl w-1/2 transition duration-500 hover:bg-red-100 hover:scale-105 shadow-xl font-bold text-4xl text-red-900 border-red-900 border-[3px] rounded-full px-12 py-1'>Entrar</button>
+                            <button className='max-md:text-2xl w-1/2 transition duration-500 hover:bg-red-100 hover:scale-105 shadow-xl font-bold text-4xl text-red-900 border-red-900 border-[3px] rounded-full px-12 py-1' onClick={cadastrarUsuario}>TESTE</button>
                         </div>
                     </form>
 
