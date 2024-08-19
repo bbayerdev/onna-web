@@ -1,8 +1,8 @@
 import React from 'react'
+import Mascote from './components/imgs/mascote'
 import Header from '../components/home/header'
+import SectionMetas from './components/sectionMetas'
 import Footer from '../components/home/footer'
-import SectionMetas from '../components/sobre/sectionMetas'
-import Mascote from '../components/sobre/imgs/mascote'
 
 const Sobre = () => {
   return (

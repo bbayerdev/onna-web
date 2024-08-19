@@ -1,9 +1,10 @@
 
 import React from 'react'
-import Header from '../components/home/header'
 import { FaInstagram } from "react-icons/fa6";
 import { MdOutlineMailOutline } from "react-icons/md";
+import Header from '../components/home/header';
 import Footer from '../components/home/footer';
+
 
 const Ajuda = () => {
     return (
@@ -21,10 +22,8 @@ const Ajuda = () => {
                 <div className='flex flex-row gap-2  pl-5'>
                     <a href=""><MdOutlineMailOutline size={30} /> </a> <p className='font-opensans text-2xl font-bold'>OnnaWebsite@gmail.com</p>
                 </div>
-
-
             </section>
-            <Footer/>
+            <Footer />
         </main>
     )
 }

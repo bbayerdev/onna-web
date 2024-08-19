@@ -1,6 +1,7 @@
 
+import CardMetas from '@/app/sobre/components/cardMetas'
 import React from 'react'
-import CardMetas from './cardMetas'
+
 
 const SectionMetas = () => {
     return (

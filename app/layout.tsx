@@ -8,7 +8,7 @@ const opens = Open_Sans({ subsets: ['latin'], weight: ['300', '400', '500'] })
 export {opens}
 
 export const metadata: Metadata = {
-  title: "Landing page",
+  title: "Onna",
   description: "tcc web onna",
 };
 

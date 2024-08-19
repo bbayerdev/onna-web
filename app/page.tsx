@@ -1,6 +1,6 @@
 'use client'
-import Header from './components/home/header';
 import Footer from './components/home/footer';
+import Header from './components/home/header';
 import Quadrinho from './components/home/images/quadrinho';
 import Main from './components/home/main';
 import { useState } from 'react';
