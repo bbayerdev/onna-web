@@ -2,7 +2,7 @@
 import React, { useRef } from 'react'
 import Link from 'next/link'
 import ImgGatoPrancheta from './components/imgGatoPrancheta'
-import api from '../api/api'
+import api from '../../api/api'
 
 const Page = () => {
 
@@ -27,7 +27,6 @@ const Page = () => {
   const nascimento = useRef<HTMLInputElement>(null)
   const email = useRef<HTMLInputElement>(null)
   const senha = useRef<HTMLInputElement>(null)
-  const confsenha = useRef<HTMLInputElement>(null)
 
   return (
     <main className='antialiased flex flex-row h-screen'>
@@ -70,13 +69,6 @@ const Page = () => {
           />
 
           <br />
-
-          <label className='text-2xl'>Confirmar Senha</label>
-          <input
-            className='border-2 border-black rounded-md text-2xl font-opensans px-2'
-            type="password"
-            ref={confsenha}
-          />
 
           <button
             type='submit'
