@@ -9,14 +9,14 @@ const Page = () => {
   async function postTipo_Usuario(event: React.FormEvent) {
     event.preventDefault();
     try {
-      const res = await api.post("/api/auth/signUp", {
+      const res = await api.post("/api/post/users", {
         email: email.current?.value,
         senha: senha.current?.value,
         nome: nome.current?.value,
         status_Ban: false,
-        dataNasc: "2001-08-21T00:00:00Z",
+        dataNasc: "1992-03-25",
         avatar: 3,
-        tipo_Usuario: true
+        tipo_Usuario: false
       })
     } catch (error) {
       console.log("ERRO: " + error)

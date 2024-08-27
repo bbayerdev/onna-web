@@ -13,7 +13,7 @@ function Page() {
 
     const [user, setUser] = useState<IUser>({ nome: "", dataNasc: "" })
 
-    const [email, setEmail] = useState("clara.mendes8472@example.com");
+    const [email, setEmail] = useState("bombomreidelas@gmail.com");
 
     const data = new Date(user.dataNasc);
     const dias = `${data.getDate()}/${data.getMonth()}/${data.getFullYear()}`;
@@ -30,9 +30,9 @@ function Page() {
 
     async function getUser() {
         try {
-            const userFromApi = await api.get("/api/auth/readMe/" + email)
+            const userFromApi = await api.get("/api/get/users/" + email)
 
-            setUser(userFromApi.data)
+            setUser(userFromApi.data[0])
 
         } catch (error) {
             console.log("ERRO: " + error)
