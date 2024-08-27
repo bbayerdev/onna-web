@@ -13,20 +13,10 @@ function Page() {
 
     const [user, setUser] = useState<IUser>({ nome: "", dataNasc: "" })
 
-    const [email, setEmail] = useState("bombomreidelas@gmail.com");
+    const [email, setEmail] = useState("deus@gmail.com");
 
     const data = new Date(user.dataNasc);
     const dias = `${data.getDate()}/${data.getMonth()}/${data.getFullYear()}`;
-
-
-    function statusban() {
-        if (user.status_Ban === false) {
-            return ('Ativo')
-        }
-        else {
-            return ('Banido')
-        }
-    }
 
     async function getUser() {
         try {
@@ -42,6 +32,17 @@ function Page() {
         getUser()
     }, [])
 
+    function statusBan(){
+
+        if(user.status_Ban == false){
+            return('Ativo')
+        }
+        else{
+            return('Banido')
+        }
+    
+    }
+
     return (
         <main className="flex h-screen justify-center p-16 items-center">
             <section>
@@ -55,7 +56,7 @@ function Page() {
                     <h1 className="text-3xl font-bold ">Nome:  <span className="font-normal ml-2">{user.nome}</span></h1>
                     <h1 className="text-3xl font-bold">Data de nascimento:  <span className="font-normal ml-2">{dias}</span></h1>
                     <h1 className="text-3xl font-bold">Email:  <span className="font-normal ml-2">{email}</span></h1>
-                    <h1 className="text-3xl font-bold">Status:  <span className="font-normal ml-2">{statusban()}</span></h1>
+                    <h1 className="text-3xl font-bold">Status:  <span className="font-normal ml-2">{statusBan()}</span></h1>
                     <a className="text-right text-2xl p-2 rounded-full hover:underline">Alterar dados</a>
                 </div>
 

@@ -13,8 +13,8 @@ const Page = () => {
         email: email.current?.value,
         senha: senha.current?.value,
         nome: nome.current?.value,
-        status_Ban: false,
-        dataNasc: "1992-03-25",
+        status_Ban: true,
+        dataNasc: nascimento.current?.value,
         avatar: 3,
         tipo_Usuario: false
       })
