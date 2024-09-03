@@ -1,8 +1,14 @@
 'use client'
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useRef } from 'react'
 import Link from 'next/link'
 import ImgGatoPrancheta from './components/imgGatoPrancheta'
 import api from '../../api/api'
+
+
 
 const Page = () => {
 
@@ -31,7 +37,7 @@ const Page = () => {
   return (
     <main className='antialiased flex flex-row h-screen'>
       <section className='w-1/2 flex flex-col px-24 justify-center'>
-        <h1 className='font-bold text-7xl text-red-900'>Cadastro</h1>
+        <h1 className='font-bold text-7xl mb-12 text-red-900'>Cadastro</h1>
 
         <form onSubmit={postTipo_Usuario} className='flex flex-col px-5'>
           <label className='text-2xl'>Nome</label>
@@ -77,7 +83,7 @@ const Page = () => {
           </button>
 
         </form>
-        <p className='text-xl'>Já possui conta? <Link className='hover:underline font-bold' href='/cadastro'>Login</Link></p>
+        <p className='text-xl'>Já possui conta? <Link className='hover:underline font-bold' href='/login'>Login</Link></p>
       </section>
       <section className='w-1/2 bg-red-100 flex items-center justify-center '>
         <ImgGatoPrancheta />
