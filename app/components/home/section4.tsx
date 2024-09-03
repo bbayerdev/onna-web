@@ -6,9 +6,9 @@ const Section4 = () => {
     return (
 
         <section className='flex flex-col justify-center text-center'>
-            <h1 className='text-5xl font-bold'>O que comentam sobre o  <span className='underline'>ONNA</span> ?</h1>
+            <h1 className='md:text-5xl text-3xl font-bold'>O que comentam sobre o  <span className='underline'>ONNA</span> ?</h1>
 
-            <div className='flex-row flex mt-32 justify-center gap-16'>
+            <div className='md:flex-row flex-col flex mt-32 justify-center items-center object-center content-center gap-16'>
                 <CardAval
                     nome='Luiz Ricardo Jr'
                     avaliacao='Ele é fácil de usar, oferece lembretes personalizados e me ajuda a entender melhor meu ciclo!'
