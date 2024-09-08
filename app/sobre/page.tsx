@@ -1,10 +1,31 @@
 import React from 'react'
+import Image from 'next/image'
 import Mascote from './components/imgs/mascote'
 import Header from '../components/home/header'
 import SectionMetas from './components/sectionMetas'
 import Footer from '../components/home/footer'
+import { Card, CardContent } from "@/components/ui/card"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+
 
 const Sobre = () => {
+
+  const images = [
+    '/integrantes/img1.png',
+    '/integrantes/img2.png',
+    '/integrantes/img3.png',
+    '/integrantes/img4.png',
+    '/integrantes/img5.png',
+    '/integrantes/img6.png',
+    '/integrantes/img7.png',
+  ];
+
   return (
     <div className='antialiased'>
       <Header />
@@ -20,11 +41,34 @@ const Sobre = () => {
         <section className='flex flex-col w-3/4 justify-center space-y-12 m-auto mt-24'>
           <h1 className='text-7xl text-red-900 font-bold'>Equipe</h1>
           <p className='font-opensans text-2xl'>Conheça nossos integrantes e suas contribuições para o projeto.</p>
-          <div className='w-full h-[400px] border-black flex flex-row space-x-12 justify-center'>
-            <div className='w-1/4 h-full border-2 rounded-3xl border-black'></div>
-            <div className='w-1/4 h-full border-2 rounded-3xl border-black'></div>
-            <div className='w-1/4 h-full border-2 rounded-3xl border-black'></div>
+
+          <div className='flex justify-center p-10'>
+            <Carousel opts={{ align: 'start' }} className="w-full">
+              <CarouselContent>
+                {images.map((src, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1">
+                      <Card>
+                        <CardContent className="flex aspect-square items-center justify-center p-6">
+                          <Image
+                            src={src}
+                            alt={`Image ${index + 1}`}
+                            width={500} 
+                            height={500} 
+                            className="object-cover"
+                          />
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+
           </div>
+
         </section>
 
         <SectionMetas />

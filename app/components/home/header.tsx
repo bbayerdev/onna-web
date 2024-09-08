@@ -4,7 +4,7 @@
 import React, { useState } from 'react'
 import Logo from './images/logo'
 import Link from 'next/link'
-import Menuhome from './images/menuhome'
+import { IoMenu } from "react-icons/io5";
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -25,7 +25,7 @@ const Header = () => {
             </div>
 
             <i className='flex md:hidden  text-5x1 cursor-pointer w-8 h-8' onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            <Menuhome/>
+            <IoMenu size={30}/>
             </i>
             <div className={`mt-10 absolute md:hidden top-24 left-0 w-full bg-white flex flex-col items-center gap-6 transform transition-transform ${isMenuOpen ? "opacity-100" : "opacity-0"}`}
             style={{transition: "transform 0.3 ease, opacity 0.3s ease"}}>
