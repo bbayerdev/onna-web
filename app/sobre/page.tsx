@@ -15,7 +15,7 @@ import {
 
 
 const Sobre = () => {
-
+  //imagens do carrossel
   const images = [
     '/integrantes/img1.png',
     '/integrantes/img2.png',
@@ -32,14 +32,14 @@ const Sobre = () => {
 
       <main className='space-y-52'>
         <section className='flex flex-col w-3/4 justify-center space-y-12 m-auto mt-24'>
-          <h1 className='text-7xl text-red-900 font-bold'>Quem somos nós</h1>
+          <h1 className='text-5xl text-red-900 font-bold'>Quem somos nós</h1>
           <p className='font-opensans text-2xl'>Somos uma equipe de apaixonados por descobertas e avanços!  Estamos comprometidos em garantir que cada aspecto da experiência ONNA seja cuidadosamente desenvolvido e atualizado para atender às necessidades em constante evolução de nossa comunidade global.</p>
           <div className='w-full h-64 border-2 rounded-2xl border-black'>
           </div>
         </section>
 
         <section className='flex flex-col w-3/4 justify-center space-y-12 m-auto mt-24'>
-          <h1 className='text-7xl text-red-900 font-bold'>Equipe</h1>
+          <h1 className='text-5xl text-red-900 font-bold'>Equipe</h1>
           <p className='font-opensans text-2xl'>Conheça nossos integrantes e suas contribuições para o projeto.</p>
 
           <div className='flex justify-center p-10'>
@@ -74,13 +74,13 @@ const Sobre = () => {
         <SectionMetas />
 
         <section className='flex flex-col justify-center m-auto w-3/4'>
-          <h1 className='text-7xl font-bold text-red-900'>Conheça nosso mascote</h1>
+          <h1 className='text-5xl font-bold text-red-900'>Conheça nosso mascote</h1>
           <div className='flex flex-row items-center m-auto mt-12'>
             <div className='w-full'>
               <Mascote />
             </div>
             <div className='space-y-10'>
-              <h1 className='font-bold text-4xl'>Nosso adorável mascote felino!</h1>
+              <h1 className='font-bold text-3xl'>Nosso adorável mascote felino!</h1>
               <p className='font-opensans text-2xl'>Este simpático gato é o símbolo de conforto e companheirismo aqui no ONNA</p>
               <p className='font-opensans text-2xl'>Sua presença amigável é uma lembrança de que nossas usuárias nunca estão sozinhas!</p>
             </div>

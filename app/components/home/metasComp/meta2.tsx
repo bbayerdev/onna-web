@@ -6,7 +6,7 @@ const Meta2 = () => {
 
         <div className='text-left mt-24 space-y-7 w-max max-w-lg'>
             <h1 className='font-opensans text-xl'>2/5</h1>
-            <h1 className='font-bold text-red-900 text-7xl max-[900px]:text-6xl'>
+            <h1 className='font-bold text-red-900 text-5xl max-[900px]:text-6xl'>
                 Para mulheres:
             </h1>
             <p className={`font-opensans text-2xl max-[900px]:text-xl`}>

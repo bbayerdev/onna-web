@@ -11,8 +11,8 @@ import {
 const Section4 = () => {
     return (
 
-        <section className='flex flex-col justify-center text-left px-20'>
-            <h1 className='md:text-5xl text-3xl font-bold'>O que comentam sobre o  <span className='underline'>ONNA</span> ?</h1>
+        <section className='flex flex-col justify-center text-left px-32'>
+            <h1 className='text-3xl font-bold'>O que comentam sobre o  <span className='underline'>ONNA</span> ?</h1>
 
             <div className='flex p-10 px-20 gap-10 mt-20 '>
 

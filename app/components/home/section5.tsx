@@ -6,12 +6,12 @@ const Section5 = () => {
     return (
         <section className='flex justify-center items-center'>
             <div className='flex flex-row p-10 border-2 border-black w-4/5 rounded-lg'>
-                <div className='w-2/3 space-y-10 py-5'>
-                    <h1 className='font-bold text-2xl md:text-5xl'>Baixe o APP</h1>
-                    <p className='font-opensans text-1xl md:text-2xl'>Conectando mulheres e cuidando de saúde:</p>
-                    <h1 className='text-red-900 font-bold text-2xl md:text-6xl'>ONNA, juntas em cada ciclo!</h1>
+                <div className='w-2/3 space-y-10 py-6 px-10'>
+                    <h1 className='font-bold text-3xl'>Baixe o APP</h1>
+                    <p className='font-opensans text-xl'>Conectando mulheres e cuidando de saúde:</p>
+                    <h1 className='text-red-900 font-bold text-4xl'>ONNA, juntas em cada ciclo!</h1>
                 </div>
-                <div className='flex justify-center items-center border-2'>
+                <div className='flex'>
                     <button>
                         <QrCode />
                     </button>

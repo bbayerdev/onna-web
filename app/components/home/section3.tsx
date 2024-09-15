@@ -37,7 +37,7 @@ const Section3 = () => {
     return (
         <section className='flex flex-row justify-center ml-48 md:ml-0 max-md:p-10 md:max-xl:px-20 gap-32 max-lg:gap-20'>
             <div className='text-left mt-24 space-y-7 w-max max-w-lg'>
-                <h1 className='font-bold text-xl md:text-3xl'>O que oferecemos?</h1>
+                <h1 className='font-bold text-2xl '>O que oferecemos?</h1>
 
                 {renderizarMeta()}
 

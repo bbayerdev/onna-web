@@ -1,4 +1,5 @@
 'use client'
+import { Button } from '@/components/ui/button';
 import Footer from './components/home/footer';
 import Header from './components/home/header';
 import Quadrinho from './components/home/images/quadrinho';
@@ -37,16 +38,16 @@ export default function Home() {
       <section className='flex flex-row justify-center py-12 max-md:p-10 max-xl:px-20 gap-32 max-lg:gap-20'>
 
         <div className='text-left mt-6 md:mt-24 space-y-7 w-max max-w-lg'>
-          <h1 className='font-bold text-red-900 text-4xl md:text-7xl'>Bem-vinda ao ONNA</h1>
-          <p className={`font-opensans md:text-2xl text-1xl`}>
+          <h1 className='font-bold text-red-900 text-5xl'>Bem-vinda ao ONNA</h1>
+          <p className='text-2xl'>
             Sua Plataforma de Saúde Feminina e Comunidade de Apoio!
           </p>
           <p className={`font-opensans md:text-2xl text-1xl`}>
             Cuidado personalizado para todas as fases da saúde feminina!
           </p>
-          <button onClick={() => atualizar(1)} className='text-xl transition duration-500 hover:bg-red-100 hover:scale-105 shadow-xl font-bold md:text-3xl text-red-900 border-red-900 border-[3px] rounded-full px-12 py-1'>
-            <a href="#anchor">Explore</a>
-          </button>
+          <Button onClick={() => atualizar(1)} className='text-2xl bg-black w-1/2'>
+            <a href="#anchor" className='w-full'>Explore</a>
+          </Button>
         </div>
         <div className='hidden md:flex'>
           <Quadrinho />

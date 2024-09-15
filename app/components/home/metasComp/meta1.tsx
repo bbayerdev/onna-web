@@ -5,8 +5,8 @@ const Meta1 = () => {
     return (
 
         <div className='text-left mt-24 space-y-7 w-max max-w-lg'>
-            <h1 className='font-opensans text-1xl md:text-xl'>1/5</h1>
-            <h1 className='font-bold text-red-900 md:text-7xl text-4xl'>
+            <h1 className='font-opensans text-xl'>1/5</h1>
+            <h1 className='font-bold text-red-900 text-5xl'>
                 Para mulheres:
             </h1>
             <p className={`font-opensans md:text-2xl text-1xl mr-40`}>
