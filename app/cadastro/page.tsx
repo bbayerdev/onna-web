@@ -82,8 +82,11 @@ export function Page() {
   }
 
   //eye password:
-  const [isShow, setIsShow] = useState(false)
-  const eyePassword = () => setIsShow(!isShow)
+  const [isShow1, setIsShow1] = useState(false)
+  const eyePassword1 = () => setIsShow1(!isShow1)
+  //eye confirm:
+  const [isShow2, setIsShow2] = useState(false)
+  const eyePassword2 = () => setIsShow2(!isShow2)
 
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
@@ -126,13 +129,19 @@ export function Page() {
               {errors.dataNasc && <span className="text-red-500 text-sm">{errors.dataNasc.message}</span>}
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="senha">Senha</Label>
-              <Input
-                id="senha"
-                type="password"
-                {...register('senha')}
-              />
-              {errors.senha && <span className="text-red-500 text-sm">{errors.senha.message}</span>}
+              <Label htmlFor="confirmSenha">Senha</Label>
+              <div className="flex border-[1px] rounded-md">
+                <Input
+                  className="border-none"
+                  id="confirmSenha"
+                  type={isShow1 ? "text" : "password"}
+                  {...register('senha')}
+                />
+                <button onClick={eyePassword1} type="button" className="px-4">
+                  {isShow1 ? <Eye size={18} /> : <EyeOff size={18} />}
+                </button>
+              </div>
+              {errors.confirmSenha && <span className="text-red-500 text-sm">{errors.confirmSenha.message}</span>}
             </div>
             <div className="grid gap-2">
               <Label htmlFor="confirmSenha">Confirmar Senha</Label>
@@ -140,11 +149,11 @@ export function Page() {
                 <Input
                   className="border-none"
                   id="confirmSenha"
-                  type={isShow ? "text" : "password"}
+                  type={isShow2 ? "text" : "password"}
                   {...register('confirmSenha')}
                 />
-                <button onClick={eyePassword} type="button" className="px-4">
-                  {isShow ? <Eye size={18} /> : <EyeOff size={18} />}
+                <button onClick={eyePassword2} type="button" className="px-4">
+                  {isShow2 ? <Eye size={18} /> : <EyeOff size={18} />}
                 </button>
               </div>
               {errors.confirmSenha && <span className="text-red-500 text-sm">{errors.confirmSenha.message}</span>}
@@ -161,13 +170,13 @@ export function Page() {
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted lg:block bg-red-100">
+      <div className="hidden bg-muted lg:block">
         <Image
           src="/placeholder.svg"
           alt="Image"
           width="1920"
           height="1080"
-          className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+          className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale bg-red-50"
         />
       </div>
     </div>
