@@ -31,11 +31,9 @@ const Sobre = () => {
       <Header />
 
       <main className='space-y-52'>
-        <section className='flex flex-col w-3/4 justify-center space-y-12 m-auto mt-24'>
+        <section className='flex flex-col w-3/4 justify-center space-y-12 m-auto mt-24 py-10'>
           <h1 className='text-5xl text-red-900 font-bold'>Quem somos nós</h1>
           <p className='font-opensans text-2xl'>Somos uma equipe de apaixonados por descobertas e avanços!  Estamos comprometidos em garantir que cada aspecto da experiência ONNA seja cuidadosamente desenvolvido e atualizado para atender às necessidades em constante evolução de nossa comunidade global.</p>
-          <div className='w-full h-64 border-2 rounded-2xl border-black'>
-          </div>
         </section>
 
         <section className='flex flex-col w-3/4 justify-center space-y-12 m-auto mt-24'>

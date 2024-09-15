@@ -3,6 +3,7 @@ import React from 'react'
 import Quadrinho2 from './images/quadrinho2'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import WordPullUp from "@/components/magicui/word-pull-up";
 
 const Section2 = () => {
     return (
@@ -12,7 +13,10 @@ const Section2 = () => {
             </div>
             <div className='text-left mt-0 md:mt-24 space-y-7 w-max max-w-lg'>
                 <h1 className='font-bold text-xl md:text-2xl'>Em que acreditamos?</h1>
-                <h1 className='font-bold text-red-900 text-5xl'>Nosso compromisso</h1>
+                <WordPullUp
+                    className='font-bold text-red-900 text-5xl text-left'
+                    words="Bem vinda ao ONNA"
+                />
                 <p className='text-2xl py-6 pb-10'>
                     Oferecer uma plataforma acessível e inclusiva com recursos confiáveis para apoiar a saúde e bem-estar das mulheres!
                 </p>

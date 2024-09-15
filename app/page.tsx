@@ -5,6 +5,7 @@ import Header from './components/home/header';
 import Quadrinho from './components/home/images/quadrinho';
 import Main from './components/home/main';
 import { useState } from 'react';
+import WordPullUp from "@/components/magicui/word-pull-up";
 
 export default function Home() {
 
@@ -38,16 +39,21 @@ export default function Home() {
       <section className='flex flex-row justify-center py-12 max-md:p-10 max-xl:px-20 gap-32 max-lg:gap-20'>
 
         <div className='text-left mt-6 md:mt-24 space-y-7 w-max max-w-lg'>
-          <h1 className='font-bold text-red-900 text-5xl'>Bem-vinda ao ONNA</h1>
+          <WordPullUp
+            className='font-bold text-red-900 text-5xl text-left'
+            words="Bem vinda ao ONNA"
+          />
           <p className='text-2xl'>
             Sua Plataforma de Saúde Feminina e Comunidade de Apoio!
           </p>
           <p className={`font-opensans md:text-2xl text-1xl`}>
             Cuidado personalizado para todas as fases da saúde feminina!
           </p>
+
           <Button onClick={() => atualizar(1)} className='text-2xl bg-black w-1/2'>
             <a href="#anchor" className='w-full'>Explore</a>
           </Button>
+          
         </div>
         <div className='hidden md:flex'>
           <Quadrinho />

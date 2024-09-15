@@ -72,7 +72,7 @@ export function Page() {
         senha: data.senha,
         nome: data.nome,
         status_Ban: true,
-        dataNasc: "1990-07-15T00:00:00Z",
+        dataNasc: data.dataNasc,
         avatar: 3,
         tipo_Usuario: false
       });
