@@ -15,9 +15,6 @@ const Meta1 = () => {
             <p className={`font-opensans md:text-2xl text-1xl mr-40`}>
                 Nossa comunidade de fóruns oferece um espaço seguro para compartilhar experiências e fazer perguntas
             </p>
-            <p className={`font-opensans md:text-2xl text-1xl mr-40`}>
-                Encontre apoio de outras mulheres que te entendem e se importam com você!
-            </p>
         </div>
 
     )

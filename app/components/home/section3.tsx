@@ -4,8 +4,6 @@ import RoundedButom from './metasComp/roundedButom'
 import Meta1 from './metasComp/meta1'
 import Meta2 from './metasComp/meta2'
 import Meta3 from './metasComp/meta3'
-import Meta4 from './metasComp/meta4'
-import Meta5 from './metasComp/meta5'
 
 const Section3 = () => {
     //variavel meta --> muda seu valor atravez do setMeta
@@ -25,9 +23,6 @@ const Section3 = () => {
             case 2:
                 return <Meta3 />
             case 3:
-                return <Meta4 />
-            case 4:
-                return <Meta5 />
             default:
                 return <Meta1 />
         }
@@ -45,8 +40,6 @@ const Section3 = () => {
                     <RoundedButom num='1' ativo={meta === 0} atualizar={() => atualizarMeta(0)} />
                     <RoundedButom num='2' ativo={meta === 1} atualizar={() => atualizarMeta(1)} />
                     <RoundedButom num='3' ativo={meta === 2} atualizar={() => atualizarMeta(2)} />
-                    <RoundedButom num='4' ativo={meta === 3} atualizar={() => atualizarMeta(3)} />
-                    <RoundedButom num='5' ativo={meta === 4} atualizar={() => atualizarMeta(4)} />
                 </div>
 
             </div>
