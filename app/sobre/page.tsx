@@ -12,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import WordPullUp from '@/components/magicui/word-pull-up'
 
 
 const Sobre = () => {
@@ -31,13 +32,19 @@ const Sobre = () => {
       <Header />
 
       <main className='space-y-52'>
-        <section className='flex flex-col w-3/4 justify-center space-y-12 m-auto mt-24 py-10'>
-          <h1 className='text-5xl text-red-900 font-bold'>Quem somos nós</h1>
+        <section className='flex flex-col w-3/4 justify-center space-y-12 m-auto mt-10 py-10'>
+          <WordPullUp
+            className='font-bold text-red-900 text-5xl text-left'
+            words="Quem nós somos?"
+          />
           <p className='font-opensans text-2xl'>Somos uma equipe de apaixonados por descobertas e avanços!  Estamos comprometidos em garantir que cada aspecto da experiência ONNA seja cuidadosamente desenvolvido e atualizado para atender às necessidades em constante evolução de nossa comunidade global.</p>
         </section>
 
-        <section className='flex flex-col w-3/4 justify-center space-y-12 m-auto mt-24'>
-          <h1 className='text-5xl text-red-900 font-bold'>Equipe</h1>
+        <section className='flex flex-col w-3/4 justify-center space-y-12 m-auto mt-20'>
+          <WordPullUp
+            className='font-bold text-red-900 text-5xl text-left'
+            words="Nossa equipe"
+          />
           <p className='font-opensans text-2xl'>Conheça nossos integrantes e suas contribuições para o projeto.</p>
 
           <div className='flex justify-center p-10'>
@@ -51,8 +58,8 @@ const Sobre = () => {
                           <Image
                             src={src}
                             alt={`Image ${index + 1}`}
-                            width={500} 
-                            height={500} 
+                            width={500}
+                            height={500}
                             className="object-cover"
                           />
                         </CardContent>
