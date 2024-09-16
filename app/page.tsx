@@ -10,7 +10,6 @@ import GradualSpacing from "@/components/magicui/gradual-spacing";
 import BlurIn from "@/components/magicui/blur-in";
 import { motion } from 'framer-motion';
 
-
 export default function Home() {
 
   const [exibir, setExibir] = useState(0)

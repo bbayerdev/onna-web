@@ -28,7 +28,6 @@ const Section3 = () => {
         }
     }
 
-
     return (
         <section className='flex flex-row justify-center ml-48 md:ml-0 max-md:p-10 md:max-xl:px-20 gap-32 max-lg:gap-20'>
             <div className='text-left mt-24 space-y-7 w-max max-w-lg'>
