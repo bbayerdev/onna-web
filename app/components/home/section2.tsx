@@ -23,7 +23,7 @@ const Section2 = () => {
                 <h1 className='font-bold text-xl md:text-2xl'>Em que acreditamos?</h1>
                 <WordPullUp
                     className='font-bold text-red-900 text-5xl text-left'
-                    words="Bem vinda ao ONNA"
+                    words="Bem-vinda ao ONNA"
                 />
                 <BlurIn
                     word=" Oferecer uma plataforma acessível e inclusiva com recursos confiáveis para apoiar a saúde e bem-estar das mulheres!"

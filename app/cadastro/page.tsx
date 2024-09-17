@@ -11,6 +11,8 @@ import { Eye } from 'lucide-react';
 import { EyeOff } from 'lucide-react';
 import api from '../../api/api';
 import Image from "next/image";
+import { Checkbox } from "@/components/ui/checkbox";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 // Tipagem zod:
 const cadastroUserSchema = z.object({
@@ -157,6 +159,28 @@ export function Page() {
                 </button>
               </div>
               {errors.confirmSenha && <span className="text-red-500 text-sm">{errors.confirmSenha.message}</span>}
+
+              <div className="flex items-center space-x-2 p-2">
+                <Checkbox id="terms" />
+                <label
+                  htmlFor="terms"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Deseja criar conta
+                  <HoverCard>
+                    <HoverCardTrigger className="hover:underline font-bold"> profissional?</HoverCardTrigger>
+                    <HoverCardContent className="space-y-2">
+                      <h1>
+                        O profissional ajuda com seus conhecimentos na área da saúde que se formou e <span className="text-green-500"> auxilia e responde </span>a paciente em perguntas recorrentes.
+                      </h1>
+                      <h1 className="text-red-500">Para se cadastrar é necessário uma confirmação por parte de nossos moderadores.</h1>
+                    </HoverCardContent>
+                  </HoverCard>
+                </label>
+              </div>
+
+
+
             </div>
             <Button type="submit" className="w-full">
               Cadastrar-se
@@ -170,14 +194,8 @@ export function Page() {
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted lg:block">
-        <Image
-          src="/placeholder.svg"
-          alt="Image"
-          width="1920"
-          height="1080"
-          className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale bg-red-50"
-        />
+      <div className="hidden bg-muted h-screen lg:block">
+
       </div>
     </div>
   );
