@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -63,23 +63,22 @@ export function Page() {
   // Função para criar o usuário e enviar para a API:
   async function createUser(data: cadastroUserData) {
     setOutput(JSON.stringify(data, null, 2));
-    await postTipo_Usuario(data);
+    await createTipoUsuario(data);
   }
 
   // API - post usuario:
-  async function postTipo_Usuario(data: cadastroUserData) {
+  async function createTipoUsuario(data: cadastroUserData) {
     try {
-      const res = await api.post("/api/auth/signUp", {
+      const res = await api.post("/api/tipoUsuario", {
         email: data.email,
         senha: data.senha,
         nome: data.nome,
-        status_Ban: true,
         dataNasc: data.dataNasc,
-        avatar: 3,
-        tipo_Usuario: false
+        avatar: 1,
+        tipo_Usuario: 0
       });
     } catch (error) {
-      console.log("ERRO: " + error);
+      console.log ("ERRO: " + error);
     }
   }
 
@@ -131,11 +130,11 @@ export function Page() {
               {errors.dataNasc && <span className="text-red-500 text-sm">{errors.dataNasc.message}</span>}
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="confirmSenha">Senha</Label>
+              <Label htmlFor="senha">Senha</Label>
               <div className="flex border-[1px] rounded-md">
                 <Input
                   className="border-none"
-                  id="confirmSenha"
+                  id="senha"
                   type={isShow1 ? "text" : "password"}
                   {...register('senha')}
                 />
@@ -143,7 +142,7 @@ export function Page() {
                   {isShow1 ? <Eye size={18} /> : <EyeOff size={18} />}
                 </button>
               </div>
-              {errors.confirmSenha && <span className="text-red-500 text-sm">{errors.confirmSenha.message}</span>}
+              {errors.senha && <span className="text-red-500 text-sm">{errors.senha.message}</span>}
             </div>
             <div className="grid gap-2">
               <Label htmlFor="confirmSenha">Confirmar Senha</Label>
@@ -168,7 +167,7 @@ export function Page() {
                 >
                   Deseja criar conta
                   <HoverCard>
-                    <HoverCardTrigger className="hover:underline font-bold"> profissional?</HoverCardTrigger>
+                    <HoverCardTrigger className="underline hover:font-bold"> profissional?</HoverCardTrigger>
                     <HoverCardContent className="space-y-2">
                       <h1>
                         O profissional ajuda com seus conhecimentos na área da saúde que se formou e <span className="text-green-500"> auxilia e responde </span>a paciente em perguntas recorrentes.
@@ -178,9 +177,6 @@ export function Page() {
                   </HoverCard>
                 </label>
               </div>
-
-
-
             </div>
             <Button type="submit" className="w-full">
               Cadastrar-se
@@ -194,7 +190,7 @@ export function Page() {
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted h-screen lg:block">
+      <div className="hidden bg-muted h-screen lg:block bg-red-50">
 
       </div>
     </div>
