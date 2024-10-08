@@ -10,7 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye } from 'lucide-react';
 import { EyeOff } from 'lucide-react';
 import api from '../../api/api';
-import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
@@ -190,7 +189,7 @@ export function Page() {
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted h-screen lg:block bg-red-50">
+      <div className="hidden bg-muted lg:block bg-red-50">
 
       </div>
     </div>

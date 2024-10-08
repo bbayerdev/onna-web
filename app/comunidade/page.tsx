@@ -3,7 +3,8 @@ import { Separator } from "@/components/ui/separator"
 import Header from "./components/Header"
 import Aside from "./components/Aside"
 import { useState } from "react"
-import Home from "./pages/home"
+import Home from "./pages/home/home"
+import HomeTeste from './pages/home/homeTeste'
 import Popular from "./pages/popular"
 import Gravidez from "./pages/gravidez"
 import Desabafos from "./pages/desabafos"
@@ -21,7 +22,7 @@ export function page() {
     const renderizar = () => {
         switch (exibir) {
             case 1:
-                return <Home />
+                return <HomeTeste/>
             case 2:
                 return <Popular />
             case 3:

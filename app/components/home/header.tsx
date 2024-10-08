@@ -1,6 +1,4 @@
-
 "use client"
-
 import React, { useState } from 'react'
 import Logo from './images/logo'
 import Link from 'next/link'
@@ -17,12 +15,11 @@ const Header = () => {
             </Link>
 
             <div className='md:flex hidden flex-row gap-12 max-md:gap-6'>
-                <Link href='/sobre' className='text-2xl drop-shadow-xl hover:font-medium hover:underline'>Sobre nós</Link>
-                <Link href='/ajuda' className='text-2xl drop-shadow-xl hover:font-medium hover:underline'>Ajuda</Link>
+                <Link href='/sobre'> <Button variant={'ghost'} className='text-2xl'> Sobre nós</Button></Link>
+                <Link href='/ajuda'> <Button variant={'ghost'} className='text-2xl'> Ajuda</Button></Link>
             </div>
             <div className='md:flex hidden flex-row gap-10 max-md:gap-5'>
-                <Link href='/login' className='max-md:text-2xl  text-3xl underline drop-shadow-xl hover:font-medium'>Login</Link>
-                <Link href='/cadastro'> <Button className='text-2xl  bg-black' >Cadastro</Button> </Link>
+                <Link href='/login'> <Button variant={'link'} className='text-2xl'> Login</Button></Link>                <Link href='/cadastro'> <Button className='text-2xl  bg-black' >Cadastro</Button> </Link>
             </div>
 
             <i className='flex md:hidden  text-5x1 cursor-pointer w-8 h-8' onClick={() => setIsMenuOpen(!isMenuOpen)}>
