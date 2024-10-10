@@ -1,41 +1,111 @@
-import React from 'react'
-import ImgGatoLupa from './components/imgato'
-import Link from 'next/link'
+'use client'
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Eye } from 'lucide-react';
+import { EyeOff } from 'lucide-react';
+import { useState } from "react"
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-const page = () => {
+const loginUserSchema = z.object({
+    email: z.string()
+        .nonempty('Digite seu email')
+        .email('Formato de email inválido'),
+    senha: z.string()
+        .nonempty('Digite sua senha')
+})
+//inteligencia do ts:
+type loginUserData = z.infer<typeof loginUserSchema>;
+
+export function page() {
+
+    //faz parte da tipagem:
+    const [output, setOutput] = useState('');
+    const { register, handleSubmit, formState: { errors } } = useForm<loginUserData>({
+        resolver: zodResolver(loginUserSchema)
+    });
+
+    // Função para criar o usuário e enviar para a API:
+    async function loginUser(data: loginUserData) {
+        setOutput(JSON.stringify(data, null, 2));
+        // await postTipo_Usuario(data);
+    }
+
+    //eye password:
+    const [isShow, setIsShow] = useState(false)
+    const eyePassword = () => setIsShow(!isShow)
+
     return (
-        <main className='antialiased flex flex-row h-screen'>
-            <section className='w-1/2 bg-red-100 flex items-center justify-center '>
-                <ImgGatoLupa />
-            </section>
-            <section className='w-1/2 flex flex-col px-24 justify-center'>
-                <h1 className='font-bold text-7xl text-red-900'>Login</h1>
-                <p className='font-opensans text-2xl py-4'>Comece sua jornada para uma saúde feminina mais informada e capacitada!</p>
+        <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
+            <div className="hidden bg-muted lg:block">
+                <Image
+                    src="/placeholder.svg"
+                    alt="Image"
+                    width="1920"
+                    height="1080"
+                    className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale  bg-red-50"
+                />
+            </div>
+            <div className="flex items-center justify-center py-12">
+                <div className="mx-auto grid w-[350px] gap-6">
+                    <div className="grid gap-2 text-center">
+                        <h1 className=" text-5xl text-red-900 font-bold">Login</h1>
+                        <p className="text-balance text-muted-foreground text-1xl">
+                            Digite seu e-mail abaixo para fazer login em sua conta
+                        </p>
+                    </div>
+                    <form onSubmit={handleSubmit(loginUser)} className="grid gap-4">
+                        <div className="grid gap-2 ">
+                            <Label htmlFor="email">Email</Label>
+                            <Input
+                                id="email"
+                                type="email"
+                                placeholder="seuemail@example.com"
+                                required
+                                {...register('email')}
+                            />
+                            {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
 
-                <form className='flex flex-col p-5'>
-                    <label className='text-2xl'>Email</label>
-                    <input
-                        className='border-2 border-black rounded-md text-3xl font-opensans px-2'
-                        type="email"
-                    />
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="confirmSenha">Confirmar Senha</Label>
+                            <div className="flex border-[1px] rounded-md">
+                                <Input
+                                    className="border-none"
+                                    id="confirmSenha"
+                                    type={isShow ? "text" : "password"}
+                                    {...register('senha')}
+                                />
+                                <button onClick={eyePassword} type="button" className="px-4">
+                                    {isShow ? <Eye size={18} /> : <EyeOff size={18} />}
+                                </button>
+                            </div>
+                            {errors.senha && <span className="text-red-500 text-sm">{errors.senha.message}</span>}
+                            <Link
+                                href="/recSenha"
+                                className="ml-auto inline-block text-sm underline"
+                            >
+                                Esqueceu sua senha?
+                            </Link>
+                        </div>
+                        <Button type="submit" className="w-full">
+                            Entrar
+                        </Button>
+                    </form>
+                    <div className="mt-4 text-center text-sm">
+                        Não possui uma conta ainda?{" "}
+                        <Link href="/cadastro" className="underline">
+                            Cadastre-se
+                        </Link>
+                    </div>
+                </div>
+            </div>
 
-                    <br />
-
-                    <label className='text-2xl'>Senha</label>
-                    <input
-                        className='border-2 border-black rounded-md text-3xl font-opensans px-2'
-                        type="email"
-                    />
-                    <a href="#" className='text-xl text-right mt-2 hover:underline'>Esqueceu sua senha?</a>
-                    <button
-                        type='submit'
-                        className='text-3xl border-2 font-bold text-red-900 border-red-900 p-1 mt-10 m-10 rounded-full shadow-lg duration-100 hover:bg-red-100'>
-                        Entrar
-                    </button>
-                </form>
-                <p className='text-xl'>Não possui conta? <Link className='hover:underline font-bold' href='/cadastro'>Cadastre-se</Link></p>
-            </section>
-        </main>
+        </div>
     )
 }
 

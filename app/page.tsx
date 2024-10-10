@@ -1,9 +1,14 @@
 'use client'
+import { Button } from '@/components/ui/button';
 import Footer from './components/home/footer';
 import Header from './components/home/header';
 import Quadrinho from './components/home/images/quadrinho';
 import Main from './components/home/main';
 import { useState } from 'react';
+import WordPullUp from "@/components/magicui/word-pull-up";
+import GradualSpacing from "@/components/magicui/gradual-spacing";
+import BlurIn from "@/components/magicui/blur-in";
+import { motion } from 'framer-motion';
 
 export default function Home() {
 
@@ -35,25 +40,54 @@ export default function Home() {
 
       <div className='w-5/6 h-20 flex md:hidden border-2 mt-2 ml-10 items-center justify-center place-items-center content-center'></div>
       <section className='flex flex-row justify-center py-12 max-md:p-10 max-xl:px-20 gap-32 max-lg:gap-20'>
+        <div className='text-left mt-6 md:mt-16 space-y-7 w-max max-w-lg'>
+          <WordPullUp
+            className='font-bold text-red-900 text-xl md:text-3xl text-left'
+            words="Seja bem vinda!"
+          />
 
-        <div className='text-left mt-6 md:mt-24 space-y-7 w-max max-w-lg'>
-          <h1 className='font-bold text-red-900 text-4xl md:text-7xl'>Bem-vinda ao ONNA</h1>
-          <p className={`font-opensans md:text-2xl text-1xl`}>
-            Sua Plataforma de Saúde Feminina e Comunidade de Apoio!
-          </p>
-          <p className={`font-opensans md:text-2xl text-1xl`}>
-            Cuidado personalizado para todas as fases da saúde feminina!
-          </p>
-          <button onClick={() => atualizar(1)} className='text-xl transition duration-500 hover:bg-red-100 hover:scale-105 shadow-xl font-bold md:text-3xl text-red-900 border-red-900 border-[3px] rounded-full px-12 py-1'>
-            <a href="#anchor">Explore</a>
-          </button>
+          <div className='flex'>
+            <GradualSpacing
+              className="md:text-5xl text-3xl font-extrabold tracking-[-0.1em] text-left"
+              text="Conheça o ONNA"
+            />
+          </div>
+
+          <BlurIn
+            word="Sua Plataforma de Saúde Feminina e Comunidade de Apoio!"
+            className='md:text-xl text-base font-opensans'
+            duration={0.5}
+          />
+
+          <BlurIn
+            word="Cuidado personalizado para todas as fases da saúde feminina!"
+            className='md:text-xl text-base font-opensans'
+            duration={0.5}
+          />
+
+          <motion.button
+            onClick={() => atualizar(1)}
+            className='md:text-xl text-base bg-black w-1/3 rounded-md flex py-1 font-opensans'
+            initial={{ opacity: 0, filter: 'blur(10px)' }} // Começa com blur e opacidade 0
+            animate={{ opacity: 1, filter: 'blur(0px)' }} // Anima para sem blur e opacidade 1
+            transition={{ duration: 0.7 }} // Ajuste a duração conforme necessário
+          >
+            <a href="#anchor" className='w-full text-white'>Explore</a>
+          </motion.button>
+
         </div>
         <div className='hidden md:flex'>
-          <Quadrinho />
+          <motion.div
+            initial={{ opacity: 0, filter: 'blur(10px)' }} // Estado inicial com blur
+            animate={{ opacity: 1, filter: 'blur(0px)' }} // Estado final sem blur
+            transition={{ duration: 0.5 }} // Ajuste a duração conforme necessário
+          >
+            <Quadrinho />
+          </motion.div>
         </div>
       </section>
-
-      <div className='mt-32' id='anchor'>
+      <div id='anchor'/>
+      <div className='mt-32' >
         {renderizar()}
       </div>
 
