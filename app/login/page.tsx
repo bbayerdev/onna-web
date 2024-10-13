@@ -10,6 +10,10 @@ import { useState } from "react"
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "@/hooks/use-toast"
+import router from "next/router"
+import api from '../../api/api';
+import { Toaster } from "@/components/ui/toaster"
 
 const loginUserSchema = z.object({
     email: z.string()
@@ -22,22 +26,36 @@ const loginUserSchema = z.object({
 type loginUserData = z.infer<typeof loginUserSchema>;
 
 export function page() {
-
+    //eye password:
+    const [isShow, setIsShow] = useState(false)
+    const eyePassword = () => setIsShow(!isShow)
     //faz parte da tipagem:
     const [output, setOutput] = useState('');
     const { register, handleSubmit, formState: { errors } } = useForm<loginUserData>({
         resolver: zodResolver(loginUserSchema)
     });
 
-    // Função para criar o usuário e enviar para a API:
+    // Função para realizar o login
     async function loginUser(data: loginUserData) {
-        setOutput(JSON.stringify(data, null, 2));
-        // await postTipo_Usuario(data);
+        try {
+            const res = await api.post("/api/tipoUsuario/login", {
+                email: data.email,
+                senha: data.senha
+            });
+
+            if (res.status === 200) {
+                toast({
+                    title: "Login realizado!",
+                    description: "Você será redirecionado.",
+                });
+                setTimeout(() => {
+                    router.push("/comunidade");
+                }, 2000);
+            }
+        } catch (error) {
+        }
     }
 
-    //eye password:
-    const [isShow, setIsShow] = useState(false)
-    const eyePassword = () => setIsShow(!isShow)
 
     return (
         <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
@@ -103,10 +121,9 @@ export function page() {
                         </Link>
                     </div>
                 </div>
+                <Toaster />
             </div>
-
         </div>
     )
 }
-
 export default page

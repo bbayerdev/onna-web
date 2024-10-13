@@ -12,6 +12,9 @@ import { EyeOff } from 'lucide-react';
 import api from '../../api/api';
 import { Checkbox } from "@/components/ui/checkbox";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Toaster } from "@/components/ui/toaster"
+import { useToast } from "@/hooks/use-toast"
+import { useRouter } from 'next/navigation';
 
 // Tipagem zod:
 const cadastroUserSchema = z.object({
@@ -52,17 +55,35 @@ const cadastroUserSchema = z.object({
 //inteligencia do ts:
 type cadastroUserData = z.infer<typeof cadastroUserSchema>;
 
+
 export function Page() {
+  //eye password:
+  const [isShow1, setIsShow1] = useState(false)
+  const eyePassword1 = () => setIsShow1(!isShow1)
+  //eye confirm:
+  const [isShow2, setIsShow2] = useState(false)
+  const eyePassword2 = () => setIsShow2(!isShow2)
+
   //faz parte da tipagem:
   const [output, setOutput] = useState('');
   const { register, handleSubmit, formState: { errors } } = useForm<cadastroUserData>({
     resolver: zodResolver(cadastroUserSchema)
   });
 
+  //conta profissional?
+  const [tipoUsuario, setTipoUsuario] = useState(0)
+  const checkboxAtivo = (ativo: boolean) => {
+    setTipoUsuario(ativo ? 1 : 0)
+  }
+
   // Função para criar o usuário e enviar para a API:
   async function createUser(data: cadastroUserData) {
     setOutput(JSON.stringify(data, null, 2));
     await createTipoUsuario(data);
+    // Chama a procedure para armazenar o ID do usuário
+    const armazenaIdTipoUsuario = (tipoUsuario: number) => {
+      console.log("ID do tipo de usuário armazenado:", tipoUsuario);
+    };
   }
 
   // API - post usuario:
@@ -74,19 +95,39 @@ export function Page() {
         nome: data.nome,
         dataNasc: data.dataNasc,
         avatar: 1,
-        tipo_Usuario: 0
+        tipo_Usuario: tipoUsuario
       });
+
+      // Exibe o toast de sucesso
+      toast({
+        title: "Sucesso!",
+        description: "Sua conta foi criada com sucesso.",
+        className: 'bg-green-400',
+        duration: 4000
+      })
+
+      // Redireciona para a comunidade em 2.5 segundos
+      setTimeout(() => {
+        router.push("/comunidade");
+      }, 2500)
+
     } catch (error) {
-      console.log ("ERRO: " + error);
+      console.log("ERRO: " + error);
     }
   }
 
-  //eye password:
-  const [isShow1, setIsShow1] = useState(false)
-  const eyePassword1 = () => setIsShow1(!isShow1)
-  //eye confirm:
-  const [isShow2, setIsShow2] = useState(false)
-  const eyePassword2 = () => setIsShow2(!isShow2)
+  // API - armazenar ID do usuário
+  async function armazenaIdTipoUsuario(email: string) {
+    try {
+      await api.post("/api/armazena_idTipo_Usuario", { email });
+    } catch (error) {
+      console.log("Erro ao armazenar ID do usuário: ", error);
+    }
+  }
+
+  //toast
+  const { toast } = useToast()
+  const router = useRouter(); // hook para redirecionamento
 
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
@@ -159,7 +200,7 @@ export function Page() {
               {errors.confirmSenha && <span className="text-red-500 text-sm">{errors.confirmSenha.message}</span>}
 
               <div className="flex items-center space-x-2 p-2">
-                <Checkbox id="terms" />
+                <Checkbox onCheckedChange={checkboxAtivo} id="terms" />
                 <label
                   htmlFor="terms"
                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -192,6 +233,7 @@ export function Page() {
       <div className="hidden bg-muted lg:block bg-red-50">
 
       </div>
+      <Toaster />
     </div>
   );
 }
