@@ -80,10 +80,6 @@ export function Page() {
   async function createUser(data: cadastroUserData) {
     setOutput(JSON.stringify(data, null, 2));
     await createTipoUsuario(data);
-    // Chama a procedure para armazenar o ID do usuário
-    const armazenaIdTipoUsuario = (tipoUsuario: number) => {
-      console.log("ID do tipo de usuário armazenado:", tipoUsuario);
-    };
   }
 
   // API - post usuario:
@@ -115,16 +111,7 @@ export function Page() {
       console.log("ERRO: " + error);
     }
   }
-
-  // API - armazenar ID do usuário
-  async function armazenaIdTipoUsuario(email: string) {
-    try {
-      await api.post("/api/armazena_idTipo_Usuario", { email });
-    } catch (error) {
-      console.log("Erro ao armazenar ID do usuário: ", error);
-    }
-  }
-
+  
   //toast
   const { toast } = useToast()
   const router = useRouter(); // hook para redirecionamento
