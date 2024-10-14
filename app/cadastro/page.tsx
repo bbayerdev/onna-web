@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -101,17 +101,16 @@ export function Page() {
         className: 'bg-green-400',
         duration: 4000
       })
-
-      // Redireciona para a comunidade em 2.5 segundos
+      // Redireciona para a comunidade em 1.2 segundos
       setTimeout(() => {
-        router.push("/comunidade");
-      }, 2500)
+        router.push("/login");
+      }, 1200)
 
     } catch (error) {
       console.log("ERRO: " + error);
     }
   }
-  
+
   //toast
   const { toast } = useToast()
   const router = useRouter(); // hook para redirecionamento

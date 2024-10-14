@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@/hooks/use-toast"
-import router from "next/router"
+import { useRouter } from 'next/navigation';
 import api from '../../api/api';
 import { Toaster } from "@/components/ui/toaster"
 
@@ -38,30 +38,38 @@ export function page() {
     // Função para realizar o login
     async function loginUser(data: loginUserData) {
         try {
-            const res = await api.post("/api/tipoUsuario/login", {
+            const res = await api.post("/api/auth/tipoUsuario", {
                 email: data.email,
-                senha: data.senha
+                senha: data.senha,
             });
 
             if (res.status === 200) {
                 toast({
                     title: "Login realizado!",
                     description: "Você será redirecionado.",
+                    className: 'bg-green-400'
                 });
                 setTimeout(() => {
                     router.push("/comunidade");
                 }, 2000);
             }
         } catch (error) {
+            console.error("Erro ao realizar login:", error);
+            toast({
+                title: "Houve um erro!",
+                description: "Revise suas credenciais e tente novamente.",
+                className: 'bg-red-400'
+            });
         }
     }
 
+    const router = useRouter(); // hook para redirecionamento
 
     return (
         <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
             <div className="hidden bg-muted lg:block">
                 <Image
-                    src="/placeholder.svg"
+                    src="/"
                     alt="Image"
                     width="1920"
                     height="1080"
