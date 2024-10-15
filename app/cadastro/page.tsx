@@ -97,9 +97,9 @@ export function Page() {
       // Exibe o toast de sucesso
       toast({
         title: "Sucesso!",
-        description: "Sua conta foi criada com sucesso.",
+        description: "Sua conta foi criada com sucesso. Agora faça seu login.",
         className: 'bg-green-400',
-        duration: 4000
+        duration: 1100
       })
       // Redireciona para a comunidade em 1.2 segundos
       setTimeout(() => {

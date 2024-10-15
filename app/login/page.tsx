@@ -44,21 +44,30 @@ export function page() {
             });
 
             if (res.status === 200) {
+                const usuario = res.data;
+
+                // Armazena todos os dados do usuário no localStorage
+                localStorage.setItem("usuarioData", JSON.stringify(usuario));
+
                 toast({
                     title: "Login realizado!",
-                    description: "Você será redirecionado.",
-                    className: 'bg-green-400'
+                    description: "Você será redirecionado em 2 segundos.",
+                    className: 'bg-green-400',
+                    duration: 2000,
                 });
+
+                // Redireciona para a página de perfil após o login
                 setTimeout(() => {
                     router.push("/comunidade");
-                }, 2000);
+                }, 1900);
             }
         } catch (error) {
             console.error("Erro ao realizar login:", error);
             toast({
                 title: "Houve um erro!",
                 description: "Revise suas credenciais e tente novamente.",
-                className: 'bg-red-400'
+                className: 'bg-red-400',
+                duration: 2000,
             });
         }
     }
