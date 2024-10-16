@@ -46,7 +46,7 @@ export function page() {
                     <Header exibir={exibir} atualizar={atualizar} />
                     <Separator className="z-10"/>
                 </div>
-                <main className="p-20 pt-20 max-sm:p-10 max-sm:pt-24 overflow-y-auto h-screen">
+                <main className="w-screen p-32 pt-20 max-sm:p-10 max-sm:pt-24 overflow-y-auto h-screen">
                     {renderizar()}
                 </main>
             </div>
