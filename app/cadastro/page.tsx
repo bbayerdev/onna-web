@@ -216,7 +216,7 @@ export function Page() {
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted lg:block bg-red-50">
+      <div className="hidden bg-muted lg:block bg-red-50 h-screen">
 
       </div>
       <Toaster />

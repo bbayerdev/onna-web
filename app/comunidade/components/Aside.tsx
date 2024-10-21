@@ -30,7 +30,7 @@ const Aside = ({ exibir, atualizar }: Props) => {
                         <TooltipTrigger asChild>
                             <button onClick={() => atualizar(1)}>
                                 <Link
-                                    href="#"
+                                    href="/comunidade"
                                     onClick={() => ativar('home')} // manda o id do to
                                     className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${ativo === 'home' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}
                                 >
@@ -45,7 +45,7 @@ const Aside = ({ exibir, atualizar }: Props) => {
                         <TooltipTrigger asChild>
                             <button onClick={() => atualizar(2)}>
                                 <Link
-                                    href="#"
+                                    href="/comunidade/popular"
                                     onClick={() => ativar('popular')} // manda o id do to
                                     className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${ativo === 'popular' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}
                                 >
@@ -61,7 +61,7 @@ const Aside = ({ exibir, atualizar }: Props) => {
                         <TooltipTrigger asChild>
                             <button onClick={() => atualizar(3)}>
                                 <Link
-                                    href="#"
+                                    href="/comunidade/gravidez"
                                     onClick={() => ativar('gravidez')} // manda o id do to
                                     className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${ativo === 'gravidez' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}                                >
                                     <Baby className="h-5 w-5" />
@@ -75,7 +75,7 @@ const Aside = ({ exibir, atualizar }: Props) => {
                         <TooltipTrigger asChild>
                             <button onClick={() => atualizar(4)}>
                                 <Link
-                                    href="#"
+                                    href="/comunidade/desabafos"
                                     onClick={() => ativar('desabafos')} // manda o id do to
                                     className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${ativo === 'desabafos' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}                                >
                                     <MicVocal className="h-5 w-5" />
@@ -89,7 +89,7 @@ const Aside = ({ exibir, atualizar }: Props) => {
                         <TooltipTrigger asChild>
                             <button onClick={() => atualizar(5)}>
                                 <Link
-                                    href="#"
+                                    href="/comunidade/autocuidado"
                                     onClick={() => ativar('autocuidado')} // manda o id do to
                                     className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${ativo === 'autocuidado' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}                                >
                                     <Flower2 className="h-5 w-5" />
@@ -107,7 +107,7 @@ const Aside = ({ exibir, atualizar }: Props) => {
                         <TooltipTrigger asChild>
                             <button onClick={() => atualizar(6)}>
                                 <Link
-                                    href="#"
+                                    href="/comunidade/config"
                                     onClick={() => ativar('config')} // manda o id do to
                                     className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${ativo === 'config' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}
                                 >
