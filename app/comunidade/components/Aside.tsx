@@ -2,7 +2,7 @@
 import { Separator } from '@/components/ui/separator'
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { TooltipProvider } from "@radix-ui/react-tooltip"
-import { Package2, Home, TrendingUp, Baby, MicVocal, Flower2, Settings } from 'lucide-react'
+import { Package2, Home, TrendingUp, Baby, MicVocal, Flower2, Settings, Heart } from 'lucide-react'
 import Link from "next/link"
 import React, { useState } from 'react'
 
@@ -74,6 +74,21 @@ const Aside = ({ exibir, atualizar }: Props) => {
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <button onClick={() => atualizar(4)}>
+                                <Link
+                                    href="/comunidade/maternidade"
+                                    onClick={() => ativar('maternidade')} // manda o id do to
+                                    className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${ativo === 'maternidade' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}
+                                >
+                                    <Heart className="h-5 w-5" />
+                                    <span className="sr-only">Maternidade</span>
+                                </Link>
+                            </button>
+                        </TooltipTrigger>
+                        <TooltipContent className="font-bold" side="right">Maternidade</TooltipContent>
+                    </Tooltip>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <button onClick={() => atualizar(5)}>
                                 <Link
                                     href="/comunidade/desabafos"
                                     onClick={() => ativar('desabafos')} // manda o id do to
