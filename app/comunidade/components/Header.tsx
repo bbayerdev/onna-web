@@ -4,13 +4,9 @@ import { TooltipProvider } from "@radix-ui/react-tooltip"
 import { Separator } from "@/components/ui/separator"
 import { Home, Flower2, Baby, Package2, Settings, MicVocal, TrendingUp, Menu, Search, UserRound, Plus } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
 import {
     Sheet,
     SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
@@ -23,6 +19,11 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+} from "@/components/ui/avatar"
 
 type Props = {
     exibir: number,
@@ -108,7 +109,7 @@ function Header({ atualizar, exibir }: Props) {
                     </nav>
                 </SheetContent>
             </Sheet>
-            
+
             <div className="relative ml-auto flex-1 sm:grow-0">
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -154,7 +155,10 @@ function Header({ atualizar, exibir }: Props) {
                                     size="icon"
                                     className="overflow-hidden rounded-full"
                                 >
-                                    <UserRound />
+                                    <Avatar>
+                                        <AvatarImage src="https://github.com/bbayerdev.png" alt="@shadcn" />
+                                        <AvatarFallback>CN</AvatarFallback>
+                                    </Avatar>
                                 </Button>
                             </DropdownMenuTrigger>
                         </TooltipTrigger>

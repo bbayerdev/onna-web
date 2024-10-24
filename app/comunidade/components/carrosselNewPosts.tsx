@@ -4,8 +4,6 @@ import { cn } from "@/lib/utils";
 import Marquee from '@/components/ui/marquee';
 import { Heart } from 'lucide-react';
 
-
-
 export function CarrosselNewPosts() {
 
     const [usuarioId, setUsuarioId] = useState<string | null>(null);
@@ -51,7 +49,7 @@ export function CarrosselNewPosts() {
         },
         {
             name: "Jane",
-            forum: "@jane",
+            forum: "#Gravidez",
             body: "Estou tão animada para essa nova fase da minha vida! ",
             img: "https://avatar.vercel.sh/jane",
             link: "/gravidez/",
@@ -60,7 +58,7 @@ export function CarrosselNewPosts() {
         },
         {
             name: "Jenny",
-            forum: "@jenny",
+            forum: "#Autocuidado",
             body: "Não consigo esperar para conhecer meu bebê!",
             img: "https://avatar.vercel.sh/jenny",
             link: "/gravidez/",
@@ -69,7 +67,7 @@ export function CarrosselNewPosts() {
         },
         {
             name: "James",
-            forum: "@james",
+            forum: "#Maternidade",
             body: "Cada movimento do meu filho é uma alegria imensa.",
             img: "https://avatar.vercel.sh/james",
             link: "/gravidez/",
@@ -100,20 +98,17 @@ export function CarrosselNewPosts() {
             <figure
                 className={cn(
                     "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-                    // light styles
                     "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05] shadow",
-                    // dark styles
-                    "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
                 )}
             >
                 <div className="flex flex-row items-center gap-2">
                     <img className="rounded-full" width="32" height="32" alt="" src={img} />
                     <div className="flex flex-row w-full">
                         <div className='w-3/4'>
-                            <figcaption className="text-sm font-medium dark:text-white">
+                            <figcaption className="text-sm">
                                 {name}
                             </figcaption>
-                            <p className="text-xs font-medium dark:text-white/40">{forum}</p>
+                            <p className="text-xs text-zinc-700">{forum}</p>
                         </div>
                         <div className='flex ml-14'>
                             <p className='text-xs mt-1'> {hora}</p>
@@ -132,7 +127,7 @@ export function CarrosselNewPosts() {
 
     return (
         <div>
-            <Marquee pauseOnHover className="[--duration:30s]">
+            <Marquee pauseOnHover className="[--duration:50s]">
                 {firstRow.map((review) => (
                     <ReviewCard key={review.forum} {...review} />
                 ))}
