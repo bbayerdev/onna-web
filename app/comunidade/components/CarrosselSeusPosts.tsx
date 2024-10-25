@@ -9,37 +9,37 @@ export function CarrosselSeusPosts() {
 
     const reviews = [
         {
-            name: "Eminem",
+            name: "Luiz Ricardo",
             forum: "#Gravidez",
             body: "Descobri que estou grávida... Que mistura de emoções!",
-            img: "https://github.com/bbayerdev.png",
+            img: '/imgs/cachorra.png',
             link: "/gravidez/",
             hora: "3h",
             curtidas: 1350
         },
         {
-            name: "Eminem",
+            name: "Luiz Ricardo",
             forum: "#Desabafos",
             body: "Não sei mais como lidar com a rotina e meus filhos.",
-            img: "https://github.com/bbayerdev.png",
+            img: '/imgs/cachorra.png',
             link: "/desabafos/",
             hora: "5h",
             curtidas: 890
         },
         {
-            name: "Eminem",
+            name: "Luiz Ricardo",
             forum: "#Autocuidado",
             body: "Guia: Priorize seu bem-estar durante a gestação.",
-            img: "https://github.com/bbayerdev.png",
+            img: '/imgs/cachorra.png',
             link: "/autocuidado/",
             hora: "8h",
             curtidas: 740
         },
         {
-            name: "Eminem",
+            name: "Luiz Ricardo",
             forum: "#Maternidade",
             body: "A maternidade me transformou de tantas formas.",
-            img: "https://github.com/bbayerdev.png",
+            img: '/imgs/cachorra.png',
             link: "/maternidade/",
             hora: "1h",
             curtidas: 420

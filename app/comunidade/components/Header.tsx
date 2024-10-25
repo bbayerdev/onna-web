@@ -156,7 +156,7 @@ function Header({ atualizar, exibir }: Props) {
                                     className="overflow-hidden rounded-full"
                                 >
                                     <Avatar>
-                                        <AvatarImage src="https://github.com/bbayerdev.png" alt="@shadcn" />
+                                        <AvatarImage src='/imgs/cachorra.png' alt="@shadcn" />
                                         <AvatarFallback>CN</AvatarFallback>
                                     </Avatar>
                                 </Button>

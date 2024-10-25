@@ -106,11 +106,27 @@ export function Page() {
         router.push("/login");
       }, 1200)
 
-    } catch (error) {
+    } catch (error: any) {
       console.log("ERRO: " + error);
+
+      // ve se o email ja esta cadastrado
+      if (error.response && error.response.status === 500) {
+        toast({
+          title: "Este email já está cadastrado.",
+          description: "Faça seu login ou altere sua senha se nao lembrar!",
+          className: 'bg-red-400',
+          duration: 2000
+        });
+      } else {
+        toast({
+          title: "Erro!",
+          description: "Ocorreu um erro ao criar sua conta.",
+          className: 'bg-red-400',
+          duration: 2000
+        });
+      }
     }
   }
-
   //toast
   const { toast } = useToast()
   const router = useRouter(); // hook para redirecionamento

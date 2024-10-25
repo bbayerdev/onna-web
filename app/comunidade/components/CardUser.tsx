@@ -43,7 +43,7 @@ const CardUser = () => {
             <Card className='bg-gray-950/[.01] flex'>
                 <CardHeader>
                     <Avatar className='size-32 shadow'>
-                        <AvatarImage src="https://github.com/bbayerdev.png" alt="@shadcn" />
+                        <AvatarImage src='/imgs/cachorra.png' alt="@shadcn" />
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                 </CardHeader>
