@@ -1,5 +1,5 @@
 'use client'
-import React from "react"
+import React, { useEffect } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
@@ -20,32 +20,33 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "@/hooks/use-toast"
+import { Toaster } from "@/components/ui/toaster"
+import api from '../../../api/api';
 
 const frameworks = [
-    {
-        value: "#Gravidez",
-        label: "Gravidez",
-    },
-    {
-        value: "#Maternidade",
-        label: "Maternidade",
-    },
-    {
-        value: "#Desabafos",
-        label: "Desabafos",
-    },
-    {
-        value: "#Autocuidado",
-        label: "Autocuidado",
-    },
-]
+    { id: 1, value: "#Gravidez", label: "Gravidez" },
+    { id: 2, value: "#Maternidade", label: "Maternidade" },
+    { id: 3, value: "#Desabafos", label: "Desabafos" },
+    { id: 4, value: "#Autocuidado", label: "Autocuidado" },
+];
+
+//tipagem zodddd
+const newPostSchema = z.object({
+    titulo: z.string().nonempty('Título do post obrigatório'),
+});
+//inteligencia do ts:
+type newPostData = z.infer<typeof newPostSchema>;
 
 export function NovoPost() {
     //faz parte do command
     const [open, setOpen] = React.useState(false)
     //tipagem dados:
     const [titulo, setTitulo] = useState('')
-    const maxTitilo = 50
+    const maxTitilo = 40
     const [body, setBody] = useState('')
     const maxBody = 3000
     const [forumEscolhido, setforumEscolhido] = React.useState("")
@@ -59,22 +60,63 @@ export function NovoPost() {
             setNomeArquivo(file.name);
             setFilePath(URL.createObjectURL(file));
         }
-    };
+    }
 
+    // config do useForm com validação Zod
+    const { register, handleSubmit, formState: { errors } } = useForm<newPostData>({
+        resolver: zodResolver(newPostSchema),
+    });
+
+    //puxando dados do user no localStorage
+    const [dadosUsuario, setDadosUsuario] = useState<{
+        idTipo_Usuario: number,
+    } | null>(null)
+    useEffect(() => {
+        //ao carregar a pagina
+        const data = localStorage.getItem('usuarioData')
+        if (data) {
+            const usuario = JSON.parse(data) // verifica e passa os dados do local para essa variavel
+            setDadosUsuario(usuario) // leva pro useState
+        }
+    }, [])
+    //limpar o localStorage --> localStorage.clear();
+
+    // função para enviar o post para a API
+    const onSubmit = async (data: newPostData) => {
+        try {
+            const response = await api.post("/api/postagem", { // ajuste a URL se necessário
+                titulo: data.titulo,
+                subtitulo: body,
+                imagem: filePath, // Opcional
+                idTipo_Usuario: dadosUsuario?.idTipo_Usuario,
+                idForum: frameworks.find(f => f.value === forumEscolhido)?.id,
+            });
+
+            if (response.status === 200) { // Verifica se a resposta foi bem-sucedida
+                toast({ title: "Post criado com sucesso!" });
+            } else {
+                toast({ title: "Erro ao criar post", description: "Tente novamente." });
+            }
+        } catch (error) {
+            toast({ title: "Erro de conexão", description: "Não foi possível conectar ao servidor." });
+        }
+    };
     return (
         <main>
             <header className="w-full text-2xl mt-5 font-bold">Criar post</header>
             <section className="flex flex-row mt-10 pl-5 gap-20 h-screen">
                 <div className="w-2/5">
-                    <form action="">
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <Label className="text-base" htmlFor="Título">Título post <span className="text-red-500">*</span></Label>
                         <Input
+                            {...register("titulo")}
                             className={titulo.length > maxTitilo ? 'text-red-500' : 'text-black'}
                             type="text"
                             placeholder="De um título para seu post."
                             id="Titulo"
                             onChange={(e) => setTitulo(e.target.value)}
                         />
+                        {errors.titulo && <span className="text-red-500 text-sm">{errors.titulo.message}</span>}
                         <p className="text-right text-xs mr-2">
                             <span className={titulo.length > maxTitilo ? 'text-red-500' : 'text-black'}>{titulo.length}/{maxTitilo}</span>
                         </p>
@@ -140,7 +182,7 @@ export function NovoPost() {
                                 <Input id="picture" type="file" onChange={handleFileChange} />
                             </div>
                         </div>
-                        <Button className='w-full text-base mt-10 hover:bg-green-400 shadow' variant={'outline'}>
+                        <Button type="submit" className='w-full text-base mt-10 hover:bg-green-400 shadow' variant={'outline'}>
                             Postar <Rocket className='size-4 ml-2' />
                         </Button>
                     </form>
@@ -161,6 +203,7 @@ export function NovoPost() {
                     </div>
                 </div>
             </section>
+            <Toaster />
         </main>
     )
 }

@@ -15,6 +15,7 @@ const Header = () => {
             </Link>
 
             <div className='md:flex hidden flex-row gap-12 max-md:gap-6'>
+                <Link href='/comunidade'> <Button variant={'ghost'} className='text-2xl'> Comunidade</Button></Link>
                 <Link href='/sobre'> <Button variant={'ghost'} className='text-2xl'> Sobre nós</Button></Link>
                 <Link href='/ajuda'> <Button variant={'ghost'} className='text-2xl'> Ajuda</Button></Link>
             </div>

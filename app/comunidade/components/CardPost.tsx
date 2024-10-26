@@ -61,9 +61,9 @@ const CardPost = ({
                     </div>
                 </div>
             </div>
-            <blockquote className="mt-4 ml-10 w-4/5 text-justify">
+            <blockquote className="mt-4 ml-10 w-4/5">
                 <h1 className='text-xl font-semibold'>{titulo || 'Título'}</h1>
-                <p className='mt-2'>{body || 'Texto do post...'}</p>
+                <p className='mt-2 text-justify'>{body || 'Texto do post...'}</p>
 
                 {imagem && (
                     <div className='border h-52 mt-5 w-full justify-center flex items-center rounded-xl'>
@@ -78,16 +78,17 @@ const CardPost = ({
                 </Button>
 
                 <div className='flex justify-center items-center'>
-                    <div className='flex gap-1 mr-2'>
+                    <div className='flex gap-1 mr-2 '>
                         <p className='ml-1 text-sm text-right font-bold'>{respostas}</p>
                         <MessageCircle size={20} />
                     </div>
-
                     <p className='mr-1 text-sm text-right font-bold'>{like}</p>
                     <Button onClick={liked} className='mr-1 hover:bg-red-100' variant="outline" size="icon">
                         <Heart color="#ef4444" fill='#ef4444' className="h-5 w-5 " />
                     </Button>
+
                 </div>
+
             </div>
         </figure>
     );

@@ -37,7 +37,7 @@ const CardUser = () => {
         }
     }, [])
     //limpar o localStorage --> localStorage.clear();
-    
+
     return (
         <div>
             <Card className='bg-gray-950/[.01] flex'>
@@ -49,10 +49,10 @@ const CardUser = () => {
                 </CardHeader>
                 <CardContent className='p-3 mt-7 w-full'>
                     <h1 className='font-bold text-xl'>
-                        {dadosUsuario?.nome || 'Eminem'}
+                        {dadosUsuario?.nome || 'Luiz Ricardo'}
                     </h1>
                     <h1>
-                        {dadosUsuario?.email || 'slimshasyup@gmail.com'}
+                        {dadosUsuario?.email || 'bombomreidelas@gmail.com'}
                     </h1>
                     <div className='mt-1 ml-1'>
                         <div className='flex flex-row'>
