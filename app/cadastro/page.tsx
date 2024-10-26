@@ -81,7 +81,6 @@ export function Page() {
     setOutput(JSON.stringify(data, null, 2));
     await createTipoUsuario(data);
   }
-
   // API - post usuario:
   async function createTipoUsuario(data: cadastroUserData) {
     try {

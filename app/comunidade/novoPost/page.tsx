@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { useState } from "react"
-import CardPost from "../components/CardPost"
+import PreCardPost from "./components/PreCardPost"
 import { Textarea } from "@/components/ui/textarea"
 import {
     Command,
@@ -26,6 +26,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@/hooks/use-toast"
 import { Toaster } from "@/components/ui/toaster"
 import api from '../../../api/api';
+import { useRouter } from 'next/navigation';
 
 const frameworks = [
     { id: 1, value: "#Gravidez", label: "Gravidez" },
@@ -36,7 +37,7 @@ const frameworks = [
 
 //tipagem zodddd
 const newPostSchema = z.object({
-    titulo: z.string().nonempty('Título do post obrigatório'),
+    titulo: z.string().nonempty('Título do post obrigatório')
 });
 //inteligencia do ts:
 type newPostData = z.infer<typeof newPostSchema>;
@@ -46,7 +47,7 @@ export function NovoPost() {
     const [open, setOpen] = React.useState(false)
     //tipagem dados:
     const [titulo, setTitulo] = useState('')
-    const maxTitilo = 40
+    const maxTitilo = 50
     const [body, setBody] = useState('')
     const maxBody = 3000
     const [forumEscolhido, setforumEscolhido] = React.useState("")
@@ -84,7 +85,7 @@ export function NovoPost() {
     // função para enviar o post para a API
     const onSubmit = async (data: newPostData) => {
         try {
-            const response = await api.post("/api/postagem", { // ajuste a URL se necessário
+            const response = await api.post("/api/postagem", {
                 titulo: data.titulo,
                 subtitulo: body,
                 imagem: filePath, // Opcional
@@ -92,15 +93,28 @@ export function NovoPost() {
                 idForum: frameworks.find(f => f.value === forumEscolhido)?.id,
             });
 
-            if (response.status === 200) { // Verifica se a resposta foi bem-sucedida
-                toast({ title: "Post criado com sucesso!" });
-            } else {
-                toast({ title: "Erro ao criar post", description: "Tente novamente." });
+            if (response.status === 200) {
+                toast({
+                    title: "Post criado com sucesso!",
+                    className: 'bg-green-400',
+                    duration: 1500,
+                });
+                // redireciona para a comunidade/seusPosts
+                setTimeout(() => {
+                    router.push("/comunidade/seusPosts");
+                }, 1500);
             }
         } catch (error) {
-            toast({ title: "Erro de conexão", description: "Não foi possível conectar ao servidor." });
+            console.error("Erro ao realizar login:", error);
+            toast({
+                title: "Escolha o fórum onde deseja direcionar seu post!",
+                className: 'bg-red-400',
+                duration: 3000,
+            });
         }
     };
+
+    const router = useRouter(); // hook para redirecionamento
     return (
         <main>
             <header className="w-full text-2xl mt-5 font-bold">Criar post</header>
@@ -110,15 +124,15 @@ export function NovoPost() {
                         <Label className="text-base" htmlFor="Título">Título post <span className="text-red-500">*</span></Label>
                         <Input
                             {...register("titulo")}
-                            className={titulo.length > maxTitilo ? 'text-red-500' : 'text-black'}
                             type="text"
                             placeholder="De um título para seu post."
+                            maxLength={50}
                             id="Titulo"
                             onChange={(e) => setTitulo(e.target.value)}
                         />
                         {errors.titulo && <span className="text-red-500 text-sm">{errors.titulo.message}</span>}
                         <p className="text-right text-xs mr-2">
-                            <span className={titulo.length > maxTitilo ? 'text-red-500' : 'text-black'}>{titulo.length}/{maxTitilo}</span>
+                            <span className={titulo.length >= maxTitilo ? 'text-red-500' : 'text-black'}>{titulo.length}/{maxTitilo}</span>
                         </p>
 
                         <Label className="text-base" htmlFor="message">Texto post</Label>
@@ -126,10 +140,11 @@ export function NovoPost() {
                             className="h-[250px]"
                             placeholder="Escreva o conteúdo do seu post aqui."
                             id="Body"
+                            maxLength={3000}
                             onChange={(e) => setBody(e.target.value)}
                         />
                         <p className="text-right text-xs mr-2">
-                            <span className={body.length > maxBody ? 'text-red-500' : 'text-black'}>{body.length}/{maxBody}</span>
+                            <span className={body.length >= maxBody ? 'text-red-500' : 'text-black'}>{body.length}/{maxBody}</span>
                         </p>
 
                         <div className="flex">
@@ -191,13 +206,10 @@ export function NovoPost() {
                 <div className="w-1/2">
                     <h1 className="w-full text-xl font-bold">Pré-visualização do post</h1>
                     <div className="mt-8">
-                        <CardPost
-                            name="Luiz Ricardo"
+                        <PreCardPost
                             titulo={titulo}
                             body={body}
                             forum={forumEscolhido}
-                            curtidas={0}
-                            respostas={0}
                             imagem={nomeArquivo}
                         />
                     </div>

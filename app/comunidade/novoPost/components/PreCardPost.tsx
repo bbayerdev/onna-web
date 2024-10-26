@@ -1,41 +1,48 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { cn } from "@/lib/utils";
-import Marquee from '@/components/ui/marquee';
 import { Image, Heart, MessageCircle } from 'lucide-react';
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 //com tipagemmmm (ilove ts)
-const CardPost = ({
-    name,
+const PreCardPost = ({
     forum,
     imagem,
     titulo,
     body,
-    curtidas,
-    respostas,
 }: {
-    name: string;
     forum: string;
     imagem: string;
     titulo: string;
-    respostas: number;
     body: string;
-    curtidas: number;
 }) => {
     //curtidinhaaa
-    const [like, setLike] = useState(curtidas)
-    const liked = () =>{
+    const [like, setLike] = useState(0)
+    const liked = () => {
         setLike(like + 1)
     }
-    //pegando a fata atual com saida com barra "2024/10/25"
-    const dataAtual = new Date().toISOString().split('T')[0].replace(/-/g, '/')
+    // data em dia/mes/ano
     const agora = new Date();
+    const dataAtual = agora.toISOString().split('T')[0].split('-').reverse().join('/');
     // hora em 21:52 PM"
     let horas = agora.getHours();
     const minutos = String(agora.getMinutes()).padStart(2, '0');
     const periodo = horas >= 12 ? 'PM' : 'AM';
     const horaFormatada = `${horas}:${minutos} ${periodo}`;
+
+    //puxando dados do user no localStorage
+    const [dadosUsuario, setDadosUsuario] = useState<{
+        idTipo_Usuario: number,
+        nome: string
+    } | null>(null)
+    useEffect(() => {
+        //ao carregar a pagina
+        const data = localStorage.getItem('usuarioData')
+        if (data) {
+            const usuario = JSON.parse(data) // verifica e passa os dados do local para essa variavel
+            setDadosUsuario(usuario) // leva pro useState
+        }
+    }, [])
+    //limpar o localStorage --> localStorage.clear();
 
     return (
         <figure
@@ -50,9 +57,12 @@ const CardPost = ({
                 <div className="flex flex-row w-full">
                     <div className='w-full flex gap-2'>
                         <figcaption className="font-bold text-xl">
-                            {name}
+                            {dadosUsuario?.nome || 'Luiz Ricardo'}
                         </figcaption>
-                        <p className="text-xl ml-1 text-zinc-700 ">{forum}</p>
+                        <div className='w-1/3'>
+                            <p className="text-xl text-zinc-700 ">{forum}</p>
+                        </div>
+
                     </div>
                     <div className='flex justify-end w-full text-sm'>
                         <p className='px-2'>{horaFormatada}</p>
@@ -62,9 +72,8 @@ const CardPost = ({
                 </div>
             </div>
             <blockquote className="mt-4 ml-10 w-4/5">
-                <h1 className='text-xl font-semibold'>{titulo || 'Título'}</h1>
-                <p className='mt-2 text-justify'>{body || 'Texto do post...'}</p>
-
+                <h1 className='text-xl font-semibold'>{titulo || 'Título do post.'}</h1>
+                <p className='mt-2 text-justify'>{body}</p>
                 {imagem && (
                     <div className='border h-52 mt-5 w-full justify-center flex items-center rounded-xl'>
                         <Image className='size-10' color='#71717a' />
@@ -72,25 +81,21 @@ const CardPost = ({
                 )}
             </blockquote>
             <div className='flex justify-between mt-5'>
-
                 <Button variant="outline">
                     Responder
                 </Button>
-
                 <div className='flex justify-center items-center'>
                     <div className='flex gap-1 mr-2 '>
-                        <p className='ml-1 text-sm text-right font-bold'>{respostas}</p>
+                        <p className='ml-1 text-sm text-right font-bold'>0</p>
                         <MessageCircle size={20} />
                     </div>
                     <p className='mr-1 text-sm text-right font-bold'>{like}</p>
                     <Button onClick={liked} className='mr-1 hover:bg-red-100' variant="outline" size="icon">
                         <Heart color="#ef4444" fill='#ef4444' className="h-5 w-5 " />
                     </Button>
-
                 </div>
-
             </div>
         </figure>
     );
 };
-export default CardPost
+export default PreCardPost
