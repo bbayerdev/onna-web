@@ -94,8 +94,8 @@ export function CarrosselSeusPosts() {
                     <Button className='mr-1' variant="outline" size="icon">
                         <Pencil className="h-4 w-4" />
                     </Button>
-                    <Button className='mr-1' variant="outline" size="icon">
-                        <Trash2 color="#ef4444" className="h-4 w-4" />
+                    <Button className='mr-1 hover:bg-red-100' variant="outline" size="icon">
+                        <Trash2 color="#ef4444" className="h-4 w-4 " />
                     </Button>
                 </div>
 

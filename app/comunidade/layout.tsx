@@ -10,7 +10,6 @@ export default function CommunityLayout({
     children: React.ReactNode;
 }>) {
 
-
     //exibir pagina da aba
     const [exibir, setExibir] = useState(0)
     const atualizar = (index: number) => {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import {Inter} from 'next/font/google'
-const inter = Inter({ subsets: ["latin"], weight: ['200', '400', '500', '600'] });
+const inter = Inter({ subsets: ["latin"], weight: ['200', "300", '400', '500', '600', '700'] });
 
 export const metadata: Metadata = {
   title: "Onna",
