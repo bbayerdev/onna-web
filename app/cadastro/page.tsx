@@ -93,18 +93,32 @@ export function Page() {
         tipo_Usuario: tipoUsuario
       });
 
-      // Exibe o toast de sucesso
-      toast({
-        title: "Sucesso!",
-        description: "Sua conta foi criada com sucesso. Agora faça seu login.",
-        className: 'bg-green-400',
-        duration: 1100
-      })
       // Redireciona para a comunidade em 1.2 segundos
-      setTimeout(() => {
-        router.push("/login");
-      }, 1200)
+      if (tipoUsuario === 1) {
+        setTimeout(() => {
+          router.push("cadastro/profissional");
+        }, 1200)
 
+        // toast de sucesso direto pro login profissional
+        toast({
+          title: "Sucesso!",
+          description: "Sua conta foi foi criada com sucesso!",
+          className: 'bg-green-400',
+          duration: 1100
+        })
+      }
+      else {
+        setTimeout(() => {
+          router.push("comunidade");
+        }, 1200)
+        // toast de sucesso indo pra comunidade
+        toast({
+          title: "Sucesso!",
+          description: "Sua conta foi criada com sucesso. Agora faça seu login.",
+          className: 'bg-green-400',
+          duration: 1100
+        })
+      }
     } catch (error: any) {
       console.log("ERRO: " + error);
 

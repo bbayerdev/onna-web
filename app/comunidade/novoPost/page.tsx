@@ -45,12 +45,13 @@ type newPostData = z.infer<typeof newPostSchema>;
 export function NovoPost() {
     //faz parte do command
     const [open, setOpen] = React.useState(false)
+    const [forumEscolhido, setforumEscolhido] = React.useState("")
     //tipagem dados:
     const [titulo, setTitulo] = useState('')
     const maxTitilo = 50
     const [body, setBody] = useState('')
     const maxBody = 3000
-    const [forumEscolhido, setforumEscolhido] = React.useState("")
+
 
     //imagem
     const [nomeArquivo, setNomeArquivo] = useState<string>(""); // tipagem explícita
