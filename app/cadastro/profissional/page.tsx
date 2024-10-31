@@ -21,12 +21,13 @@ import {
 } from "@/components/ui/popover"
 import React, { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button";
+import { z } from "zod";
 
+//arrays dos drops
 const docUser = [
     { id: 1, value: "CRM", label: "CRM" },
     { id: 2, value: "CRP", label: "CRP" },
 ];
-
 const itensCRM = [
     { value: "alergia-e-imunologia", label: "Alergia e Imunologia" },
     { value: "anestesiologia", label: "Anestesiologia" },
@@ -52,7 +53,6 @@ const itensCRM = [
     { value: "radioterapia", label: "Radioterapia" },
     { value: "urologia", label: "Urologia" },
 ];
-
 const itensCRP = [
     { value: 'psicologia_escolar', label: 'Psicologia Escolar e Educacional' },
     { value: 'psicologia_organizacional', label: 'Psicologia Organizacional e do Trabalho' },
@@ -64,7 +64,6 @@ const itensCRP = [
     { value: 'psicologia_saude', label: 'Psicologia em Saúde' },
     { value: 'avaliacao_psicologica', label: 'Avaliação Psicológica' },
 ];
-
 const estadosBrasil = [
     { value: 'AC', label: 'Acre' },
     { value: 'AL', label: 'Alagoas' },
@@ -96,11 +95,16 @@ const estadosBrasil = [
 ];
 
 export function page() {
-    //faz parte do command
+    //faz parte do command do docmento
+    const [documento, setDocumento] = useState(() => {
+        const crmDoc = docUser.find((doc) => doc.label === "CRM")
+        return crmDoc ? crmDoc.value : ""// usa o valor correspondente ao CRM, ou "" se não existir
+    });
     const [openDoc, setOpendoc] = useState(false)
-    const [documento, setDocumento] = useState("") //variavel do docmento escolhido
+    //esse da area de atuacao
     const [open, setOpen] = React.useState(false)
     const [value, setValue] = React.useState("")//variavel da area de atuacao
+    // e esse do uf
     const [openUf, setOpenUf] = useState(false);
     const [ufSelecionada, setUfSelecionada] = useState("")// variavel da uf
 
@@ -135,7 +139,7 @@ export function page() {
                     </div>
 
                     <form className="grid gap-4">
-                        <div className="flex flex-row gap-2">
+                        <div className="flex wflex-row gap-2">
                             <div className="flex flex-col gap-2">
                                 <Label className="" htmlFor="Fórum">
                                     Documento
@@ -150,7 +154,7 @@ export function page() {
                                         >
                                             {documento
                                                 ? docUser.find((docUser) => docUser.value === documento)?.label
-                                                : "Selecione"}
+                                                : ""}
                                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                         </Button>
                                     </PopoverTrigger>
@@ -182,12 +186,12 @@ export function page() {
                                     </PopoverContent>
                                 </Popover>
                             </div>
-                            <div className="flex flex-col gap-2">
+                            <div className="flex w-full flex-col gap-2">
                                 <Label htmlFor="email">{documento ? `Seu ${documento}` : 'Documento'}</Label>
                                 <Input
                                     id="documento"
                                     type="text"
-                                    placeholder="12345-SP"
+                                    placeholder={documento === 'CRM' ? 'ex: 123456-SP' : 'ex: 06/12345'}
                                     required
                                 />
                             </div>
@@ -208,7 +212,7 @@ export function page() {
                                         >
                                             {ufSelecionada
                                                 ? estadosBrasil.find((estado) => estado.value === ufSelecionada)?.label
-                                                : "Estado"}
+                                                : "Selecione"}
                                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                         </Button>
                                     </PopoverTrigger>
@@ -245,7 +249,6 @@ export function page() {
                                 <Label className="" htmlFor="Fórum">
                                     Área de formação
                                 </Label>
-
                                 {documento === "CRM" ? (
                                     <Popover open={open} onOpenChange={setOpen}>
                                         <PopoverTrigger asChild>
@@ -339,7 +342,9 @@ export function page() {
                                 )}
                             </div>
                         </div>
-
+                        <Button type="submit" className="mt-10 w-full">
+                            Cadastrar-se
+                        </Button>
                     </form>
 
                 </div>

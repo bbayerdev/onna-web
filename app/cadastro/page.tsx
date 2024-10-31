@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image"
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -149,9 +150,9 @@ export function Page() {
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-5xl text-red-900 font-bold">Cadastro</h1>
+            <h1 className=" text-5xl text-red-900 font-bold">Cadastro</h1>
             <p className="text-balance text-muted-foreground">
-              Junte-se à comunidade ONNA hoje mesmo!
+             Junte-se a comunidade ONNA hoje mesmo!
             </p>
           </div>
           <form onSubmit={handleSubmit(createUser)} className="grid gap-4">
@@ -244,11 +245,17 @@ export function Page() {
             </Link>
           </div>
         </div>
+        <Toaster />
       </div>
-      <div className="hidden bg-muted lg:block bg-red-50 h-screen">
-
+      <div className="hidden bg-muted lg:block">
+        <Image
+          src="/"
+          alt="Image"
+          width="1920"
+          height="1080"
+          className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale  bg-red-50"
+        />
       </div>
-      <Toaster />
     </div>
   );
 }
