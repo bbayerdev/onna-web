@@ -29,13 +29,13 @@ const Section3 = () => {
     }
 
     return (
-        <section className='flex flex-row justify-center ml-48 md:ml-0 max-md:p-10 md:max-xl:px-20 gap-32 max-lg:gap-20'>
+        <section className='flex flex-row justify-center md:ml-0 max-md:p-10 md:max-xl:px-20 gap-32 max-lg:gap-20 w-screen'>
             <div className='text-left mt-24 space-y-7 w-max max-w-lg'>
-                <h1 className='font-bold md:text-2xl text-xl '>O que oferecemos?</h1>
+                <h1 className='font-bold md:text-2xl text-xl ml-20 md:ml-0 '>O que oferecemos?</h1>
 
                 {renderizarMeta()}
 
-                <div className='gap-3 flex flex-row'>
+                <div className='gap-3 flex flex-row ml-20'>
                     <RoundedButom num='1' ativo={meta === 0} atualizar={() => atualizarMeta(0)} />
                     <RoundedButom num='2' ativo={meta === 1} atualizar={() => atualizarMeta(1)} />
                     <RoundedButom num='3' ativo={meta === 2} atualizar={() => atualizarMeta(2)} />

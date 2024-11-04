@@ -20,14 +20,14 @@ const Section2 = () => {
                 </motion.div>
             </div>
             <div className='text-left mt-0 md:mt-24 space-y-7 w-max max-w-lg'>
-                <h1 className='font-bold text-xl md:text-2xl mr-52'>Em que acreditamos?</h1>
+                <h1 className='font-bold text-xl md:text-2xl md:mr-52 mr-0'>Em que acreditamos?</h1>
                 <WordPullUp
-                    className='font-extrabold text-red-900 md:text-5xl  text-3xl text-left mr-80'
+                    className='font-extrabold text-red-900 md:text-5xl  text-3xl text-left md:mr-80 mr-0'
                     words="Bem-vinda ao ONNA"
                 />
                 <BlurIn
                     word=" Oferecer uma plataforma acessível e inclusiva com recursos confiáveis para apoiar a saúde e bem-estar das mulheres!"
-                    className='text-base mr-64  py-6 pb-10'
+                    className='text-base md:mr-64 mr-40  py-6 pb-10'
                     duration={0.5}
                 />
                 <Link href='/sobre'>

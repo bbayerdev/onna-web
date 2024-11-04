@@ -34,19 +34,23 @@ const Sobre = () => {
 
       <main className='space-y-52'>
         <section className='flex flex-col w-3/4 justify-center space-y-12 m-auto mt-10 py-10'>
+          <div className=' h-16 border md:invisible visible'></div>
+
+
+
           <WordPullUp
-            className='font-bold text-red-900 text-5xl text-left'
+            className='font-bold text-red-900 md:text-5xl text-3xl text-left'
             words="Quem nós somos?"
           />
-          <p className='font-opensans text-xl'>Somos uma equipe de apaixonados por descobertas e avanços!  Estamos comprometidos em garantir que cada aspecto da experiência ONNA seja cuidadosamente desenvolvido e atualizado para atender às necessidades em constante evolução de nossa comunidade global.</p>
+          <p className='font-opensans md:text-xl text-base'>Somos uma equipe de apaixonados por descobertas e avanços!  Estamos comprometidos em garantir que cada aspecto da experiência ONNA seja cuidadosamente desenvolvido e atualizado para atender às necessidades em constante evolução de nossa comunidade global.</p>
         </section>
 
         <section className='flex flex-col w-3/4 justify-center space-y-12 m-auto mt-20'>
           <WordPullUp
-            className='font-bold text-red-900 text-5xl text-left'
+            className='font-bold text-red-900 md:text-5xl text-3xl text-left'
             words="Nossa equipe"
           />
-          <p className='font-opensans text-xl'>Conheça nossos integrantes e suas contribuições para o projeto.</p>
+          <p className='font-opensans md:text-xl text-base'>Conheça nossos integrantes e suas contribuições para o projeto.</p>
 
           <div className='flex justify-center p-10'>
             <Carousel opts={{ align: 'start' }} className="w-full">
@@ -80,15 +84,15 @@ const Sobre = () => {
         <SectionMetas />
 
         <section className='flex flex-col justify-center m-auto w-3/4'>
-          <h1 className='text-5xl font-bold text-red-900'>Conheça nosso mascote</h1>
-          <div className='flex flex-row items-center m-auto mt-12'>
+          <h1 className='md:text-5xl text-3xl font-bold text-red-900'>Conheça nosso mascote</h1>
+          <div className='flex md:flex-row flex-col items-center m-auto mt-12'>
             <div className='w-full'>
               <Mascote />
             </div>
             <div className='space-y-10'>
-              <h1 className='font-bold text-2xl'>Nosso adorável mascote felino!</h1>
-              <p className='font-opensans text-xl'>Este simpático gato é o símbolo de conforto e companheirismo aqui no ONNA</p>
-              <p className='font-opensans text-xl'>Sua presença amigável é uma lembrança de que nossas usuárias nunca estão sozinhas!</p>
+              <h1 className='font-bold md:text-2xl text-xl'>Nosso adorável mascote felino!</h1>
+              <p className='font-opensans md:text-xl text-1xl'>Este simpático gato é o símbolo de conforto e companheirismo aqui no ONNA</p>
+              <p className='font-opensans md:text-xl text-1xl'>Sua presença amigável é uma lembrança de que nossas usuárias nunca estão sozinhas!</p>
             </div>
           </div>
         </section>
