@@ -2,8 +2,8 @@
 import Image from "next/image"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Toaster } from "@/components/ui/toaster"
+import { toast } from "@/hooks/use-toast"
 import {
     Command,
     CommandEmpty,
@@ -22,6 +22,18 @@ import {
 import React, { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import api from '../../../api/api';
+import { useRouter } from 'next/navigation';
+import router from "next/router";
+import Hover from "./hover"
+
+const cadastroProfissionalSchema = z.object({
+    documento: z.string().nonempty("Documento é obrigatório"),
+  });
+//ts sendo ts
+type CadastroProfissionalFormData = z.infer<typeof cadastroProfissionalSchema>;
 
 //arrays dos drops
 const docUser = [
@@ -95,6 +107,11 @@ const estadosBrasil = [
 ];
 
 export function page() {
+
+    const { register, handleSubmit, formState: { errors } } = useForm<CadastroProfissionalFormData>({
+        resolver: zodResolver(cadastroProfissionalSchema)
+    });
+
     //faz parte do command do docmento
     const [documento, setDocumento] = useState(() => {
         const crmDoc = docUser.find((doc) => doc.label === "CRM")
@@ -108,6 +125,49 @@ export function page() {
     const [openUf, setOpenUf] = useState(false);
     const [ufSelecionada, setUfSelecionada] = useState("")// variavel da uf
 
+    async function cadastrarPerfilProfissional(data: { documento: string }) {
+        if (!ufSelecionada || !value) {
+            toast({
+                title: "Erro ao cadastrar perfil!",
+                description: "UF e Área de Formação são obrigatórios.",
+                className: 'bg-red-400',
+                duration: 2000,
+            });
+            return;
+        }
+    
+        try {
+            const res = await api.post("/api/perfilProfissional", {
+                crm: documento === "CRM" ? data.documento : null,
+                crp: documento === "CRP" ? data.documento : null,
+                uf: ufSelecionada,
+                area_Formacao: value,
+                idTipo_Usuario: 1
+            });
+    
+            if (res.status === 200) {
+                toast({
+                    title: "Cadastro realizado!",
+                    description: "Seu perfil foi cadastrado com sucesso.",
+                    className: 'bg-green-400',
+                    duration: 2000,
+                });
+                setTimeout(() => {
+                    router.push("/perfilProfissional");
+                }, 1900);
+            }
+        } catch (error) {
+            console.error("Erro ao cadastrar perfil profissional:", error);
+            toast({
+                title: "Erro ao cadastrar perfil!",
+                description: "Verifique os dados e tente novamente.",
+                className: 'bg-red-400',
+                duration: 2000,
+            });
+        }
+    }
+    const router = useRouter()
+
     return (
         <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
             <div className="hidden bg-muted lg:block">
@@ -119,26 +179,14 @@ export function page() {
                     className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale  bg-red-50"
                 />
             </div>
-            <div className="flex items-center justify-center py-12">
+            <div className="flex items-center justify-center">
                 <div className="mx-auto grid w-[350px] gap-6">
                     <div className="grid gap-2 text-center">
                         <h1 className=" text-5xl text-red-900 font-bold">Cadastro Profissional</h1>
-                        <p className="text-balance text-muted-foreground">
-                            Insira seus dados abaixo para finalizar seu cadastro como usuário
-                            <HoverCard>
-                                <HoverCardTrigger className="underline hover:font-bold"> profissional.</HoverCardTrigger>
-                                <HoverCardContent className="text-left text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                                    <h1>
-                                        O profissional ajuda com seus conhecimentos na área da saúde que se formou e <span className="text-green-500"> auxilia e responde </span>a paciente em perguntas recorrentes.
-                                    </h1>
-                                    <br />
-                                    <h1 className="text-red-500">Para se cadastrar é necessário uma confirmação por parte de nossos moderadores.</h1>
-                                </HoverCardContent>
-                            </HoverCard>
-                        </p>
+                       <Hover/>
                     </div>
 
-                    <form className="grid gap-4">
+                    <form onSubmit={handleSubmit(cadastrarPerfilProfissional)} className="grid gap-4">
                         <div className="flex wflex-row gap-2">
                             <div className="flex flex-col gap-2">
                                 <Label className="" htmlFor="Fórum">
@@ -188,11 +236,19 @@ export function page() {
                             </div>
                             <div className="flex w-full flex-col gap-2">
                                 <Label htmlFor="email">{documento ? `Seu ${documento}` : 'Documento'}</Label>
+                                {errors.documento && <span className="text-red-500 text-sm">{errors.documento.message}</span>}
                                 <Input
                                     id="documento"
                                     type="text"
-                                    placeholder={documento === 'CRM' ? 'ex: 123456-SP' : 'ex: 06/12345'}
+                                    placeholder={documento === 'CRM' ? 'ex: 12345' : 'ex: 54321'}
                                     required
+                                    {...register('documento')}
+                                    maxLength={5} // Limita a entrada a 5 caracteres
+                                    pattern="[0-9]*" // Aceita apenas números
+                                    onInput={(e) => {
+                                        const input = e.target as HTMLInputElement; // Faz a assertiva de tipo
+                                        input.value = input.value.replace(/\D/g, ""); // Remove qualquer caractere que não seja número
+                                    }}
                                 />
                             </div>
                         </div>

@@ -30,7 +30,6 @@ export function page() {
     const [isShow, setIsShow] = useState(false)
     const eyePassword = () => setIsShow(!isShow)
     //faz parte da tipagem:
-    const [output, setOutput] = useState('');
     const { register, handleSubmit, formState: { errors } } = useForm<loginUserData>({
         resolver: zodResolver(loginUserSchema)
     });

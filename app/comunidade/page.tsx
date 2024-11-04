@@ -4,7 +4,7 @@ import CardUser from './components/CardUser';
 import { PencilLine } from 'lucide-react';
 import Link from 'next/link';
 import CarrosselSeusPosts from './components/CarrosselSeusPosts';
-import CarrosselNewPosts from './components/CarrosselNewPosts';
+import { CarrosselNewPosts } from './components/carrosselNewPosts';
 
 function Home() {
 

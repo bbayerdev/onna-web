@@ -1,0 +1,6 @@
+- terminar login profissional
+- exibir as postagens 
+	-separar as postagens por forum(id)
+- sistema de denuncia das postagens 
+- sistema de resposta das postagens
+- page da exibição dos artigos (vão vim do desktop)

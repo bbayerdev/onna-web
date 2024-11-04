@@ -110,7 +110,7 @@ export function Page() {
       }
       else {
         setTimeout(() => {
-          router.push("comunidade");
+          router.push("/login");
         }, 1200)
         // toast de sucesso indo pra comunidade
         toast({
