@@ -125,7 +125,20 @@ export function page() {
     const [openUf, setOpenUf] = useState(false);
     const [ufSelecionada, setUfSelecionada] = useState("")// variavel da uf
 
+    const [dadosUsuario, setDadosUsuario] = useState<{
+        idTipo_Usuario: number;
+    } | null>(null)
+    useEffect(() => {
+        const data = localStorage.getItem('usuarioData')
+        if (data) {
+            const usuario = JSON.parse(data) // verifica e passa os dados do local para essa variavel
+            setDadosUsuario(usuario) // leva pro useState
+        }
+    }, [])
+    //limpar o localStorage --> localStorage.clear();
+
     async function cadastrarPerfilProfissional(data: { documento: string }) {
+
         if (!ufSelecionada || !value) {
             toast({
                 title: "Erro ao cadastrar perfil!",
@@ -138,11 +151,11 @@ export function page() {
     
         try {
             const res = await api.post("/api/perfilProfissional", {
-                crm: documento === "CRM" ? data.documento : null,
-                crp: documento === "CRP" ? data.documento : null,
+                crm: documento === "CRM" ? data.documento : '00000',
+                crp: documento === "CRP" ? data.documento : '00000',
                 uf: ufSelecionada,
                 area_Formacao: value,
-                idTipo_Usuario: 1
+                idTipo_Usuario: dadosUsuario?.idTipo_Usuario
             });
     
             if (res.status === 200) {
@@ -153,7 +166,7 @@ export function page() {
                     duration: 2000,
                 });
                 setTimeout(() => {
-                    router.push("/perfilProfissional");
+                    router.push("/comunidade");
                 }, 1900);
             }
         } catch (error) {

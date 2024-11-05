@@ -94,33 +94,18 @@ export function Page() {
         tipo_Usuario: tipoUsuario
       });
 
-      // Redireciona para a comunidade em 1.2 segundos
-      if (tipoUsuario === 1) {
-        setTimeout(() => {
-          router.push("cadastro/profissional");
-        }, 1200)
-
-        // toast de sucesso direto pro login profissional
-        toast({
-          title: "Sucesso!",
-          description: "Sua conta foi foi criada com sucesso!",
-          className: 'bg-green-400',
-          duration: 1100
-        })
-      }
-      else {
-        setTimeout(() => {
-          router.push("/login");
-        }, 1200)
-        // toast de sucesso indo pra comunidade
-        toast({
-          title: "Sucesso!",
-          description: "Sua conta foi criada com sucesso. Agora faça seu login.",
-          className: 'bg-green-400',
-          duration: 1100
-        })
-      }
-    } catch (error: any) {
+      setTimeout(() => {
+        router.push("/login");
+      }, 1200)
+      // toast de sucesso indo pra comunidade
+      toast({
+        title: "Sucesso!",
+        description: "Sua conta foi criada com sucesso. Agora faça seu login.",
+        className: 'bg-green-400',
+        duration: 1100
+      })
+    }
+    catch (error: any) {
       console.log("ERRO: " + error);
 
       // ve se o email ja esta cadastrado
@@ -152,7 +137,7 @@ export function Page() {
           <div className="grid gap-2 text-center">
             <h1 className=" text-5xl text-red-900 font-bold">Cadastro</h1>
             <p className="text-balance text-muted-foreground">
-             Junte-se a comunidade ONNA hoje mesmo!
+              Junte-se a comunidade ONNA hoje mesmo!
             </p>
           </div>
           <form onSubmit={handleSubmit(createUser)} className="grid gap-4">

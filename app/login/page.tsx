@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Eye } from 'lucide-react';
 import { EyeOff } from 'lucide-react';
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,7 +33,7 @@ export function page() {
     const { register, handleSubmit, formState: { errors } } = useForm<loginUserData>({
         resolver: zodResolver(loginUserSchema)
     });
-
+   
     // Função para realizar o login
     async function loginUser(data: loginUserData) {
         try {
@@ -45,8 +45,9 @@ export function page() {
             if (res.status === 200) {
                 const usuario = res.data;
 
-                // Armazena todos os dados do usuário no localStorage
+                // salva todos os dados do usuário no localStorage
                 localStorage.setItem("usuarioData", JSON.stringify(usuario));
+                const idProfissional = usuario?.tipo_Usuario; // pega so o idTipo_Usuario diretamente dos dados retornados
 
                 toast({
                     title: "Login realizado!",
@@ -55,9 +56,15 @@ export function page() {
                     duration: 2000,
                 });
 
-                // Redireciona para a página de perfil após o login
+                // Redireciona conforme o id do tipo de usuário
                 setTimeout(() => {
-                    router.push("/comunidade");
+                    if (idProfissional === 1) {
+                        // Redireciona para a página do cadastro/profissional
+                        router.push("cadastro/profissional");
+                    } else {
+                        // Redireciona para a página de comunidade
+                        router.push("/comunidade");
+                    }
                 }, 1900);
             }
         } catch (error) {
