@@ -13,6 +13,7 @@ import api from '../../api/api';
 import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import ImgCadastro from "./components/imgCadastro";
 
 // Tipagem zod:
 const cadastroUserSchema = z.object({
@@ -195,7 +196,7 @@ export function Page() {
         </div>
       </div>
       <div className="hidden bg-muted h-screen lg:block">
-
+        <ImgCadastro/>
       </div>
     </div>
   );

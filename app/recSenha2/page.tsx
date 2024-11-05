@@ -1,13 +1,16 @@
 import React from 'react'
 import { Button } from "@/components/ui/button"
 import { Link } from 'lucide-react'
+import ImgRecSenha from '../recSenha/components/imgRec'
 
 const esqSenha2 = () => {
     return (
         <main>
             <section className='w-screen h-screen md:bg-white flex justify-center'>
                 <div className='w-11/12 h-5/6 mt-9 bg-white border-[1px] flex row'>
-                    <div className='w-0 h-0 md:w-2/5 md:h-full md:bg-red-50'></div>
+                    <div className='w-0 h-0 md:w-2/5 md:h-full'>
+                    <ImgRecSenha/>
+                    </div>
                     <div className='w-full h-full md:w-3/5'>
                         <div className='w-12/12 h-20 border-2 mt-4 md:mt-0 md:invisible flex'></div>
                         <h1 className='justify-center flex text-xl mt-14 font-bold md:text-4xl text-red-900'>Recuperando a sua senha!</h1>

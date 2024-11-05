@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from "@/components/ui/button"
 import { Link } from 'lucide-react'
+import ImgRecSenha from '../recSenha/components/imgRec'
 
 const esqSenha3 = () => {
     return (
@@ -22,7 +23,9 @@ const esqSenha3 = () => {
                             </div>
 
                         </div>
-                        <div className='w-5/12'></div>
+                        <div className='w-5/12'>
+                        <ImgRecSenha/>
+                        </div>
 
                     </div>
             </section>
