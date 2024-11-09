@@ -26,6 +26,11 @@ const loginUserSchema = z.object({
 type loginUserData = z.infer<typeof loginUserSchema>;
 
 export function page() {
+    //limpa o local storage
+    useEffect(() => {
+        localStorage.clear(); // Limpa todos os itens do localStorage
+    }, []);
+
     //eye password:
     const [isShow, setIsShow] = useState(false)
     const eyePassword = () => setIsShow(!isShow)

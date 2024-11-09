@@ -102,7 +102,7 @@ export function NovoPost() {
                 });
                 // redireciona para a comunidade/seusPosts
                 setTimeout(() => {
-                    router.push("/comunidade/seusPosts");
+                    router.push("/comunidade/usuario/posts");
                 }, 1500);
             }
         } catch (error) {

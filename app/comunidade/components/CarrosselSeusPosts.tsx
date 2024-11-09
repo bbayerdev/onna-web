@@ -91,9 +91,6 @@ export function CarrosselSeusPosts() {
                     {body}
                 </blockquote>
                 <div className=' flex justify-end'>
-                    <Button className='mr-1' variant="outline" size="icon">
-                        <Pencil className="h-4 w-4" />
-                    </Button>
                     <Button className='mr-1 hover:bg-red-100' variant="outline" size="icon">
                         <Trash2 color="#ef4444" className="h-4 w-4 " />
                     </Button>
@@ -105,7 +102,7 @@ export function CarrosselSeusPosts() {
 
     return (
         <div className="w-full px-12">
-            <Link href={'/comunidade/user/posts'}>
+            <Link href={'/comunidade/usuario/posts'}>
                 <Button variant={'ghost'} className='text-xl'>Seus últimos posts</Button>
             </Link>
             <div className="flex h-[500px] w-full flex-row ml-8">
