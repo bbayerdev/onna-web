@@ -138,9 +138,9 @@ function Header({ atualizar, exibir }: Props) {
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Criar</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>Post</DropdownMenuItem>
+                        <Link href={'/comunidade/novoPost'}> <DropdownMenuItem> Post </DropdownMenuItem> </Link>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>Seus Posts</DropdownMenuItem>
+                        <Link href={'/comunidade/usuario/posts'}> <DropdownMenuItem> Seus Posts </DropdownMenuItem> </Link>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </TooltipProvider>
@@ -167,8 +167,7 @@ function Header({ atualizar, exibir }: Props) {
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Usuário</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>Meus dados</DropdownMenuItem>
-                        <DropdownMenuItem><Link href='/ajuda'>Ajuda</Link></DropdownMenuItem>
+                        <Link href={'/comunidade/usuario'}> <DropdownMenuItem> Meus Dados </DropdownMenuItem> </Link>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem className="text-red-500">Sair</DropdownMenuItem>
                     </DropdownMenuContent>

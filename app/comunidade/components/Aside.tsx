@@ -2,7 +2,7 @@
 import { Separator } from '@/components/ui/separator'
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { TooltipProvider } from "@radix-ui/react-tooltip"
-import { Package2, Home, TrendingUp, Baby, MicVocal, Flower2, Settings, Heart } from 'lucide-react'
+import { Package2, Home, TrendingUp, Baby, MicVocal, Flower2, Settings, Heart, Newspaper } from 'lucide-react'
 import Link from "next/link"
 import React, { useState } from 'react'
 
@@ -114,13 +114,28 @@ const Aside = ({ exibir, atualizar }: Props) => {
                         </TooltipTrigger>
                         <TooltipContent className="font-bold" side="right">Autocuidado</TooltipContent>
                     </Tooltip>
+                    <Separator />
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <button onClick={() => atualizar(6)}>
+                                <Link
+                                    href="/comunidade/artigos"
+                                    onClick={() => ativar('artigos')} // manda o id do to
+                                    className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${ativo === 'artigos' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}                                >
+                                    <Newspaper  className="h-5 w-5" />
+                                    <span className="sr-only">Artigos</span>
+                                </Link>
+                            </button>
+                        </TooltipTrigger>
+                        <TooltipContent className="font-bold" side="right">Artigos</TooltipContent>
+                    </Tooltip>
                 </TooltipProvider>
             </nav>
             <nav className="flex flex-col items-center px-2 sm:py-5">
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <button onClick={() => atualizar(6)}>
+                            <button onClick={() => atualizar(7)}>
                                 <Link
                                     href="/comunidade/config"
                                     onClick={() => ativar('config')} // manda o id do to
