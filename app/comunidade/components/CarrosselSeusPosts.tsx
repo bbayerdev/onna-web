@@ -82,7 +82,7 @@ export function CarrosselSeusPosts() {
                         </div>
                         <div className='flex justify-end w-full'>
                             <p className='text-xs px-2'> {hora}</p>
-                            <Heart size={16} fill='#00000' />
+                            <Heart size={16} color="#ef4444" fill='#ef4444' />
                             <p className='ml-1 text-xs text-right'>{curtidas}</p>
                         </div>
                     </div>
@@ -103,7 +103,7 @@ export function CarrosselSeusPosts() {
     return (
         <div className="w-full px-12">
             <Link href={'/comunidade/usuario/posts'}>
-                <Button variant={'ghost'} className='text-xl'>Seus últimos posts</Button>
+                <Button variant={'ghost'} className='text-xl font-bold'>Seus últimos posts</Button>
             </Link>
             <div className="flex h-[500px] w-full flex-row ml-8">
                 <div className="w-full mt-10 overflow-hidden relative ">

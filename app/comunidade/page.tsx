@@ -12,7 +12,7 @@ function Home() {
     <main>
       <div className='p-5'>
         <Link href={'/comunidade/popular'}>
-          <Button variant={'ghost'} className='text-xl'>Novos Posts</Button>
+          <Button variant={'ghost'} className='text-xl font-bold'>Novos Posts</Button>
         </Link>
       </div>
       <div className='relative'>

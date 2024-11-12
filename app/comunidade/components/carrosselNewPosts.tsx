@@ -117,7 +117,7 @@ export function CarrosselNewPosts() {
                 </div>
                 <blockquote className="mt-2 text-sm">{body}</blockquote>
                 <div className=' flex justify-end'>
-                    <Heart size={16} fill='#00000' />
+                    <Heart size={16} color="#ef4444" fill='#ef4444' />
                     <p className='ml-1 text-xs text-right'>{curtidas}</p>
                 </div>
 

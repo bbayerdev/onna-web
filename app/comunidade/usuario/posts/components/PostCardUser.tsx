@@ -1,6 +1,6 @@
 'use client'
 import { cn } from "@/lib/utils";
-import { Heart, MessageCircle, Pencil, Trash2 } from 'lucide-react';
+import { Heart, MessageCircle, Trash2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
@@ -12,13 +12,23 @@ const PostCardUser = ({
     hora,
     data,
 }: {
-    idForum: string;
+    idForum: number;
     titulo: string;
     subtitulo: string;
     reacoes: number
     hora: string
     data: string
 }) => {
+
+    const [forum, setForum] = useState('')
+    useEffect(() => {
+        const forumMap: Record<number, string> = {
+            1: '#Gravidez',
+            2: '#Maternidade',
+            3: '#Desabafos',
+        }
+        setForum(forumMap[idForum] || '#Autocuidado')
+    }, [])
 
     //puxa o nome do user do local storage
     const [dadosUsuario, setDadosUsuario] = useState<{
@@ -49,12 +59,11 @@ const PostCardUser = ({
                 <div className="flex flex-row w-full">
                     <div className='w-full flex gap-2'>
                         <figcaption className="font-bold text-xl">
-                            {dadosUsuario?.nome || 'nao logado'}
+                            {dadosUsuario?.nome.split(" ").slice(0, 2).join(" ") || 'nao logado'}
                         </figcaption>
                         <div className='w-1/3'>
-                            <p className="text-xl text-zinc-700 ">{idForum}</p>
+                            <p className="text-xl text-zinc-700 ">{forum}</p>
                         </div>
-
                     </div>
                     <div className='flex justify-end w-full text-sm'>
                         <p className='px-2'>{data}</p>
@@ -70,15 +79,14 @@ const PostCardUser = ({
 
             </blockquote>
             <div className='flex justify-end mt-5'>
-                <div className='flex justify-center items-center'>
+                <div className='flex gap-2 justify-center items-center'>
+                    <p className='text-sm text-right font-bold'> {reacoes} </p>
+                    <Heart color="#ef4444" fill='#ef4444' className="h-4 w-4 " />
                     <div className='flex gap-1 mr-2 '>
-                        <p className='ml-1 text-sm text-right font-bold'>0</p>
-                        <MessageCircle size={20} />
+                        <Button className='mr-1 hover:bg-red-100' variant="outline" size="icon">
+                            <Trash2 className="h-5 w-5" color="#ef4444" />
+                        </Button>
                     </div>
-                    <p className='mr-1 text-sm text-right font-bold'> {reacoes} </p>
-                    <Button className='mr-1 hover:bg-red-100' variant="outline" size="icon">
-                        <Heart color="#ef4444" fill='#ef4444' className="h-5 w-5 " />
-                    </Button>
                 </div>
             </div>
         </figure>
