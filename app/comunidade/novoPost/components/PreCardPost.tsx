@@ -55,11 +55,11 @@ const PreCardPost = ({
             <div className="flex flex-row items-center gap-4">
                 <img className="rounded-full" width="42" height="42" alt="" src='/imgs/cachorra.png' />
                 <div className="flex flex-row w-full">
-                    <div className='w-full flex gap-2'>
-                        <figcaption className="font-bold text-xl">
+                    <div className=' flex gap-2'>
+                        <figcaption className="font-bold text-xl w-full">
                             {dadosUsuario?.nome || 'Luiz Ricardo'}
                         </figcaption>
-                        <div className='w-1/3'>
+                        <div className=''>
                             <p className="text-xl text-zinc-700 ">{forum}</p>
                         </div>
 

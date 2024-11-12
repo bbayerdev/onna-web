@@ -1,6 +1,30 @@
-- terminar login profissional
-- exibir as postagens 
-	-separar as postagens por forum(id)
-- sistema de denuncia das postagens 
-- sistema de resposta das postagens
-- page da exibição dos artigos (vão vim do desktop)
+	TENHO ATE DIA 17/11 PARA TERMINAR ESSA MERDA (6 dias)
+
+- Usuario profissional
+	- CardUser com verificacao
+	- Page do user (dados)
+
+- Postagens 
+	- Atualizar a page da criação dos postagens (tirar a opcao de foto no caso)
+	- Exibicao:
+		- posts do user
+		- posts mais populares (mais curtidas)
+		- posts gravidez
+		- posts maternidade
+		- posts desabafos
+		- posts autocuidado
+	- Sistema de respostas de uma postagem
+	- Sistema de denuncia de uma postagem
+	- Obs: nao posso esquecer de deixar funcional os cards da home (ultimos posts/ novos posts)
+
+- Page Artigos (desktop)
+	- Desing e chamada dos artigos 
+		- Divididos em:
+			- menstruacao
+			- engravidar
+			- gestacao
+			- maternidade
+			- cuidados com o corpo 
+	- Obs: Provavelmente uma page com CardArtigo (resumo do artigo) que leva para uma page especial do artigo em si
+		- body do artigo: (roberto vai me mandar)
+	

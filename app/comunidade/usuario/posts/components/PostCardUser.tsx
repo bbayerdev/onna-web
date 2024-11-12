@@ -49,7 +49,7 @@ const PostCardUser = ({
                 <div className="flex flex-row w-full">
                     <div className='w-full flex gap-2'>
                         <figcaption className="font-bold text-xl">
-                            {dadosUsuario?.nome}
+                            {dadosUsuario?.nome || 'nao logado'}
                         </figcaption>
                         <div className='w-1/3'>
                             <p className="text-xl text-zinc-700 ">{idForum}</p>

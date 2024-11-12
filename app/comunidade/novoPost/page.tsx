@@ -149,7 +149,7 @@ export function NovoPost() {
                         </p>
 
                         <div className="flex">
-                            <div>
+                            <div className="flex flex-col">
                                 <Label className="text-base" htmlFor="Fórum">Fórum <span className="text-red-500">*</span></Label>
                                 <Popover open={open} onOpenChange={setOpen}>
                                     <PopoverTrigger asChild>
@@ -192,10 +192,6 @@ export function NovoPost() {
                                         </Command>
                                     </PopoverContent>
                                 </Popover>
-                            </div>
-                            <div>
-                                <Label className="text-base" htmlFor="Imagem">Imagem (opcional)</Label>
-                                <Input id="picture" type="file" onChange={handleFileChange} />
                             </div>
                         </div>
                         <Button type="submit" className='w-full text-base mt-10 hover:bg-green-400 shadow' variant={'outline'}>
