@@ -19,7 +19,7 @@ export default function CommunityLayout({
 
     return (
         <div className="flex min-h-screen w-full">
-            <NextTopLoader color="#3b82f6" initialPosition={0.3} />
+            <NextTopLoader color="#3b82f6" initialPosition={0.3} showSpinner={false} />
             <Aside exibir={exibir} atualizar={atualizar} />
             <div className="flex flex-col flex-1">
                 <div className="fixed w-full z-20">
