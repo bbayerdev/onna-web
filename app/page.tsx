@@ -1,5 +1,4 @@
 'use client'
-import { Button } from '@/components/ui/button';
 import Footer from './components/home/footer';
 import Header from './components/home/header';
 import Quadrinho from './components/home/images/quadrinho';
@@ -89,7 +88,6 @@ export default function Home() {
       <div className='mt-32' >
         {renderizar()}
       </div>
-
       <Footer />
     </main>
   );

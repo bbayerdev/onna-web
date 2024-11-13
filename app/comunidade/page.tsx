@@ -31,7 +31,6 @@ function Home() {
           <CarrosselSeusPosts />
         </div>
       </section>
-
     </main>
   );
 }

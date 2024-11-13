@@ -1,11 +1,10 @@
-	TENHO ATE DIA 17/11 PARA TERMINAR ESSA MERDA (6 dias)
+	TENHO ATE DIA 17/11 PARA TERMINAR ESSA MERDA (5 dias)
 
 - Usuario profissional
 	- CardUser com verificacao
 	- Page do user (dados)
 
 - Postagens 
-	- Atualizar a page da criação dos postagens (tirar a opcao de foto no caso)
 	- Exibicao:
 		- posts do user
 		- posts mais populares (mais curtidas)

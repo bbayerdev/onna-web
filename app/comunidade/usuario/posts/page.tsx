@@ -5,7 +5,6 @@ import axios from 'axios'
 import { Button } from '@/components/ui/button'
 import { PencilLine } from 'lucide-react'
 import Link from 'next/link'
-import { Skeleton } from '@/components/ui/skeleton'
 import SkeletonCard from './components/SkeletonCard'
 
 const page = () => {
@@ -55,7 +54,7 @@ const page = () => {
       <h1 className='text-xl font-bold'>Seus Posts</h1>
       {loading ? (
 
-        <section className="mt-10 gap-5 flex flex-col">
+        <section className="mt-10 gap-10 flex flex-col">
           <SkeletonCard/>
           <SkeletonCard/>
         </section>

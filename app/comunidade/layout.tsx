@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Separator } from '@/components/ui/separator';
 import Aside from './components/Aside';
 import Header from './components/Header';
+import NextTopLoader from 'nextjs-toploader';
 
 export default function CommunityLayout({
     children,
@@ -18,6 +19,7 @@ export default function CommunityLayout({
 
     return (
         <div className="flex min-h-screen w-full">
+            <NextTopLoader color="#3b82f6" initialPosition={0.3} />
             <Aside exibir={exibir} atualizar={atualizar} />
             <div className="flex flex-col flex-1">
                 <div className="fixed w-full z-20">
