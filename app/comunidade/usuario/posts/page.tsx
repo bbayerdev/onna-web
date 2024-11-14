@@ -22,7 +22,6 @@ const page = () => {
     const usuarioData = localStorage.getItem("usuarioData");
     if (usuarioData) {
       const usuario = JSON.parse(usuarioData);
-      console.log(usuarioData)
       const idTipoUsuario = usuario.idTipo_Usuario;
       const nome = usuario.nome
       setNome(nome)
@@ -34,9 +33,13 @@ const page = () => {
           const response = await axios.get(`http://localhost:3000/api/postagemP/${idTipoUsuario}`);
           if (response.data.length === 0) {
             setError(true);
+
           } else {
-            setPosts(response.data);
+            // filtra os posts para remover os com ban igual a 1
+            const filteredPosts = response.data.filter((post: { status_Ban: number }) => post.status_Ban !== 1);
+            setPosts(filteredPosts);
           }
+
         } catch (error) {
           setError(true);
         } finally {
@@ -58,8 +61,8 @@ const page = () => {
       <div className='flex flex-row gap-4'>
         <h1 className='text-xl font-bold'>Seus Posts</h1>
         <div className='mt-1 flex flex-row gap-4'>
-          {loading ? (<Skeleton className='w-14'/>) : (<CountPosts/>)}
-          { error ? null : (<Link href={'/comunidade/novoPost'}> <Badge variant="secondary" className='hover:bg-zinc-200 rounded-2xl'>Criar novo post</Badge> </Link>) }
+          {loading ? (<Skeleton className='w-14' />) : (<CountPosts />)}
+          {error ? null : (<Link href={'/comunidade/novoPost'}> <Badge variant="secondary" className='hover:bg-zinc-200 rounded-2xl'>Criar novo post</Badge> </Link>)}
         </div>
       </div>
 
@@ -89,7 +92,8 @@ const page = () => {
             <section className="mt-10 gap-5 flex justify-center items-center flex-col">
               <section className='flex w-11/12 justify-center'>
                 <PostCardUser
-                  key={post.id} // Certifique-se de que o post tenha um id único
+                  id={post.idPostagem} // Certifique-se de que o post tenha um id único
+                  ban={post.status_Ban}
                   idForum={post.idForum}
                   titulo={post.titulo}
                   subtitulo={post.subtitulo}
