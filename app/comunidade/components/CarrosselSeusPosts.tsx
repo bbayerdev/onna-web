@@ -4,6 +4,7 @@ import Marquee from '@/components/ui/marquee';
 import { Heart, Pencil, Trash2 } from 'lucide-react';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 export function CarrosselSeusPosts() {
 
@@ -73,14 +74,16 @@ export function CarrosselSeusPosts() {
             >
                 <div className="flex flex-row items-center gap-4">
                     <img className="rounded-full" width="36" height="36" alt="" src={img} />
-                    <div className="flex flex-row w-full">
-                        <div className='w-3/4 flex gap-2'>
-                            <figcaption className="font-bold">
-                                {name}
+                    <div className="flex flex-row w-full justify-between">
+                        <div className='flex gap-2'>
+                            <figcaption className="font-bold text-xl">
+                                {name.split(" ").slice(0, 2).join(" ") || 'Luiz Ricardo'}
                             </figcaption>
-                            <p className="text-sm text-zinc-700 ">{forum}</p>
+                            <div className=''>
+                                {forum ? (<Badge className='pointer-events-none text-xs rounded-2xl'>{forum}</Badge>) : null}
+                            </div>
                         </div>
-                        <div className='flex justify-end w-full'>
+                        <div className='flex text-sm'>
                             <p className='text-xs px-2'> {hora}</p>
                             <Heart size={16} color="#ef4444" fill='#ef4444' />
                             <p className='ml-1 text-xs text-right'>{curtidas}</p>

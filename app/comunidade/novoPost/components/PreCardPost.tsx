@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { cn } from "@/lib/utils";
 import { Image, Heart, MessageCircle } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { Badge } from '@/components/ui/badge';
 
 //com tipagemmmm (ilove ts)
 const PreCardPost = ({
@@ -54,17 +55,16 @@ const PreCardPost = ({
         >
             <div className="flex flex-row items-center gap-4">
                 <img className="rounded-full" width="42" height="42" alt="" src='/imgs/cachorra.png' />
-                <div className="flex flex-row w-full">
-                    <div className=' flex gap-2'>
-                        <figcaption className="font-bold text-xl w-full">
-                            {dadosUsuario?.nome || 'Luiz Ricardo'}
+                <div className="flex flex-row w-full justify-between">
+                    <div className='flex gap-2'>
+                        <figcaption className="font-bold text-xl">
+                            {dadosUsuario?.nome.split(" ").slice(0, 2).join(" ") || 'Luiz Ricardo'}
                         </figcaption>
                         <div className=''>
-                            <p className="text-xl text-zinc-700 ">{forum}</p>
+                            { forum? (<Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>) : null}
                         </div>
-
                     </div>
-                    <div className='flex justify-end w-full text-sm'>
+                    <div className='flex text-sm'>
                         <p className='px-2'>{horaFormatada}</p>
                         <p>•</p>
                         <p className='px-2 font-bold'> {dataAtual}</p>
@@ -80,10 +80,7 @@ const PreCardPost = ({
                     </div>
                 )}
             </blockquote>
-            <div className='flex justify-between mt-5'>
-                <Button variant="outline">
-                    Responder
-                </Button>
+            <div className='flex justify-end mt-5'>
                 <div className='flex justify-center items-center'>
                     <div className='flex gap-1 mr-2 '>
                         <p className='ml-1 text-sm text-right font-bold'>0</p>

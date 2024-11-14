@@ -18,6 +18,8 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
+import CountPosts from './countPosts';
+import CountEntrada from './countEntrada';
 
 const CardUser = () => {
 
@@ -47,23 +49,19 @@ const CardUser = () => {
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                 </CardHeader>
-                <CardContent className='p-3 mt-7 w-full'>
+                <CardContent className='p-2 mt-7 w-full'>
                     <h1 className='font-bold text-xl'>
                         {dadosUsuario?.nome || 'Luiz Ricardo'}
                     </h1>
                     <h1>
                         {dadosUsuario?.email || 'bombomreidelas@gmail.com'}
                     </h1>
-                    <div className='mt-1 ml-1'>
+                    <div className='mt-2 ml-2'>
                         <div className='flex flex-row'>
-                            <NotebookPen color='#71717a' className='mt-1' size={15} /> <p className='text-zinc-700 text-sm ml-1'>
-                                14 posts
-                            </p>
+                          <CountPosts/>
                         </div>
                         <div className='flex flex-row'>
-                            <CalendarDays color='#71717a' className='mt-1' size={15} /> <p className='text-zinc-700 text-sm ml-1'>
-                                entrou em outubro 2024
-                            </p>
+                           <CountEntrada/>
                         </div>
                     </div>
                     <div className='flex justify-end '>

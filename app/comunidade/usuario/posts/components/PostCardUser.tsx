@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { Heart, MessageCircle, Trash2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
 
 const PostCardUser = ({
     idForum,
@@ -62,7 +63,7 @@ const PostCardUser = ({
                             {dadosUsuario?.nome.split(" ").slice(0, 2).join(" ") || 'nao logado'}
                         </figcaption>
                         <div className='w-1/3'>
-                            <p className="text-xl text-zinc-700 ">{forum}</p>
+                            <Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>
                         </div>
                     </div>
                     <div className='flex justify-end w-full text-sm'>

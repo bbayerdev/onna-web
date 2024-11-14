@@ -138,7 +138,7 @@ export function NovoPost() {
 
                         <Label className="text-base" htmlFor="message">Texto post</Label>
                         <Textarea
-                            className="h-[250px]"
+                            className="h-[210px]"
                             placeholder="Escreva o conteúdo do seu post aqui."
                             id="Body"
                             maxLength={3000}

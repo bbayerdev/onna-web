@@ -6,6 +6,9 @@ import { Button } from '@/components/ui/button'
 import { PencilLine } from 'lucide-react'
 import Link from 'next/link'
 import SkeletonCard from './components/SkeletonCard'
+import CountPosts from '../../components/countPosts'
+import { Badge } from '@/components/ui/badge'
+import { Skeleton } from '@/components/ui/skeleton'
 
 const page = () => {
   const [idTipoUsuario, setIdTipoUsuario] = useState<number | null>(null);
@@ -19,6 +22,7 @@ const page = () => {
     const usuarioData = localStorage.getItem("usuarioData");
     if (usuarioData) {
       const usuario = JSON.parse(usuarioData);
+      console.log(usuarioData)
       const idTipoUsuario = usuario.idTipo_Usuario;
       const nome = usuario.nome
       setNome(nome)
@@ -51,12 +55,19 @@ const page = () => {
 
   return (
     <main>
-      <h1 className='text-xl font-bold'>Seus Posts</h1>
+      <div className='flex flex-row gap-4'>
+        <h1 className='text-xl font-bold'>Seus Posts</h1>
+        <div className='mt-1 flex flex-row gap-4'>
+          {loading ? (<Skeleton className='w-14'/>) : (<CountPosts/>)}
+          { error ? null : (<Link href={'/comunidade/novoPost'}> <Badge variant="secondary" className='hover:bg-zinc-200 rounded-2xl'>Criar novo post</Badge> </Link>) }
+        </div>
+      </div>
+
       {loading ? (
 
         <section className="mt-10 gap-10 flex flex-col">
-          <SkeletonCard/>
-          <SkeletonCard/>
+          <SkeletonCard />
+          <SkeletonCard />
         </section>
 
       ) : error ? (

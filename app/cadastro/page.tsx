@@ -148,6 +148,13 @@ export function Page() {
                 type="text"
                 placeholder="Luiz Ricardo"
                 {...register('nome')}
+                className="capitalize"
+                maxLength={50} // Limita a entrada a 5 caracteres
+                pattern="^[A-Za-z\s]*$" // Aceita apenas letras e espaços
+                onInput={(e) => {
+                    const input = e.target as HTMLInputElement; // Faz a assertiva de tipo
+                    input.value = input.value.replace(/[0-9]/g, ""); // Remove qualquer número
+                }}
               />
               {errors.nome && <span className="text-red-500 text-sm">{errors.nome.message}</span>}
             </div>
