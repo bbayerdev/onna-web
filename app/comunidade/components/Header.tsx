@@ -157,7 +157,7 @@ function Header({ atualizar, exibir }: Props) {
                                 >
                                     <Avatar>
                                         <AvatarImage src='/imgs/cachorra.png' alt="@shadcn" />
-                                        <AvatarFallback>CN</AvatarFallback>
+                                        <AvatarFallback className='bg-zinc-300'></AvatarFallback>
                                     </Avatar>
                                 </Button>
                             </DropdownMenuTrigger>

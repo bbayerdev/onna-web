@@ -48,7 +48,7 @@ export function NovoPost() {
     const [forumEscolhido, setforumEscolhido] = React.useState("")
     //tipagem dados:
     const [titulo, setTitulo] = useState('')
-    const maxTitilo = 50
+    const maxTitilo = 60
     const [body, setBody] = useState('')
     const maxBody = 3000
 
@@ -127,7 +127,7 @@ export function NovoPost() {
                             {...register("titulo")}
                             type="text"
                             placeholder="De um título para seu post."
-                            maxLength={50}
+                            maxLength={60}
                             id="Titulo"
                             onChange={(e) => setTitulo(e.target.value)}
                         />

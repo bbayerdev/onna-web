@@ -1,7 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button';
 import CardUser from './components/CardUser';
-import { PencilLine } from 'lucide-react';
+import { Newspaper, PencilLine } from 'lucide-react';
 import Link from 'next/link';
 import CarrosselSeusPosts from './components/CarrosselSeusPosts';
 import { CarrosselNewPosts } from './components/carrosselNewPosts';
@@ -24,6 +24,12 @@ function Home() {
           <Link href={'comunidade/novoPost'}>
             <Button className='mt-10 w-full gap-2 h-12 text-md hover:bg-green-400 shadow' variant={'outline'}>
               Escrever novo post <PencilLine className='size-4' />
+            </Button>
+          </Link>
+
+          <Link href={'comunidade/artigos'}>
+            <Button className='mt-5 w-full gap-2 h-12 text-md hover:bg-zinc-200 shadow' variant={'outline'}>
+              Ler artigos<Newspaper className='size-4' />
             </Button>
           </Link>
         </div>

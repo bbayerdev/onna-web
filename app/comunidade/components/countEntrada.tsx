@@ -1,3 +1,4 @@
+import { Skeleton } from '@/components/ui/skeleton'
 import { CalendarDays, NotebookPen } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
@@ -18,26 +19,41 @@ const formatarData = (data: string) => {
 
 const CountEntrada = () => {
     const [data, setData] = useState('')
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const usuarioData = localStorage.getItem('usuarioData')
         console.log(usuarioData)
-        if (usuarioData) {
-            const usuario = JSON.parse(usuarioData)
-            const dataCadastro = (usuario.data_Cadastro)
-            setData(formatarData(dataCadastro))
+        try {
+            if (usuarioData) {
+                const usuario = JSON.parse(usuarioData)
+                const dataCadastro = (usuario.data_Cadastro)
+                setData(formatarData(dataCadastro))
+            }
         }
+        catch (error) {
 
+        }
+        finally {
+            setLoading(false);
+        }
     }, [])
 
     return (
-        <div className='flex'>
-            <CalendarDays color='#71717a' className='mt-1' size={15} />
-            <p className='text-zinc-700 text-xs mt-1 ml-1'>
-                {data}
-            </p>
-        </div>
-    )
+        loading ? (
+            <div>
+                <Skeleton className="w-48 h-3 mt-3" />
+            </div>
+        ) : (
+            <div className="flex">
+                <CalendarDays color="#71717a" className="mt-1" size={15} />
+                <p className="text-zinc-700 text-xs mt-1 ml-1">
+                    {data}
+                </p>
+            </div>
+        )
+    );
+
 }
 
 export default CountEntrada

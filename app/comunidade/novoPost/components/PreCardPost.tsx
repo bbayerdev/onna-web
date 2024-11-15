@@ -61,13 +61,13 @@ const PreCardPost = ({
                             {dadosUsuario?.nome.split(" ")[0] || 'Luiz Ricardo'}
                         </figcaption>
                         <div className=''>
-                            { forum? (<Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>) : null}
+                            {forum ? (<Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>) : null}
                         </div>
                     </div>
                     <div className='flex text-sm'>
-                        <p className='px-2'>{horaFormatada}</p>
+                        <p className='px-2 '> {dataAtual}</p>
                         <p>•</p>
-                        <p className='px-2 font-bold'> {dataAtual}</p>
+                        <p className='px-2 font-bold'>{horaFormatada}</p>
                     </div>
                 </div>
             </div>
@@ -82,11 +82,7 @@ const PreCardPost = ({
             </blockquote>
             <div className='flex justify-end mt-5'>
                 <div className='flex justify-center items-center'>
-                    <div className='flex gap-1 mr-2 '>
-                        <p className='ml-1 text-sm text-right font-bold'>0</p>
-                        <MessageCircle size={20} />
-                    </div>
-                    <p className='mr-1 text-sm text-right font-bold'>{like}</p>
+                    <p className='mr-2 text-sm text-right font-bold'>{like}</p>
                     <Button onClick={liked} className='mr-1 hover:bg-red-100' variant="outline" size="icon">
                         <Heart color="#ef4444" fill='#ef4444' className="h-5 w-5 " />
                     </Button>

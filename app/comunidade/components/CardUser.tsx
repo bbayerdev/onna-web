@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/tooltip"
 import CountPosts from './countPosts';
 import CountEntrada from './countEntrada';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const CardUser = () => {
 
@@ -28,14 +29,21 @@ const CardUser = () => {
         nome: string;
     } | null>(null)
 
-    useEffect(() => {
-        //ao carregar o card, recupera os dados do localStorage
-        const data = localStorage.getItem('usuarioData')
-        //limpar o localStorage --> localStorage.clear();
+    const [loading, setLoading] = useState(true);
 
-        if (data) {
-            const usuario = JSON.parse(data) // verifica e passa os dados do local para essa variavel
-            setDadosUsuario(usuario) // leva pro useState
+    useEffect(() => {
+        const data = localStorage.getItem('usuarioData')
+        try {
+            if (data) {
+                const usuario = JSON.parse(data) // verifica e passa os dados do local para essa variavel
+                setDadosUsuario(usuario) // leva pro useState
+            }
+        }
+        catch (erro) {
+
+        }
+        finally {
+            setLoading(false)
         }
     }, [])
     //limpar o localStorage --> localStorage.clear();
@@ -46,22 +54,38 @@ const CardUser = () => {
                 <CardHeader>
                     <Avatar className='size-32 shadow'>
                         <AvatarImage src='/imgs/cachorra.png' alt="@shadcn" />
-                        <AvatarFallback>CN</AvatarFallback>
+                        <AvatarFallback className='bg-zinc-300'></AvatarFallback>
                     </Avatar>
                 </CardHeader>
                 <CardContent className='p-2 mt-7 w-full'>
-                    <h1 className='font-bold text-xl'>
-                        {dadosUsuario?.nome || 'Luiz Ricardo'}
-                    </h1>
-                    <h1>
-                        {dadosUsuario?.email || 'bombomreidelas@gmail.com'}
-                    </h1>
+                    {loading ?
+                        (
+                            <Skeleton className='h-4 w-3/4 mt-1' />
+                        )
+                        :
+                        (
+                            <h1 className='font-bold text-xl'>
+                                {dadosUsuario?.nome}
+                            </h1>
+                        )
+                    }
+                    {loading ?
+                        (
+                            <Skeleton className='h-3 w-2/4 mt-3' />
+                        )
+                        :
+                        (
+                            <h1>
+                                {dadosUsuario?.email}
+                            </h1>
+                        )
+                    }
                     <div className='mt-2 ml-2'>
                         <div className='flex flex-row'>
-                          <CountPosts/>
+                            <CountPosts />
                         </div>
                         <div className='flex flex-row'>
-                           <CountEntrada/>
+                            <CountEntrada />
                         </div>
                     </div>
                     <div className='flex justify-end '>
