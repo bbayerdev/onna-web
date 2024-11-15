@@ -59,7 +59,7 @@ export function page() {
                     description: "Você será redirecionado em 2 segundos.",
                     className: 'bg-green-400',
                     duration: 2000,
-                });
+                })
 
                 // Redireciona conforme o id do tipo de usuário
                 setTimeout(() => {

@@ -21,10 +21,10 @@ const CountEntrada = () => {
 
     useEffect(() => {
         const usuarioData = localStorage.getItem('usuarioData')
+        console.log(usuarioData)
         if (usuarioData) {
             const usuario = JSON.parse(usuarioData)
-            const dataCadastro = (usuario['Data de cadastro da conta'])
-
+            const dataCadastro = (usuario.data_Cadastro)
             setData(formatarData(dataCadastro))
         }
 

@@ -73,39 +73,41 @@ const page = () => {
           <SkeletonCard />
         </section>
 
-      ) : error ? (
-        <section className="mt-10 gap-5 flex justify-center items-center flex-col">
-          <div className='flex flex-col items-center mt-20'>
-            <div className='p-20 flex flex-col justify-center items-center border-gray-950/[.1] bg-gray-950/[.01] shadow'>
-              <p className='text-2xl'> <span className='font-bold'>{nomeUser.split(" ")[0]}</span>, você ainda não criou nenhum post!</p>
-              <Link href={'/comunidade/novoPost'}>
-                <Button className='mt-10  gap-2 h-12 text-md hover:bg-green-400 shadow' variant={'outline'}>
-                  Escreva seu primeiro post agora! <PencilLine className='size-4' />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-      ) : (
-        posts.map((post) => {
-          return (
+      )
+        : error ?
+          (
             <section className="mt-10 gap-5 flex justify-center items-center flex-col">
-              <section className='flex w-11/12 justify-center'>
-                <PostCardUser
-                  id={post.idPostagem} // Certifique-se de que o post tenha um id único
-                  ban={post.status_Ban}
-                  idForum={post.idForum}
-                  titulo={post.titulo}
-                  subtitulo={post.subtitulo}
-                  reacoes={post.reacoes}
-                  hora={post["Hora da postagem"]}
-                  data={post["Data da postagem"]}
-                />
-              </section>
+              <div className='flex flex-col items-center mt-20'>
+                <div className='p-20 flex flex-col justify-center items-center bg-zinc-100 rounded-2xl border-gray-950/[.1] bg-gray-950/[.01] shadow'>
+                  <p className='text-2xl'> <span className='font-bold'>{nomeUser.split(" ")[0]}</span>, você ainda não criou nenhum post!</p>
+                  <Link href={'/comunidade/novoPost'}>
+                    <Button className='mt-10  gap-2 h-12 text-md hover:bg-green-400' variant={'outline'}>
+                      Escreva seu primeiro post agora! <PencilLine className='size-4' />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </section>
-          );
-        })
-      )}
+          ) : (
+            posts.map((post) => {
+              return (
+                <section className="mt-10 gap-5 flex justify-center items-center flex-col">
+                  <section className='flex w-11/12 justify-center'>
+                    <PostCardUser
+                      id={post.idPostagem} // Certifique-se de que o post tenha um id único
+                      ban={post.status_Ban}
+                      idForum={post.idForum}
+                      titulo={post.titulo}
+                      subtitulo={post.subtitulo}
+                      reacoes={post.reacoes}
+                      hora={post.hora}
+                      data={post.data_Postagem}
+                    />
+                  </section>
+                </section>
+              );
+            })
+          )}
     </main>
   )
 }

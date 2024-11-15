@@ -5,6 +5,20 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import axios from "axios";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Toaster } from "@/components/ui/toaster"
+import { useRouter } from "next/navigation";
+import { toast } from "@/hooks/use-toast";
 
 const PostCardUser =
     ({
@@ -60,11 +74,22 @@ const PostCardUser =
                 const response = await axios.put('http://localhost:3000/api/postagemE', {
                     idPostagem: id
                 });
-            }
-            catch (error) {
+        
+                if (response.status === 200) {
+                    toast({
+                        title: "Post excluído com sucesso.",
+                        className: 'bg-red-500',
+                        duration: 2000,
+                    });
+        
+                    window.location.reload();
+                }
+            } catch (error) {
                 setError(true);
             }
         }
+
+        const router = useRouter()
 
         return (
             <figure
@@ -105,12 +130,30 @@ const PostCardUser =
                         <p className='text-sm text-right font-bold'> {reacoes} </p>
                         <Heart color="#ef4444" fill='#ef4444' className="h-4 w-4 " />
                         <div className='flex gap-1 mr-2 '>
-                            <Button onClick={() => excluirPost(id)} className='mr-1 hover:bg-red-100' variant="outline" size="icon">
-                                <Trash2 className="h-5 w-5" color="#ef4444" />
-                            </Button>
+                            <AlertDialog>
+                                <AlertDialogTrigger asChild>
+                                    <Button className='mr-1 hover:bg-red-100' variant="outline" size="icon">
+                                        <Trash2 className="h-5 w-5" color="#ef4444" />
+                                    </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle className="text-2xl">Excluir este post?</AlertDialogTitle>
+                                        <AlertDialogDescription className="text-base">
+                                            O post será removido e não poderá ser recuperado.
+                                        </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                        <AlertDialogAction onClick={() => excluirPost(id)} className="bg-red-500 hover:bg-red-600"> Confirmar </AlertDialogAction>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
+
                         </div>
                     </div>
                 </div>
+                <Toaster />
             </figure>
         );
     };
