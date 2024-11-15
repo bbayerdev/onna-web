@@ -71,6 +71,7 @@ const page = () => {
         <section className="mt-10 gap-10 flex flex-col">
           <SkeletonCard />
           <SkeletonCard />
+          <SkeletonCard />
         </section>
 
       )

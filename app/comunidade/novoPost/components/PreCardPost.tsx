@@ -58,7 +58,7 @@ const PreCardPost = ({
                 <div className="flex flex-row w-full justify-between">
                     <div className='flex gap-2'>
                         <figcaption className="font-bold text-xl">
-                            {dadosUsuario?.nome.split(" ").slice(0, 2).join(" ") || 'Luiz Ricardo'}
+                            {dadosUsuario?.nome.split(" ")[0] || 'Luiz Ricardo'}
                         </figcaption>
                         <div className=''>
                             { forum? (<Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>) : null}

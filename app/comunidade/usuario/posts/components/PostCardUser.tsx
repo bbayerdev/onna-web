@@ -81,15 +81,15 @@ const PostCardUser =
                         className: 'bg-red-500',
                         duration: 2000,
                     });
-        
-                    window.location.reload();
+
+                    setTimeout(() =>{
+                        window.location.reload();
+                    }, 1000)
                 }
             } catch (error) {
                 setError(true);
             }
         }
-
-        const router = useRouter()
 
         return (
             <figure
@@ -121,9 +121,7 @@ const PostCardUser =
 
                     <h1 className='text-xl mt-2 font-semibold'>{titulo}</h1>
                     <p className='mt-2 text-justify'>{subtitulo}</p>
-                    <p>
-                        status {ban}
-                    </p>
+    
                 </blockquote>
                 <div className='flex justify-end mt-5'>
                     <div className='flex gap-2 justify-center items-center'>
