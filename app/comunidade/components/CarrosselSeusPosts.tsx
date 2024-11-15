@@ -76,6 +76,7 @@ export function CarrosselSeusPosts() {
         body,
         hora,
         curtidas,
+        data,
     }: {
         id: string;
         img: string;
@@ -84,6 +85,7 @@ export function CarrosselSeusPosts() {
         body: string;
         hora: string;
         curtidas: number;
+        data: string
     }) => {
         const [forum, setForum] = useState('');  // Estado para o nome do fórum
 
@@ -111,17 +113,22 @@ export function CarrosselSeusPosts() {
                             <figcaption className="font-bold text-xl">
                                 {name.split(" ").slice(0, 2).join(" ") || 'Nome do usuário'}
                             </figcaption>
-                            {forum && <Badge className='pointer-events-none text-xs rounded-2xl'>{forum}</Badge>}  {/* Mostra o fórum */}
+                            {forum && <Badge className='pointer-events-none text-xs mt-1 h-min rounded-2xl'>{forum}</Badge>}  {/* Mostra o fórum */}
                         </div>
-                        <div className='flex text-sm'>
-                            <p className='text-xs px-2'>{hora}</p>
-                            <Heart size={16} color="#ef4444" fill='#ef4444' />
-                            <p className='ml-1 text-xs text-right'>{curtidas}</p>
+                        <div className='flex justify-end text-sm'>
+                            <p className='px-2'>{data}</p>
+                            <p>•</p>
+                            <p className='px-2 font-bold'> {hora}</p>
                         </div>
                     </div>
                 </div>
                 <blockquote className="mt-4 ml-10 text-base font-bold">{body}</blockquote>
                 <div className='flex justify-end'>
+                    <div className="flex flex-row justify-center items-center gap-2 mr-2">
+                        <p className='ml-1 text-xs text-right font-bold'>{curtidas}</p>
+                        <Heart size={18} color="#ef4444" fill='#ef4444' />
+                    </div>
+
                     <Link href={'/comunidade/usuario/posts'}>
                         <Button className='mr-1 hover:bg-blue-100' variant="outline" size="icon">
                             <Search color="#2563eb" className="h-4 w-4" />
@@ -261,6 +268,7 @@ export function CarrosselSeusPosts() {
                                     forumId={post.idForum}
                                     body={post.titulo || 'Sem título'}
                                     hora={post.hora || '00:00'}
+                                    data={post.data_Postagem}
                                     curtidas={post.reacoes || 0}
                                 />
                             ))}

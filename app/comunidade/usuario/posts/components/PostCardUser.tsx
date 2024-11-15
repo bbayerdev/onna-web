@@ -84,7 +84,7 @@ const PostCardUser =
 
                     setTimeout(() =>{
                         window.location.reload();
-                    }, 1000)
+                    }, 200)
                 }
             } catch (error) {
                 setError(true);
@@ -107,7 +107,7 @@ const PostCardUser =
                                 {dadosUsuario?.nome.split(" ").slice(0, 2).join(" ") || 'nao logado'}
                             </figcaption>
                             <div className='w-1/3'>
-                                <Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>
+                                <Badge className='pointer-events-none rounded-2xl mt-1'>{forum}</Badge>
                             </div>
                         </div>
                         <div className='flex justify-end w-full text-sm'>
