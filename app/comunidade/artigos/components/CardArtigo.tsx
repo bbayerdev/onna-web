@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button'
 
 type Props = {
     id: number,
-    idArtigo: number,
+    idArtigo: string,
     titulo: string,
     body: string,
     data: string
@@ -22,25 +22,25 @@ type Props = {
 const CardArtigo = ({ body, data, idArtigo, id, titulo }: Props) => {
     return (
         <Card>
-            <div className='hover:bg-zinc-100 transition-transform'>
+            <div className='hover:bg-zinc-100 transition-transform h-full flex flex-col justify-between'>
                 <CardHeader>
                     <div className="flex flex-row justify-between">
                         {
-                            idArtigo === 1 ? (
+                            idArtigo === 'menstruacao' ? (
                                 <div className="bg-red-200 rounded-lg p-1">
                                     <Droplets className="size-8" color="#ef4444" />
                                 </div>
-                            ) : idArtigo === 2 ? (
+                            ) : idArtigo === 'engravidar' ? (
                                 <div className="bg-blue-50 rounded-lg p-1">
                                     <Baby className="size-8" color="#60a5fa" />
                                 </div>
-                            ) : idArtigo === 3 ? (
+                            ) : idArtigo === 'gestacao' ? (
                                 <div className="bg-green-100 rounded-lg p-1">
                                     <Sprout className="size-8" color="#4ade80" />
                                 </div>
-                            ) : idArtigo === 4 ? (
-                                <div className="bg-zinc-100 rounded-lg p-1">
-                                    <Heart className="size-8" color="#ef4444" />
+                            ) : idArtigo === 'maternidade' ? (
+                                <div className="bg-indigo-100 rounded-lg p-1">
+                                    <Heart className="size-8" color="#8b5cf6" />
                                 </div>
                             ) : (
                                 <div className="bg-yellow-50 rounded-lg p-1">
@@ -56,8 +56,9 @@ const CardArtigo = ({ body, data, idArtigo, id, titulo }: Props) => {
                         </CardTitle>
                     </div>
                 </CardHeader>
+
                 <CardContent>
-                    <p>
+                    <p className='text-xl'>
                         {body.length > 120 ? `${body.slice(0, 120)}...` : body}
                     </p>
                 </CardContent>
@@ -68,6 +69,8 @@ const CardArtigo = ({ body, data, idArtigo, id, titulo }: Props) => {
                         </Button>
                     </Link>
                 </CardFooter>
+
+
             </div>
         </Card>
 
