@@ -4,10 +4,11 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { Baby, Droplets, Heart, Ribbon, Search, Sprout } from 'lucide-react'
 import CardArtigo from './components/CardArtigo'
 import axios from 'axios'
+import { Skeleton } from '@/components/ui/skeleton'
 
 
 const page = () => {
-  const [id, setId] = useState('menstruacao')
+  const [id, setId] = useState(1)
   const [artigos, setArtigos] = useState<any[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<boolean>(false)
@@ -16,7 +17,7 @@ const page = () => {
 
     const fetchArtigos = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/artigo/${id}`)
+        const response = await axios.get(`http://localhost:3000/api/artigoG/${id}`)
         console.log(response.data)// teste no console  
         setArtigos(response.data)
       }
@@ -41,20 +42,29 @@ const page = () => {
           <h1 className='text-xl font-bold'>Artigos</h1> <h1 className='text-xl'>•</h1>
         </div>
         <div>
-          <ToggleGroup type="single" defaultValue='menstruacao' onValueChange={(value) => value && setId(value)}>
-            <ToggleGroupItem variant={'outline'} value="menstruacao"> <Droplets /> Menstruação</ToggleGroupItem>
-            <ToggleGroupItem variant={'outline'} value="engravidar"> <Baby /> Engravidar</ToggleGroupItem>
-            <ToggleGroupItem variant={'outline'} value="gestacao"> <Sprout /> Gestação</ToggleGroupItem>
-            <ToggleGroupItem variant={'outline'} value="maternidade"> <Heart /> Maternidade</ToggleGroupItem>
-            <ToggleGroupItem variant={'outline'} value="cuidadosCorpo"> <Ribbon /> Autocuidado</ToggleGroupItem>
+          <ToggleGroup type="single" defaultValue='1' onValueChange={(value) => setId(parseInt(value))}>
+            <ToggleGroupItem variant={'outline'} value="1"> <Droplets /> Menstruação</ToggleGroupItem>
+            <ToggleGroupItem variant={'outline'} value="2"> <Baby /> Engravidar</ToggleGroupItem>
+            <ToggleGroupItem variant={'outline'} value="3"> <Sprout /> Gestação</ToggleGroupItem>
+            <ToggleGroupItem variant={'outline'} value="4"> <Heart /> Maternidade</ToggleGroupItem>
+            <ToggleGroupItem variant={'outline'} value="5"> <Ribbon /> Autocuidado</ToggleGroupItem>
           </ToggleGroup>
         </div>
-        <h1>selecionado {id}</h1>
       </section>
 
       {loading ? (
         <section className='grid grid-cols-4 gap-10 mt-10'>
-          <h1>CARREGANDO</h1>
+          <Skeleton className="h-[490px] w-80 rounded-xl">
+          </Skeleton>
+
+          <Skeleton className="h-[490px] w-80 rounded-xl">
+          </Skeleton>
+
+          <Skeleton className="h-[490px] w-80 rounded-xl">
+          </Skeleton>
+          
+          <Skeleton className="h-[490px] w-80 rounded-xl">
+          </Skeleton>
         </section>
       ) : (
 

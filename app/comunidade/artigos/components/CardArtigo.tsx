@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button'
 
 type Props = {
     id: number,
-    idArtigo: string,
+    idArtigo: number,
     titulo: string,
     body: string,
     data: string
@@ -26,19 +26,19 @@ const CardArtigo = ({ body, data, idArtigo, id, titulo }: Props) => {
                 <CardHeader>
                     <div className="flex flex-row justify-between">
                         {
-                            idArtigo === 'menstruacao' ? (
+                            idArtigo === 1 ? (
                                 <div className="bg-red-200 rounded-lg p-1">
                                     <Droplets className="size-8" color="#ef4444" />
                                 </div>
-                            ) : idArtigo === 'engravidar' ? (
+                            ) : idArtigo === 2 ? (
                                 <div className="bg-blue-50 rounded-lg p-1">
                                     <Baby className="size-8" color="#60a5fa" />
                                 </div>
-                            ) : idArtigo === 'gestacao' ? (
+                            ) : idArtigo === 3 ? (
                                 <div className="bg-green-100 rounded-lg p-1">
                                     <Sprout className="size-8" color="#4ade80" />
                                 </div>
-                            ) : idArtigo === 'maternidade' ? (
+                            ) : idArtigo === 4 ? (
                                 <div className="bg-indigo-100 rounded-lg p-1">
                                     <Heart className="size-8" color="#8b5cf6" />
                                 </div>
