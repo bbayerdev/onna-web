@@ -18,7 +18,6 @@ const page = () => {
     const fetchArtigos = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/api/artigoG/${id}`)
-        console.log(response.data)// teste no console  
         setArtigos(response.data)
       }
       catch (erro) {

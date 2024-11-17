@@ -10,7 +10,6 @@ import {
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
-
 type Props = {
     id: number,
     idArtigo: number,
@@ -63,7 +62,7 @@ const CardArtigo = ({ body, data, idArtigo, id, titulo }: Props) => {
                     </p>
                 </CardContent>
                 <CardFooter className="flex justify-end">
-                    <Link href={'#'}>
+                    <Link href={`/comunidade/artigos/${id}`}>
                         <Button className="mr-1 hover:bg-blue-100" variant="outline" size="icon">
                             <Search color="#2563eb" className="h-4 w-4" />
                         </Button>
