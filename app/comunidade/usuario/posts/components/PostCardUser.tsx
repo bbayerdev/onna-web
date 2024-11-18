@@ -168,7 +168,7 @@ const PostCardUser =
 
                         <div>
                             <CollapsibleTrigger asChild>
-                                <Button variant="outline" className="ml-2">
+                                <Button variant="outline" className="ml-2 rounded-xl">
                                     <CornerDownRight /> Respostas
                                 </Button>
                             </CollapsibleTrigger>

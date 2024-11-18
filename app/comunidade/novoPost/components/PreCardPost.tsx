@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { cn } from "@/lib/utils";
-import { Image, Heart, MessageCircle } from 'lucide-react';
+import { Image, Heart, MessageCircle, CornerDownRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from '@/components/ui/badge';
 
@@ -58,7 +58,7 @@ const PreCardPost = ({
                 <div className="flex flex-row w-full justify-between">
                     <div className='flex gap-2'>
                         <figcaption className="font-bold text-xl">
-                            {dadosUsuario?.nome.split(" ")[0] || 'Luiz Ricardo'}
+                            {dadosUsuario?.nome.split(" ").slice(0, 2).join(" ") || 'nao logado'}
                         </figcaption>
                         <div className=''>
                             {forum ? (<Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>) : null}
@@ -80,10 +80,13 @@ const PreCardPost = ({
                     </div>
                 )}
             </blockquote>
-            <div className='flex justify-end mt-5'>
+            <div className='flex justify-between mt-5'>
+                <Button variant="outline" className="ml-2 rounded-xl">
+                    <CornerDownRight /> Respostas
+                </Button>
                 <div className='flex justify-center items-center'>
                     <p className='mr-2 text-sm text-right font-bold'>{like}</p>
-                    <Button onClick={liked} className='mr-1 hover:bg-red-100' variant="outline" size="icon">
+                    <Button onClick={liked} className='mr-2 hover:bg-red-100 rounded-full' variant="outline" size="icon" >
                         <Heart color="#ef4444" fill='#ef4444' className="h-5 w-5 " />
                     </Button>
                 </div>
