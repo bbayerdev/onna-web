@@ -101,7 +101,7 @@ export function CarrosselSeusPosts() {
         return (
             <figure
                 className={cn(
-                    "relative cursor-pointer overflow-hidden rounded-xl border p-4",
+                    "relative cursor-pointer overflow-hidden rounded-3xl border p-4",
                     "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05] shadow",
                     'w-full'
                 )}
@@ -130,7 +130,7 @@ export function CarrosselSeusPosts() {
                     </div>
 
                     <Link href={'/comunidade/usuario/posts'}>
-                        <Button className='mr-1 hover:bg-blue-100' variant="outline" size="icon">
+                        <Button className='mr-1 hover:bg-blue-100 rounded-full' variant="outline" size="icon">
                             <Search color="#2563eb" className="h-4 w-4" />
                         </Button>
                     </Link>

@@ -111,12 +111,7 @@ function Header({ atualizar, exibir }: Props) {
             </Sheet>
 
             <div className="relative ml-auto flex-1 sm:grow-0">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input
-                    type="search"
-                    placeholder="Pesquisar..."
-                    className="w-full rounded-lg bg-background pl-8 sm:w-[336px] lg:w-[336px]"
-                />
+             
             </div>
 
             <TooltipProvider>

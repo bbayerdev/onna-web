@@ -78,19 +78,17 @@ const PostCardUser =
         //puxa o nome do user do local storage
         const [dadosUsuario, setDadosUsuario] = useState<{
             nome: string;
+            idTipo_Usuario: number
         } | null>(null)
         useEffect(() => {
-            //ao carregar o card, recupera os dados do localStorage
             const data = localStorage.getItem('usuarioData')
-            //limpar o localStorage --> localStorage.clear();
             if (data) {
-                const usuario = JSON.parse(data) // verifica e passa os dados do local para essa variavel
-                setDadosUsuario(usuario) // leva pro useState
+                const usuario = JSON.parse(data)
+                setDadosUsuario(usuario)
             }
-            const nome = dadosUsuario?.nome
         }, [])
-        //limpar o localStorage --> localStorage.clear();
-        const [error, setError] = useState<boolean>(false); // Estado para mensagens de erro
+
+        const [error, setError] = useState<boolean>(false)
         //async excluir
         async function excluirPost(id: number) {
             try {
@@ -116,7 +114,7 @@ const PostCardUser =
 
         //aqui para baixo tudo sobre enviar resposta
         const [resposta, setResposta] = useState('')
-        const maxResposta = 100
+        const maxResposta = 400
         const [isOpen, setIsOpen] = React.useState(false)
 
         // config do useForm com validação Zod
@@ -125,7 +123,30 @@ const PostCardUser =
         });
         const onSubmit = (data: newRespostaData) => {
             console.log("Resposta enviada:", data);
-        };
+        }
+        //async nova resposta
+        async function criarResposta(data: newRespostaData) {
+            try {
+                const response = await axios.post('http://localhost:3000/api/respostaPostagem', {
+                    idPostagem: id,
+                    idTipo_Usuario: dadosUsuario?.idTipo_Usuario,
+                    mensagem: data.mensagem
+                })
+
+                if (response.status === 200) {
+                    toast({
+                        title: "Resposta enviada com sucesso!.",
+                        className: 'bg-green-400',
+                        duration: 2000,
+                    })
+                    // setTimeout(() => {
+                    //     window.location.reload();
+                    // }, 200)
+                }
+            } catch (error) {
+                setError(true);
+            }
+        }
 
         return (
             <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex w-full flex-col space-y-2">
@@ -200,19 +221,19 @@ const PostCardUser =
                             </div>
                         </div>
                     </div>
-                    <Toaster />
+
                 </figure>
 
                 <CollapsibleContent className="space-y-2 flex flex-row gap-3">
                     <aside className='ml-8'>  <Separator className='h-5/6 w-[2px] bg-zinc-200 rounded-lg' orientation="vertical" /> </aside>
                     <section className='w-full gap-3 flex flex-col'>
-                        <form onSubmit={handleSubmit(onSubmit)} className="flex w-2/3 space-x-2">
+                        <form onSubmit={handleSubmit(criarResposta)} className="flex w-2/3 space-x-2">
                             <div className="relative flex-1">
                                 <Input
                                     {...register("mensagem", {
                                         onChange: (e) => setResposta(e.target.value)
                                     })}
-                                    maxLength={100}
+                                    maxLength={400}
                                     placeholder={errors.mensagem?.message || "Digite sua resposta"}
                                     className={`rounded-xl ${errors.mensagem ? "placeholder-red-500 text-red-500 border-red-500" : ""}`}
                                 />
@@ -233,18 +254,10 @@ const PostCardUser =
                             mensagem='calaboca jumento'
                         />
 
-                        <RespostaCard
-                            nome='Bayer '
-                            data='17/11/2024'
-                            hora='19:11'
-                            likes={12}
-                            mensagem='salve xines'
-                        />
-
-
                     </section>
 
                 </CollapsibleContent>
+                <Toaster />
             </Collapsible>
         );
     };

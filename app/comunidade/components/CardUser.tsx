@@ -50,7 +50,7 @@ const CardUser = () => {
 
     return (
         <div>
-            <Card className='bg-gray-950/[.01] flex'>
+            <Card className='bg-gray-950/[.01] flex rounded-3xl'>
                 <CardHeader>
                     <Avatar className='size-32 shadow'>
                         <AvatarImage src='/imgs/cachorra.png' alt="@shadcn" />
@@ -92,7 +92,7 @@ const CardUser = () => {
                         <TooltipProvider>
                             <Tooltip>
                                 <TooltipTrigger asChild>
-                                    <Button className='mr-1' variant="outline" size="icon">
+                                    <Button className='mr-2 rounded-full' variant="outline" size="icon">
                                         <Pencil className="h-4 w-4" />
                                     </Button>
                                 </TooltipTrigger>
