@@ -1,4 +1,3 @@
-	TENHO ATE DIA 17/11 PARA TERMINAR ESSA MERDA (5 dias)
 
 - Usuario profissional
 	- CardUser com verificacao
@@ -6,7 +5,6 @@
 
 - Postagens 
 	- Exibicao:
-		- posts do user
 		- posts mais populares (mais curtidas)
 		- posts gravidez
 		- posts maternidade
@@ -14,16 +12,4 @@
 		- posts autocuidado
 	- Sistema de respostas de uma postagem
 	- Sistema de denuncia de uma postagem
-	- Obs: nao posso esquecer de deixar funcional os cards da home (ultimos posts/ novos posts)
-
-- Page Artigos (desktop)
-	- Desing e chamada dos artigos 
-		- Divididos em:
-			- menstruacao
-			- engravidar
-			- gestacao
-			- maternidade
-			- cuidados com o corpo 
-	- Obs: Provavelmente uma page com CardArtigo (resumo do artigo) que leva para uma page especial do artigo em si
-		- body do artigo: (roberto vai me mandar)
-	
+	- Obs: nao posso esquecer de deixar funcional os cards da home (novos posts)

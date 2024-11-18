@@ -113,17 +113,15 @@ const PostCardUser =
         }
 
         //aqui para baixo tudo sobre enviar resposta
-        const [resposta, setResposta] = useState('')
-        const maxResposta = 400
+        const [mensagem, setMensagem] = useState('')
+        const maxMensagem = 400
         const [isOpen, setIsOpen] = React.useState(false)
 
         // config do useForm com validação Zod
         const { register, handleSubmit, formState: { errors } } = useForm<newRespostaData>({
             resolver: zodResolver(newResposta),
         });
-        const onSubmit = (data: newRespostaData) => {
-            console.log("Resposta enviada:", data);
-        }
+
         //async nova resposta
         async function criarResposta(data: newRespostaData) {
             try {
@@ -147,6 +145,27 @@ const PostCardUser =
                 setError(true);
             }
         }
+
+        //daqui pra baixo exibicao respostas
+        const [resposta, setResposta] = useState<any[]>([]); // Estado para armazenar os posts
+        const [loadingResposta, setLoadingResposta] = useState<boolean>(true); // Estado de carregamento
+        const [errorResposta, setErrorResposta] = useState<boolean>(false); // Estado para mensagens de erro
+
+        useEffect(() => {
+            const fetchRespostas = async () => {
+                try {
+                    const response = await axios.get(`http://localhost:3000/api/respostaPostagem/${id}`)
+                    setResposta(response.data)
+                }
+                catch (errorResposta) {
+                }
+                finally {
+                    setLoadingResposta(false)
+                }
+            }
+            fetchRespostas()
+        }, [])
+
 
         return (
             <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex w-full flex-col space-y-2">
@@ -231,14 +250,14 @@ const PostCardUser =
                             <div className="relative flex-1">
                                 <Input
                                     {...register("mensagem", {
-                                        onChange: (e) => setResposta(e.target.value)
+                                        onChange: (e) => setMensagem(e.target.value)
                                     })}
                                     maxLength={400}
                                     placeholder={errors.mensagem?.message || "Digite sua resposta"}
                                     className={`rounded-xl ${errors.mensagem ? "placeholder-red-500 text-red-500 border-red-500" : ""}`}
                                 />
                                 <p className="text-right text-xs mr-2">
-                                    <span className={resposta.length >= maxResposta ? 'text-red-500' : 'text-black'}>{resposta.length}/{maxResposta}</span>
+                                    <span className={mensagem.length >= maxMensagem ? 'text-red-500' : 'text-black'}>{mensagem.length}/{maxMensagem}</span>
                                 </p>
                             </div>
                             <Button type="submit" size={"icon"} variant={"outline"} className="hover:bg-green-300 rounded-full">
@@ -246,14 +265,23 @@ const PostCardUser =
                             </Button>
                         </form>
 
-                        <RespostaCard
-                            nome='Arthur Martiniano'
-                            data='17/11/2024'
-                            hora='19:11'
-                            likes={12}
-                            mensagem='calaboca jumento'
-                        />
+                        {loadingResposta ? (
 
+                            <h1>carrecandooo</h1>
+
+                        ) : (
+                            resposta.map((resposta) => {
+                                return (
+                                    <RespostaCard
+                                        nome={resposta.nome}
+                                        data={resposta.data_Resposta}
+                                        hora={resposta.hora}
+                                        likes={resposta.reacoes}
+                                        mensagem={resposta.mensagem}
+                                    />
+                                )
+                            })
+                        )}
                     </section>
 
                 </CollapsibleContent>
