@@ -1,5 +1,5 @@
 'use client'
-import { CornerDownRight, Ellipsis, EllipsisVertical, Heart, Send, SendHorizontal, Trash2 } from 'lucide-react';
+import { CornerDownRight, EllipsisVertical, Heart, Send, Trash2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -147,26 +147,27 @@ const PostCardUser =
         }
 
         //daqui pra baixo exibicao respostas
-        const [resposta, setResposta] = useState<any[]>([]); // Estado para armazenar os posts
-        const [loadingResposta, setLoadingResposta] = useState<boolean>(true); // Estado de carregamento
-        const [errorResposta, setErrorResposta] = useState<boolean>(false); // Estado para mensagens de erro
-
-        useEffect(() => {
-            const fetchRespostas = async () => {
-                try {
-                    const response = await axios.get(`http://localhost:3000/api/respostaPostagem/${id}`)
-                    setResposta(response.data)
-                }
-                catch (errorResposta) {
-                }
-                finally {
-                    setLoadingResposta(false)
-                }
+        const [resposta, setResposta] = useState<any[]>([])
+        const [loadingResposta, setLoadingResposta] = useState<boolean>(true)
+        //async exibicao das respostas
+        const fetchRespostas = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/api/respostaPostagem/${id}`)
+                setResposta(response.data)
             }
+            catch (errorResposta) {
+            }
+            finally {
+                setLoadingResposta(false)
+            }
+        }
+        //puxa a async sempre que uma resposta nova for criada
+        useEffect(() => {
             fetchRespostas()
-        }, [])
-
-
+            const intervalId = setInterval(fetchRespostas, 1000) // a cada 1 seg
+            return () => clearInterval(intervalId) // zera quando renderizar
+        }, [id])
+        
         return (
             <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex w-full flex-col space-y-2">
 
