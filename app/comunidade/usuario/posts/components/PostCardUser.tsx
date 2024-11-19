@@ -1,5 +1,5 @@
 'use client'
-import { CornerDownRight, EllipsisVertical, Heart, Send, Trash2 } from 'lucide-react';
+import { Clock, CornerDownRight, EllipsisVertical, Heart, Send, Trash2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -38,6 +38,8 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import SkeletonResposta from './SkeletonResposta';
+import Link from 'next/link';
 
 //tipagem resposta zodddd
 const newResposta = z.object({
@@ -118,7 +120,7 @@ const PostCardUser =
         const [isOpen, setIsOpen] = React.useState(false)
 
         // config do useForm com validação Zod
-        const { register, handleSubmit, formState: { errors } } = useForm<newRespostaData>({
+        const { register, reset, handleSubmit, formState: { errors } } = useForm<newRespostaData>({
             resolver: zodResolver(newResposta),
         });
 
@@ -137,9 +139,8 @@ const PostCardUser =
                         className: 'bg-green-400',
                         duration: 2000,
                     })
-                    // setTimeout(() => {
-                    //     window.location.reload();
-                    // }, 200)
+
+                    reset()//limpa o input 
                 }
             } catch (error) {
                 setError(true);
@@ -167,7 +168,7 @@ const PostCardUser =
             const intervalId = setInterval(fetchRespostas, 1000) // a cada 1 seg
             return () => clearInterval(intervalId) // zera quando renderizar
         }, [id])
-        
+
         return (
             <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex w-full flex-col space-y-2">
 
@@ -266,9 +267,15 @@ const PostCardUser =
                             </Button>
                         </form>
 
-                        {loadingResposta ? (
+                        {resposta.length === 0 ? (
 
-                            <h1>carrecandooo</h1>
+                            <figure className="relative flex gap-3 items-center overflow-hidden  rounded-3xl border p-6 border-gray-950/[.1] shadow w-4/5">
+                                 <Clock className='size-8'/>   <span className='font-bold'>{dadosUsuario?.nome?.split(' ')[0]},</span> ninguém respondeu ao seu post ainda! Que tal explorar a <Link className='underline' href={'/comunidade'}>comunidade</Link> enquanto aguarda?
+                            </figure>
+
+                        ) : loadingResposta ? (
+
+                            <SkeletonResposta />
 
                         ) : (
                             resposta.map((resposta) => {
