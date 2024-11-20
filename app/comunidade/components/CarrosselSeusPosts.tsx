@@ -211,7 +211,8 @@ export function CarrosselSeusPosts() {
                                                     <HeartIcon /> <span className="underline font-bold">#Maternidade</span>
                                                 </div>
                                                 <div className="px-2">
-                                                    É destinado a discussões e trocas de experiências sobre a maternidade. Compartilhe histórias, dicas e encontre apoio em cada etapa dessa jornada.                                                </div>
+                                                    É destinado a discussões e trocas de experiências sobre a maternidade. Compartilhe histórias, dicas e encontre apoio em cada etapa dessa jornada.
+                                                </div>
                                             </HoverCardContent>
                                         </HoverCard>
 

@@ -9,18 +9,13 @@ import {
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
-import { CalendarDays, NotebookPen, Pencil } from 'lucide-react';
+import { Pencil } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip"
 import CountPosts from './countPosts';
 import CountEntrada from './countEntrada';
 import { Skeleton } from '@/components/ui/skeleton';
+import Link from 'next/link';
 
 const CardUser = () => {
 
@@ -89,18 +84,9 @@ const CardUser = () => {
                         </div>
                     </div>
                     <div className='flex justify-end '>
-                        <TooltipProvider>
-                            <Tooltip>
-                                <TooltipTrigger asChild>
-                                    <Button className='mr-2 rounded-full' variant="outline" size="icon">
-                                        <Pencil className="h-4 w-4" />
-                                    </Button>
-                                </TooltipTrigger>
-                                <TooltipContent side='right' className='ml-2'>
-                                    <p>Editar perfil</p>
-                                </TooltipContent>
-                            </Tooltip>
-                        </TooltipProvider>
+                        <Button className='mr-2 rounded-full' variant="outline" size="icon">
+                            <Link href={'/comunidade/usuario'}> <Pencil className="h-4 w-4" /> </Link>
+                        </Button>
                     </div>
                 </CardContent>
             </Card>

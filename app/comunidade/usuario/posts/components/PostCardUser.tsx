@@ -29,7 +29,7 @@ import { Separator } from '@radix-ui/react-separator';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import RespostaCard from './RespostaCard';
+import RespostaCard from '../../../components/RespostaCard';
 import {
     DropdownMenu,
     DropdownMenuContent,

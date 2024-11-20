@@ -30,9 +30,9 @@ const RespostaCard = ({ data, hora, likes, mensagem, nome }: Props) => {
                     <div className='flex justify-end w-full text-sm'>
                         <div className='flex flex-row'>
                             <div className='flex'>
-                                <p className='px-2 text-sm'>{data}</p>
+                                <p className='px-2 text-sm'>{hora}</p>
                                 <p>•</p>
-                                <p className='px-2 font-bold'>{hora}</p>
+                                <p className='px-2 font-bold'>{data}</p>
                             </div>
 
                             <DropdownMenu>

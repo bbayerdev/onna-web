@@ -10,9 +10,6 @@ import { Baby, CircleHelp, Link, PencilLine } from "lucide-react"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import SkeletonCard from "../usuario/posts/components/SkeletonCard"
-import { Button } from "@/components/ui/button"
-import PostCardUser from "../usuario/posts/components/PostCardUser"
-
 
 export function Gravidez() {
     const [idTipoUsuario, setIdTipoUsuario] = useState<number | null>(null);

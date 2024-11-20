@@ -1,5 +1,5 @@
 'use client'
-import { Clock, CornerDownRight, EllipsisVertical, Heart, Send, Trash2 } from 'lucide-react';
+import { Clock, CornerDownRight, EllipsisVertical, Heart, MessageCircle, Send, Trash2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Link from 'next/link';
 import SkeletonResposta from '../usuario/posts/components/SkeletonResposta';
-import RespostaCard from '../usuario/posts/components/RespostaCard';
+import RespostaCard from './RespostaCard';
 
 //tipagem resposta zodddd
 const newResposta = z.object({
@@ -80,7 +80,7 @@ const PostCardGeral =
 
         //aqui para baixo tudo sobre enviar resposta
         const [mensagem, setMensagem] = useState('')
-        const maxMensagem = 400
+        const [maxMensagem, setMax] = useState(400)
         const [isOpen, setIsOpen] = React.useState(false)
 
         // config do useForm com validação Zod
@@ -105,6 +105,7 @@ const PostCardGeral =
                     })
 
                     reset()//limpa o input 
+                    setMensagem('')
                 }
             } catch (error) {
                 setError(true);
@@ -114,11 +115,13 @@ const PostCardGeral =
         //daqui pra baixo exibicao respostas
         const [resposta, setResposta] = useState<any[]>([])
         const [loadingResposta, setLoadingResposta] = useState<boolean>(true)
+        const [quantidadeRespostas, setQuantidadeRespostas] = useState<number>(0);
         //async exibicao das respostas
         const fetchRespostas = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/respostaPostagem/${id}`)
                 setResposta(response.data)
+                setQuantidadeRespostas(response.data.length)
             }
             catch (errorResposta) {
             }
@@ -165,13 +168,10 @@ const PostCardGeral =
                         </div>
                     </div>
                     <blockquote className="px-10 mt-5 flex flex-col gap-2 justify-center">
-
                         <h1 className='text-xl mt-2 font-semibold'>{titulo}</h1>
                         <p className='mt-2 text-justify'>{subtitulo}</p>
-
                     </blockquote>
                     <div className='flex justify-between mt-5'>
-
                         <div>
                             <CollapsibleTrigger asChild>
                                 <Button variant="outline" className="ml-2 rounded-xl">
@@ -179,8 +179,11 @@ const PostCardGeral =
                                 </Button>
                             </CollapsibleTrigger>
                         </div>
-
                         <div className='flex gap-2 justify-center items-center mr-4'>
+                            <p className='text-sm text-right font-bold'> {quantidadeRespostas} </p>
+
+                            <MessageCircle className="h-4 w-4 " />
+
                             <p className='text-sm text-right font-bold'> {reacoes} </p>
                             <Button variant={'outline'} size={'icon'} className='rounded-full hover:bg-red-100'>
                                 <Heart color="#ef4444" fill='#ef4444' className="h-4 w-4 " />
@@ -206,7 +209,7 @@ const PostCardGeral =
                                     <span className={mensagem.length >= maxMensagem ? 'text-red-500' : 'text-black'}>{mensagem.length}/{maxMensagem}</span>
                                 </p>
                             </div>
-                            <Button type="submit" size={"icon"} variant={"outline"} className="hover:bg-green-300 rounded-full">
+                            <Button type="submit" size={"icon"} variant={"outline"} className="hover:bg-green-400 rounded-full">
                                 <Send className="size-4" />
                             </Button>
                         </form>
@@ -214,7 +217,7 @@ const PostCardGeral =
                         {resposta.length === 0 ? (
 
                             <figure className="relative flex gap-3 items-center overflow-hidden  rounded-3xl border p-6 border-gray-950/[.1] shadow w-4/5">
-                                <Clock className='size-8' />   <span className='font-bold'>{dadosUsuario?.nome?.split(' ')[0]},</span> ninguém respondeu ao seu post ainda! Que tal explorar a <Link className='underline' href={'/comunidade'}>comunidade</Link> enquanto aguarda?
+                                <Clock className='size-8' /> <span className='font-bold'>{dadosUsuario?.nome?.split(' ')[0]}, <span className='font-medium'>parece que ainda não temos respostas neste post.</span> </span>
                             </figure>
 
                         ) : loadingResposta ? (
