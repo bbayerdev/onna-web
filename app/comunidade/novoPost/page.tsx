@@ -29,10 +29,10 @@ import api from '../../../api/api';
 import { useRouter } from 'next/navigation';
 
 const frameworks = [
-    { id: 1, value: "#Gravidez", label: "Gravidez" },
-    { id: 2, value: "#Maternidade", label: "Maternidade" },
-    { id: 3, value: "#Desabafos", label: "Desabafos" },
-    { id: 4, value: "#Autocuidado", label: "Autocuidado" },
+    { id: 2, value: "#Gravidez", label: "Gravidez" },
+    { id: 4, value: "#Maternidade", label: "Maternidade" },
+    { id: 1, value: "#Desabafos", label: "Desabafos" },
+    { id: 3, value: "#Autocuidado", label: "Autocuidado" },
 ];
 
 //tipagem zodddd
@@ -50,7 +50,7 @@ export function NovoPost() {
     const [titulo, setTitulo] = useState('')
     const maxTitilo = 60
     const [body, setBody] = useState('')
-    const maxBody = 3000
+    const maxBody = 2500
 
 
     //imagem
@@ -141,7 +141,7 @@ export function NovoPost() {
                             className="h-[210px]"
                             placeholder="Escreva o conteúdo do seu post aqui."
                             id="Body"
-                            maxLength={3000}
+                            maxLength={2500}
                             onChange={(e) => setBody(e.target.value)}
                         />
                         <p className="text-right text-xs mr-2">

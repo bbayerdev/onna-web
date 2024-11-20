@@ -57,9 +57,9 @@ const PostCardGeral =
         const [forum, setForum] = useState('')
         useEffect(() => {
             const forumMap: Record<number, string> = {
-                1: '#Gravidez',
-                2: '#Maternidade',
-                3: '#Desabafos',
+                2: '#Gravidez',
+                4: '#Maternidade',
+                1: '#Desabafos',
             }
             setForum(forumMap[idForum] || '#Autocuidado')
         }, [])

@@ -31,7 +31,7 @@ export function Gravidez() {
             // Chama a função getPosts dentro do useEffect após o idTipoUsuario ser setado
             const fetchPosts = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:3000/api/postagemF/1`);
+                    const response = await axios.get(`http://localhost:3000/api/postagemF/2`);
                     if (response.data.length === 0) {
                         setError(true);
 
@@ -100,7 +100,7 @@ export function Gravidez() {
                                 <section className='flex w-11/12 justify-center '>
                                     <PostCardGeral
                                         id={post.idPostagem}
-                                        idForum={1}
+                                        idForum={2}
                                         nome={post.nome}
                                         titulo={post.titulo}
                                         subtitulo={post.subtitulo}
