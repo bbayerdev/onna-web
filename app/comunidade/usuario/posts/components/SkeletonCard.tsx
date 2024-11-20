@@ -3,7 +3,7 @@ import React from 'react'
 
 const SkeletonCard = () => {
     return (
-        <Skeleton className='h-52 mx-11 rounded-xl'>
+        <Skeleton className='h-52 mx-11 rounded-3xl'>
             <div className="flex flex-col p-5 space-x-4">
                 <div className='flex flex-row justify-between'>
                     <div className='flex flex-row'>

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import Marquee from '@/components/ui/marquee';
-import { Baby, Flower2, Heart, HeartIcon, Mic2, Search } from 'lucide-react';
+import { Baby, Flower2, Heart, HeartIcon, Mic2, Pointer, Search } from 'lucide-react';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -159,7 +159,7 @@ export function CarrosselSeusPosts() {
             ) : error ? (
                 <div className="flex h-[500px] w-full flex-row ml-8">
                     <div className="w-full flex flex-col mt-10 gap-5">
-                        <Card className="w-full">
+                        <Card className="w-full rounded-3xl">
                             <CardHeader>
                                 <CardTitle className="text-xl">
                                     <TypingAnimation
@@ -173,7 +173,7 @@ export function CarrosselSeusPosts() {
                             </CardHeader>
                         </Card>
 
-                        <Card className="w-full">
+                        <Card className="w-full rounded-3xl">
                             <CardHeader>
                                 <CardTitle className="text-xl">
                                     <TypingAnimation
@@ -183,17 +183,16 @@ export function CarrosselSeusPosts() {
                                     />
                                 </CardTitle>
                                 <CardDescription className="text-base">
-                                    Os posts são divididos entre 4 fóruns: <br />
-                                    <div className="flex gap-2 mt-3">
+                                    <div className="flex gap-2">
                                         <HoverCard>
                                             <HoverCardTrigger>
-                                                <Badge className="rounded-2xl">
+                                                <Badge className="rounded-2xl cursor-pointer">
                                                     #Gravidez
                                                 </Badge>
                                             </HoverCardTrigger>
                                             <HoverCardContent className="gap-2 flex flex-col">
                                                 <div className="flex flex-row gap-2">
-                                                    <Baby /> <span className="underline">#Gravidez</span>
+                                                    <Baby /> <span className="underline font-bold">#Gravidez</span>
                                                 </div>
                                                 <div className="px-2">
                                                     É destinado a dúvidas relacionadas a tudo sobre gravidez. Compartilhe sua dúvida ou ajude alguém agora mesmo!
@@ -203,54 +202,61 @@ export function CarrosselSeusPosts() {
 
                                         <HoverCard>
                                             <HoverCardTrigger>
-                                                <Badge className="rounded-2xl">
+                                                <Badge className="rounded-2xl cursor-pointer">
                                                     #Maternidade
                                                 </Badge>
                                             </HoverCardTrigger>
                                             <HoverCardContent className="gap-2 flex flex-col">
                                                 <div className="flex flex-row gap-2">
-                                                    <HeartIcon /> <span className="underline">#Maternidade</span>
+                                                    <HeartIcon /> <span className="underline font-bold">#Maternidade</span>
                                                 </div>
                                                 <div className="px-2">
-                                                    É destinado a dúvidas relacionadas a tudo sobre gravidez. Compartilhe sua dúvida ou ajude alguém agora mesmo!
-                                                </div>
+                                                    É destinado a discussões e trocas de experiências sobre a maternidade. Compartilhe histórias, dicas e encontre apoio em cada etapa dessa jornada.                                                </div>
                                             </HoverCardContent>
                                         </HoverCard>
 
                                         <HoverCard>
                                             <HoverCardTrigger>
-                                                <Badge className="rounded-2xl">
+                                                <Badge className="rounded-2xl cursor-pointer">
                                                     #Desabafos
                                                 </Badge>
                                             </HoverCardTrigger>
                                             <HoverCardContent className="gap-2 flex flex-col">
                                                 <div className="flex flex-row gap-2">
-                                                    <Mic2 /> <span className="underline">#Desabafos</span>
+                                                    <Mic2 /> <span className="underline font-bold">#Desabafos</span>
                                                 </div>
                                                 <div className="px-2">
-                                                    É destinado a dúvidas relacionadas a tudo sobre gravidez. Compartilhe sua dúvida ou ajude alguém agora mesmo!
+                                                    Um espaço seguro para compartilhar sentimentos e desabafar sobre os desafios do dia a dia. Aqui, você pode ser ouvida sem julgamentos.
+
                                                 </div>
                                             </HoverCardContent>
                                         </HoverCard>
 
                                         <HoverCard>
                                             <HoverCardTrigger>
-                                                <Badge className="rounded-2xl">
+                                                <Badge className="rounded-2xl cursor-pointer">
                                                     #Autocuidado
                                                 </Badge>
                                             </HoverCardTrigger>
                                             <HoverCardContent className="gap-2 flex flex-col">
                                                 <div className="flex flex-row gap-2">
-                                                    <Flower2 /> <span className="underline">#Autocuidado</span>
+                                                    <Flower2 /> <span className="underline font-bold">#Autocuidado</span>
                                                 </div>
                                                 <div className="px-2">
-                                                    É destinado a dúvidas relacionadas a tudo sobre gravidez. Compartilhe sua dúvida ou ajude alguém agora mesmo!
-                                                </div>
+                                                    Dedicado a práticas de bem-estar e saúde mental. Compartilhe dicas e descubra formas de cuidar de si mesma, porque você também é importante!                                                </div>
                                             </HoverCardContent>
                                         </HoverCard>
                                     </div>
-
+                                    <div className="flex gap-1 mt-3 ">
+                                        <Pointer className="size-4 mb-1" />
+                                        <TypingAnimation
+                                            className="text-sm italic text-zinc-500 font-medium"
+                                            text={`Passe o mouse sobre as categorias para saber mais sobre cada uma delas.`}
+                                            duration={50}
+                                        />
+                                    </div>
                                 </CardDescription>
+
                             </CardHeader>
                         </Card>
                     </div>
