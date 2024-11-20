@@ -6,7 +6,7 @@ import {
     HoverCardContent,
     HoverCardTrigger,
 } from "@/components/ui/hover-card"
-import { Baby, CircleHelp, Heart } from "lucide-react"
+import { Baby, BadgeCheck, CircleHelp, Heart, Mic2 } from "lucide-react"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import SkeletonCard from "../usuario/posts/components/SkeletonCard"
@@ -73,10 +73,10 @@ export function Desabafos() {
                         </HoverCardTrigger>
                         <HoverCardContent className="gap-2 flex flex-col">
                             <div className="flex flex-row gap-2">
-                                <Heart /> <span className="underline font-bold">#Desabafos</span>
+                                <Mic2 /> <span className="underline font-bold">#Desabafos</span>
                             </div>
                             <div className="px-2">
-                                É destinado a discussões e trocas de experiências sobre a maternidade. Compartilhe histórias, dicas e encontre apoio em cada etapa dessa jornada.
+                                Um espaço seguro para compartilhar sentimentos e desabafar sobre os desafios do dia a dia. Aqui, você pode ser ouvida sem julgamentos.
                             </div>
                         </HoverCardContent>
                     </HoverCard>
@@ -112,7 +112,10 @@ export function Desabafos() {
                             );
                         })
                     )}
-
+                <div className="flex justify-center items-center mt-20">
+                    <BadgeCheck className="inline-block w-5 h-5 mr-1" />
+                    <p className="text-base italic">Isso é tudo por agora! Volte mais tarde para ver mais.</p>
+                </div>
             </section>
         </main>
     )

@@ -6,7 +6,7 @@ import {
     HoverCardContent,
     HoverCardTrigger,
 } from "@/components/ui/hover-card"
-import { Baby, CircleHelp, Heart } from "lucide-react"
+import { Baby, BadgeCheck, CircleHelp, Heart } from "lucide-react"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import SkeletonCard from "../usuario/posts/components/SkeletonCard"
@@ -112,7 +112,10 @@ export function Maternidade() {
                             );
                         })
                     )}
-
+                <div className="flex justify-center items-center mt-20">
+                    <BadgeCheck className="inline-block w-5 h-5 mr-1" />
+                    <p className="text-base italic">Isso é tudo por agora! Volte mais tarde para ver mais.</p>
+                </div>
             </section>
         </main>
     )

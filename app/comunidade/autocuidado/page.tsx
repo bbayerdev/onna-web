@@ -6,7 +6,7 @@ import {
     HoverCardContent,
     HoverCardTrigger,
 } from "@/components/ui/hover-card"
-import { Baby, CircleHelp, Heart } from "lucide-react"
+import { Baby, BadgeCheck, CircleHelp, Heart } from "lucide-react"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import SkeletonCard from "../usuario/posts/components/SkeletonCard"
@@ -76,7 +76,7 @@ export function Autocuidado() {
                                 <Heart /> <span className="underline font-bold">#Autocuidado</span>
                             </div>
                             <div className="px-2">
-                                É destinado a discussões e trocas de experiências sobre a maternidade. Compartilhe histórias, dicas e encontre apoio em cada etapa dessa jornada.
+                                Dedicado a práticas de bem-estar e saúde mental. Compartilhe dicas e descubra formas de cuidar de si mesma, porque você também é importante!
                             </div>
                         </HoverCardContent>
                     </HoverCard>
@@ -112,7 +112,10 @@ export function Autocuidado() {
                             );
                         })
                     )}
-
+                <div className="flex justify-center items-center mt-20">
+                    <BadgeCheck className="inline-block w-5 h-5 mr-1" />
+                    <p className="text-base italic">Isso é tudo por agora! Volte mais tarde para ver mais.</p>
+                </div>
             </section>
         </main>
     )
