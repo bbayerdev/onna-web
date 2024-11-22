@@ -1,5 +1,5 @@
 'use client'
-import { Clock, CornerDownRight, EllipsisVertical, Heart, MessageCircle, Send, Trash2 } from 'lucide-react';
+import { Clock, CornerDownRight, EllipsisVertical, Flag, Heart, MessageCircle, Send, Trash2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -17,15 +17,21 @@ import { Separator } from '@radix-ui/react-separator';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import Link from 'next/link';
 import SkeletonResposta from '../usuario/posts/components/SkeletonResposta';
 import RespostaCard from './RespostaCard';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+
 
 //tipagem resposta zodddd
 const newResposta = z.object({
@@ -136,6 +142,24 @@ const PostCardGeral =
             return () => clearInterval(intervalId) // zera quando renderizar
         }, [id])
 
+        //denuncia ai para baixo
+        const [selected, setSelected] = useState<number | null>(null);
+        const options = [
+            { id: 1, label: 'Abuso verbal' },
+            { id: 2, label: 'Discurso de ódio' },
+            { id: 3, label: 'Nome Ofensivo' },
+            { id: 4, label: 'Postagem inadequada' },
+            { id: 5, label: 'Spam de mensagens' },
+        ];
+
+        const handleCheckboxChange = (id: number) => {
+            setSelected(prev => (prev === id ? null : id)) //sameerda so deixa um ser marcado por vez
+        }
+
+        const [body, setBody] = useState('')
+        const maxBody = 1000
+
+
         return (
             <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex w-full flex-col space-y-2">
 
@@ -155,15 +179,43 @@ const PostCardGeral =
                                 <p className='px-2'>{data}</p>
                                 <p>•</p>
                                 <p className='px-2 font-bold'> {hora}</p>
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger>
+                                <Dialog>
+                                    <DialogTrigger>
                                         <Button className=' hover:bg-zinc-200 rounded-full' variant="secondary" size="icon">
-                                            <EllipsisVertical className="h-5 w-5" />
-                                        </Button></DropdownMenuTrigger>
-                                    <DropdownMenuContent side='right'>
-                                        <DropdownMenuItem className='text-base'> Denunciar Resposta</DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
+                                            <Flag className="h-5 w-5" />
+                                        </Button>
+                                    </DialogTrigger>
+                                    <DialogContent>
+                                        <DialogHeader>
+                                            <DialogTitle>Nova denúncia</DialogTitle>
+                                            <DialogDescription>
+                                                Especifique sua denúncia
+                                            </DialogDescription>
+                                        </DialogHeader>
+                                        <div className="px-4 gap-1 flex flex-col">
+                                            {options.map(option => (
+                                                <div key={option.id} className="flex items-center gap-1">
+                                                    <Checkbox
+                                                        checked={selected === option.id} // Sem conflitos de tipo
+                                                        onCheckedChange={() => handleCheckboxChange(option.id)}
+                                                    />
+                                                    <Label>{option.label}</Label>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div>
+                                            <Textarea
+                                                maxLength={1000}
+                                                onChange={(e) => setBody(e.target.value)}
+                                                className='h-[190px]'
+                                                placeholder="Detalhe sua denúncia (opcional)." />
+                                            <p className="text-right text-xs mr-2">
+                                                <span className={body.length >= maxBody ? 'text-red-500' : 'text-black'}>{body.length}/{maxBody}</span>
+                                            </p>
+                                        </div>
+                                        <Button variant={'destructive'}>Enviar denúncia</Button>
+                                    </DialogContent>
+                                </Dialog>
                             </div>
                         </div>
                     </div>
