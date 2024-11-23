@@ -17,7 +17,6 @@ import { Separator } from '@radix-ui/react-separator';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from 'next/link';
 import SkeletonResposta from '../usuario/posts/components/SkeletonResposta';
 import RespostaCard from './RespostaCard';
 import {
@@ -69,6 +68,7 @@ const PostCardGeral =
             }
             setForum(forumMap[idForum] || '#Autocuidado')
         }, [])
+
         //puxa o nome do user do local storage
         const [dadosUsuario, setDadosUsuario] = useState<{
             nome: string;
@@ -122,12 +122,14 @@ const PostCardGeral =
         const [resposta, setResposta] = useState<any[]>([])
         const [loadingResposta, setLoadingResposta] = useState<boolean>(true)
         const [quantidadeRespostas, setQuantidadeRespostas] = useState<number>(0);
+        const [idResposta, setIdResposta] = useState()
         //async exibicao das respostas
         const fetchRespostas = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/respostaPostagem/${id}`)
                 setResposta(response.data)
                 setQuantidadeRespostas(response.data.length)
+                setIdResposta(response.data.idResposta_Postagem)
             }
             catch (errorResposta) {
             }
@@ -135,6 +137,7 @@ const PostCardGeral =
                 setLoadingResposta(false)
             }
         }
+
         //puxa a async sempre que uma resposta nova for criada
         useEffect(() => {
             fetchRespostas()
@@ -159,6 +162,39 @@ const PostCardGeral =
         const [body, setBody] = useState('')
         const maxBody = 1000
 
+        const denuncia_Post = async () => {
+            try {
+                const response = await axios.post("http://localhost:3000/api/denuncia", {
+                    descricao: body,
+                    idTipo_Usuario: dadosUsuario?.idTipo_Usuario,
+                    idPostagem: id,
+                    idResposta_Postagem: null,
+                    idTipo_Denuncia: selected
+                })
+
+                if (response.status === 200) {
+                    toast({
+                        title: "Denúncia enviada!",
+                        description: "Estamos analisando o caso e tomaremos as providências necessárias.",
+                        className: 'bg-green-400 border-none',
+                        duration: 3000,
+                    })
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 3001);
+
+
+                }
+            } catch (error) {
+                console.error("Erro ao realizar login:", error);
+                toast({
+                    title: "Por favor, especifique sua denúncia!",
+                    className: 'bg-red-500 border-none',
+                    duration: 3000,
+                });
+            }
+        }
 
         return (
             <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex w-full flex-col space-y-2">
@@ -189,7 +225,7 @@ const PostCardGeral =
                                         <DialogHeader>
                                             <DialogTitle>Nova denúncia</DialogTitle>
                                             <DialogDescription>
-                                                Especifique sua denúncia
+                                                Especifique sua denúncia <span className='text-red-500'>*</span>
                                             </DialogDescription>
                                         </DialogHeader>
                                         <div className="px-4 gap-1 flex flex-col">
@@ -213,7 +249,7 @@ const PostCardGeral =
                                                 <span className={body.length >= maxBody ? 'text-red-500' : 'text-black'}>{body.length}/{maxBody}</span>
                                             </p>
                                         </div>
-                                        <Button variant={'destructive'}>Enviar denúncia</Button>
+                                        <Button onClick={denuncia_Post} variant={'destructive'}>Enviar denúncia</Button>
                                     </DialogContent>
                                 </Dialog>
                             </div>
@@ -280,6 +316,8 @@ const PostCardGeral =
                             resposta.map((resposta) => {
                                 return (
                                     <RespostaCard
+                                        id={resposta.idResposta_Postagem}
+                                        idPost= {id}
                                         nome={resposta.nome}
                                         data={resposta.data_Resposta}
                                         hora={resposta.hora}
