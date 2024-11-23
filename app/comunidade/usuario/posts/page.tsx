@@ -56,6 +56,8 @@ const page = () => {
     }
   }, []); // O efeito é executado apenas uma vez, quando o componente é montado
 
+  console.log(posts)
+
   return (
     <main>
       <div className='flex flex-row gap-4'>
@@ -103,6 +105,7 @@ const page = () => {
                       reacoes={post.reacoes}
                       hora={post.hora}
                       data={post.data_Postagem}
+                      tipoUser= {post.tipo_Usuario}
                     />
                   </section>
                 </section>

@@ -9,19 +9,21 @@ import {
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
-import { Pencil } from 'lucide-react';
+import { Pencil, Stethoscope } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import CountPosts from './countPosts';
 import CountEntrada from './countEntrada';
 import { Skeleton } from '@/components/ui/skeleton';
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
 
 const CardUser = () => {
 
     const [dadosUsuario, setDadosUsuario] = useState<{
-        email: string;
-        nome: string;
+        email: string
+        nome: string
+        tipo_Usuario: number
     } | null>(null)
 
     const [loading, setLoading] = useState(true);
@@ -43,6 +45,8 @@ const CardUser = () => {
     }, [])
     //limpar o localStorage --> localStorage.clear();
 
+    console.log(dadosUsuario)
+
     return (
         <div>
             <Card className='bg-gray-950/[.01] flex rounded-3xl'>
@@ -59,9 +63,23 @@ const CardUser = () => {
                         )
                         :
                         (
-                            <h1 className='font-bold text-xl'>
-                                {dadosUsuario?.nome}
-                            </h1>
+                            <div className='flex items-center justify-between pr-5'>
+                                <h1 className='font-bold text-xl'>
+                                    {dadosUsuario?.nome}
+                                </h1>
+                                <div className=''>
+                                    {dadosUsuario?.tipo_Usuario ? (
+                                        <Badge className=" rounded-full">
+                                           <Stethoscope className='size-4 mr-1' />  Profissional
+                                        </Badge>
+
+                                    ) : (
+                                        null
+                                    )}
+                                </div>
+
+                            </div>
+
                         )
                     }
                     {loading ?
@@ -83,7 +101,7 @@ const CardUser = () => {
                             <CountEntrada />
                         </div>
                     </div>
-                    <div className='flex justify-end '>
+                    <div className='flex justify-end'>
                         <Button className='mr-2 rounded-full' variant="outline" size="icon">
                             <Link href={'/comunidade/usuario'}> <Pencil className="h-4 w-4" /> </Link>
                         </Button>

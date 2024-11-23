@@ -1,5 +1,5 @@
 'use client'
-import { Clock, CornerDownRight, EllipsisVertical, Heart, Send, Trash2 } from 'lucide-react';
+import { Clock, CornerDownRight, EllipsisVertical, Heart, MessageCircle, Send, Stethoscope, Trash2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -58,6 +58,7 @@ const PostCardUser =
         reacoes,
         hora,
         data,
+        tipoUser
     }: {
         id: number;
         ban: number;
@@ -67,6 +68,7 @@ const PostCardUser =
         reacoes: number
         hora: string
         data: string
+        tipoUser: number
     }) => {
         const [forum, setForum] = useState('')
         useEffect(() => {
@@ -150,11 +152,13 @@ const PostCardUser =
         //daqui pra baixo exibicao respostas
         const [resposta, setResposta] = useState<any[]>([])
         const [loadingResposta, setLoadingResposta] = useState<boolean>(true)
+        const [quantidadeRespostas, setQuantidadeRespostas] = useState<number>(0);
         //async exibicao das respostas
         const fetchRespostas = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/respostaPostagem/${id}`)
                 setResposta(response.data)
+                setQuantidadeRespostas(response.data.length)
             }
             catch (errorResposta) {
             }
@@ -177,26 +181,31 @@ const PostCardUser =
                         <img className="rounded-full size-12" alt="" src='/imgs/cachorra.png' />
                         <div className="flex flex-row w-full">
                             <div className='w-full flex gap-2'>
-                                <figcaption className="font-bold text-xl">
-                                    {dadosUsuario?.nome.split(" ").slice(0, 2).join(" ") || 'nao logado'}
+                                <figcaption className="font-bold text-xl flex items-center gap-2">
+                                    <div className=''>
+                                        {dadosUsuario?.nome.split(" ").slice(0, 2).join(" ")}
+                                    </div>
+
+                                    <div className='flex gap-1'>
+                                        {tipoUser ? (
+                                            <Badge className=" rounded-full">
+                                                <Stethoscope className='size-4 mr-1' />  Profissional
+                                            </Badge>
+
+                                        ) : (
+                                            null
+                                        )}
+                                        <Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>
+                                    </div>
                                 </figcaption>
                                 <div className='w-1/3'>
-                                    <Badge className='pointer-events-none rounded-2xl mt-1'>{forum}</Badge>
+
                                 </div>
                             </div>
                             <div className='flex justify-end w-full text-sm'>
                                 <p className='px-2'>{data}</p>
                                 <p>•</p>
                                 <p className='px-2 font-bold'> {hora}</p>
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger>
-                                        <Button className=' hover:bg-zinc-200 rounded-full' variant="secondary" size="icon">
-                                            <EllipsisVertical className="h-5 w-5" />
-                                        </Button></DropdownMenuTrigger>
-                                    <DropdownMenuContent side='right'>
-                                        <DropdownMenuItem className='text-base'> Denunciar Resposta</DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
                             </div>
                         </div>
                     </div>
@@ -217,8 +226,12 @@ const PostCardUser =
                         </div>
 
                         <div className='flex gap-2 justify-center items-center'>
+                            <p className='text-sm text-right font-bold'> {quantidadeRespostas} </p>
+                            <MessageCircle className="h-4 w-4 " />
+
                             <p className='text-sm text-right font-bold'> {reacoes} </p>
                             <Heart color="#ef4444" fill='#ef4444' className="h-4 w-4 " />
+
                             <div className='flex gap-1 mr-2 '>
                                 <AlertDialog>
                                     <AlertDialogTrigger asChild>
@@ -270,7 +283,7 @@ const PostCardUser =
                         {resposta.length === 0 ? (
 
                             <figure className="relative flex gap-3 items-center overflow-hidden  rounded-3xl border p-6 border-gray-950/[.1] shadow w-4/5">
-                                 <Clock className='size-8'/>   <span className='font-bold'>{dadosUsuario?.nome?.split(' ')[0]},</span> ninguém respondeu ao seu post ainda! Que tal explorar a <Link className='underline' href={'/comunidade'}>comunidade</Link> enquanto aguarda?
+                                <Clock className='size-8' />   <span className='font-bold'>{dadosUsuario?.nome?.split(' ')[0]},</span> ninguém respondeu ao seu post ainda! Que tal explorar a <Link className='underline' href={'/comunidade'}>comunidade</Link> enquanto aguarda?
                             </figure>
 
                         ) : loadingResposta ? (
@@ -281,6 +294,8 @@ const PostCardUser =
                             resposta.map((resposta) => {
                                 return (
                                     <RespostaCard
+                                        id={resposta.idResposta_Postagem}
+                                        idPost={id}
                                         nome={resposta.nome}
                                         data={resposta.data_Resposta}
                                         hora={resposta.hora}

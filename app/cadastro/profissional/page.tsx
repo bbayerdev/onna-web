@@ -28,6 +28,7 @@ import api from '../../../api/api';
 import { useRouter } from 'next/navigation';
 import router from "next/router";
 import Hover from "./hover"
+import axios from "axios"
 
 const cadastroProfissionalSchema = z.object({
     documento: z.string().nonempty("Documento é obrigatório"),
@@ -150,7 +151,8 @@ export function page() {
         }
     
         try {
-            const res = await api.post("/api/perfilProfissional", {
+            const res = await axios.post(`http://localhost:3000/api/perfilProfissional`, {
+                idProfissional: 1,
                 crm: documento === "CRM" ? data.documento : '00000',
                 crp: documento === "CRP" ? data.documento : '00000',
                 uf: ufSelecionada,

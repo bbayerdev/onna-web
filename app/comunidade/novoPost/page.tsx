@@ -119,7 +119,7 @@ export function NovoPost() {
     return (
         <main>
             <header className="w-full text-2xl mt-5 font-bold">Criar post</header>
-            <section className="flex flex-row mt-10 pl-5 gap-20 h-screen">
+            <section className="flex flex-row mt-10 gap-14 h-screen">
                 <div className="w-2/5">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Label className="text-base" htmlFor="Título">Título post <span className="text-red-500">*</span></Label>

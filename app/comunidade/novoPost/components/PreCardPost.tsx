@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { cn } from "@/lib/utils";
-import { Image, Heart, MessageCircle, CornerDownRight } from 'lucide-react';
+import { Image, Heart, MessageCircle, CornerDownRight, Stethoscope } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from '@/components/ui/badge';
 
@@ -34,6 +34,9 @@ const PreCardPost = ({
     const [dadosUsuario, setDadosUsuario] = useState<{
         idTipo_Usuario: number,
         nome: string
+        tipo_Usuario: number
+
+
     } | null>(null)
     useEffect(() => {
         //ao carregar a pagina
@@ -53,16 +56,26 @@ const PreCardPost = ({
                 'w-full'
             )}
         >
-            <div className="flex flex-row items-center gap-4">
+            <div className="flex flex-row items-center gap-4 w-full">
                 <img className="rounded-full" width="42" height="42" alt="" src='/imgs/cachorra.png' />
                 <div className="flex flex-row w-full justify-between">
-                    <div className='flex gap-2'>
-                        <figcaption className="font-bold text-xl">
+                    <div className='flex'>
+                        <figcaption className="font-bold text-xl flex items-center gap-2">
                             {dadosUsuario?.nome.split(" ").slice(0, 2).join(" ") || 'nao logado'}
+                            <div className='flex gap-1'>
+                                {dadosUsuario?.tipo_Usuario ? (
+                                    <Badge className=" rounded-full">
+                                        <Stethoscope className='size-4 mr-1' />  Profissional
+                                    </Badge>
+
+                                ) : (
+                                    null
+                                )}
+                            </div>
+                            <div className='flex'>
+                                {forum ? (<Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>) : null}
+                            </div>
                         </figcaption>
-                        <div className=''>
-                            {forum ? (<Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>) : null}
-                        </div>
                     </div>
                     <div className='flex text-sm'>
                         <p className='px-2 '> {dataAtual}</p>

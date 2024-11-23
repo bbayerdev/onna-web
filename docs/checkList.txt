@@ -5,3 +5,6 @@
 
 - Postagens 
 	- Obs: nao posso esquecer de deixar funcional os cards da home (novos posts)
+	- sistema de likes
+
+- iamgens dos usuarios

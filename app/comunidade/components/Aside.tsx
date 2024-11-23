@@ -131,25 +131,6 @@ const Aside = ({ exibir, atualizar }: Props) => {
                     </Tooltip>
                 </TooltipProvider>
             </nav>
-            <nav className="flex flex-col items-center px-2 sm:py-5">
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <button onClick={() => atualizar(7)}>
-                                <Link
-                                    href="/comunidade/config"
-                                    onClick={() => ativar('config')} // manda o id do to
-                                    className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8 ${ativo === 'config' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'}`}
-                                >
-                                    <Settings className="h-5 w-5" />
-                                    <span className="sr-only">Configurações</span>
-                                </Link>
-                            </button>
-                        </TooltipTrigger>
-                        <TooltipContent className="font-bold" side="right">Configurações</TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
-            </nav>
         </aside>
     )
 }

@@ -61,12 +61,12 @@ export function Gravidez() {
         <main>
             <header className="flex gap-2 items-center">
                 <h1 className="text-xl font-bold">Posts do fórum</h1>
-                <div>
-                    <Badge className="rounded-2xl cursor-default hover:bg-stone-950">
-                        #Gravidez
+                <div className="flex items-center">
+                    <Badge className="rounded-full bg-blue-200 gap-1 text-blue-500 shadow-none bg-opacity-20">
+                        <Baby className="size-4"/> Gravidez
                     </Badge>
                 </div>
-                <div className="mt-1">
+                <div className="">
                     <HoverCard>
                         <HoverCardTrigger>
                             <CircleHelp className="size-4 cursor-pointer" color='#52525b' />
@@ -107,6 +107,7 @@ export function Gravidez() {
                                         reacoes={post.reacoes}
                                         hora={post.data_Postagem}
                                         data={post.hora}
+                                        tipoUser= {post.tipo_Usuario}
                                     />
                                 </section>
                             );

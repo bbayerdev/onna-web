@@ -169,7 +169,7 @@ export function CarrosselSeusPosts() {
                                     />
                                 </CardTitle>
                                 <CardDescription className="text-base">
-                                    Vamos começar? Compartilhe suas dúvidas com um especialista, suas experiências ou desabafe com a comunidade!                                </CardDescription>
+                                    Vamos começar? Compartilhe suas dúvidas, suas experiências ou desabafe com a comunidade!                                </CardDescription>
                             </CardHeader>
                         </Card>
 
@@ -183,11 +183,11 @@ export function CarrosselSeusPosts() {
                                     />
                                 </CardTitle>
                                 <CardDescription className="text-base">
-                                    <div className="flex gap-2">
+                                    <div className="flex gap-2 mt-1">
                                         <HoverCard>
                                             <HoverCardTrigger>
-                                                <Badge className="rounded-2xl cursor-pointer">
-                                                    #Gravidez
+                                                <Badge className="rounded-full pointer-events-none bg-blue-400 gap-1 text-blue-500 shadow-none bg-opacity-20">
+                                                    <Baby className="size-4" /> Gravidez
                                                 </Badge>
                                             </HoverCardTrigger>
                                             <HoverCardContent className="gap-2 flex flex-col">
@@ -202,8 +202,8 @@ export function CarrosselSeusPosts() {
 
                                         <HoverCard>
                                             <HoverCardTrigger>
-                                                <Badge className="rounded-2xl cursor-pointer">
-                                                    #Maternidade
+                                                <Badge className="rounded-full pointer-events-none bg-pink-400 gap-1 text-pink-500 shadow-none bg-opacity-20">
+                                                    <Heart className="size-4" /> Maternidade
                                                 </Badge>
                                             </HoverCardTrigger>
                                             <HoverCardContent className="gap-2 flex flex-col">
@@ -218,8 +218,8 @@ export function CarrosselSeusPosts() {
 
                                         <HoverCard>
                                             <HoverCardTrigger>
-                                                <Badge className="rounded-2xl cursor-pointer">
-                                                    #Desabafos
+                                                <Badge className="rounded-full pointer-events-none bg-purple-400 gap-1 text-purple-500 shadow-none bg-opacity-20">
+                                                    <Mic2 className="size-4" /> Desabafos
                                                 </Badge>
                                             </HoverCardTrigger>
                                             <HoverCardContent className="gap-2 flex flex-col">
@@ -235,9 +235,9 @@ export function CarrosselSeusPosts() {
 
                                         <HoverCard>
                                             <HoverCardTrigger>
-                                                <Badge className="rounded-2xl cursor-pointer">
-                                                    #Autocuidado
-                                                </Badge>
+                                                <Badge className="rounded-full pointer-events-none bg-yellow-400 gap-1 text-yellow-500 shadow-none bg-opacity-20">
+                                                    <Flower2 className="size-4" /> Autocuidado
+                                                </Badge>  
                                             </HoverCardTrigger>
                                             <HoverCardContent className="gap-2 flex flex-col">
                                                 <div className="flex flex-row gap-2">
@@ -248,11 +248,11 @@ export function CarrosselSeusPosts() {
                                             </HoverCardContent>
                                         </HoverCard>
                                     </div>
-                                    <div className="flex gap-1 mt-3 ">
+                                    <div className="flex gap-1 mt-3">
                                         <Pointer className="size-4 mb-1" />
                                         <TypingAnimation
                                             className="text-sm italic text-zinc-500 font-medium"
-                                            text={`Passe o mouse sobre as categorias para saber mais sobre cada uma delas.`}
+                                            text={`Passe o mouse sobre as categorias para saber mais!`}
                                             duration={50}
                                         />
                                     </div>

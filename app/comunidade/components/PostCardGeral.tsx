@@ -1,5 +1,5 @@
 'use client'
-import { Clock, CornerDownRight, EllipsisVertical, Flag, Heart, MessageCircle, Send, Trash2 } from 'lucide-react';
+import { Baby, Clock, CornerDownRight, EllipsisVertical, Flag, Heart, MessageCircle, Send, Stethoscope, Trash2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -49,6 +49,7 @@ const PostCardGeral =
         reacoes,
         hora,
         data,
+        tipoUser,
     }: {
         id: number;
         idForum: number;
@@ -58,6 +59,7 @@ const PostCardGeral =
         reacoes: number
         hora: string
         data: string
+        tipoUser: number
     }) => {
         const [forum, setForum] = useState('')
         useEffect(() => {
@@ -204,12 +206,26 @@ const PostCardGeral =
                         <img className="rounded-full size-12" alt="" src='/imgs/cachorra.png' />
                         <div className="flex flex-row w-full">
                             <div className='w-full flex gap-2'>
-                                <figcaption className="font-bold text-xl">
+                                <figcaption className="font-bold text-xl flex items-center gap-2">
                                     {nome.split(" ").slice(0, 2).join(" ") || 'nao logado'}
+                                    <div className='flex gap-1'>
+                                        {tipoUser ? (
+                                            <Badge className="bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full">
+                                                <Stethoscope className='size-4 mr-1' />  Profissional
+                                            </Badge>
+
+                                        ) : (
+                                            null
+                                        )}
+
+                                        {forum === '#Gravidez' ?(
+                                            <Badge className="rounded-full bg-blue-200 gap-1 text-blue-500 shadow-none bg-opacity-20">
+                                                <Baby className="size-4" /> Gravidez
+                                            </Badge>
+                                        ) : (<Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>)}
+                                        
+                                    </div>
                                 </figcaption>
-                                <div className='w-1/3'>
-                                    <Badge className='pointer-events-none rounded-2xl mt-1'>{forum}</Badge>
-                                </div>
                             </div>
                             <div className='flex justify-end w-full text-sm'>
                                 <p className='px-2'>{data}</p>
@@ -317,7 +333,7 @@ const PostCardGeral =
                                 return (
                                     <RespostaCard
                                         id={resposta.idResposta_Postagem}
-                                        idPost= {id}
+                                        idPost={id}
                                         nome={resposta.nome}
                                         data={resposta.data_Resposta}
                                         hora={resposta.hora}

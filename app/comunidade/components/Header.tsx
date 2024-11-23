@@ -163,7 +163,6 @@ function Header({ atualizar, exibir }: Props) {
                         <DropdownMenuLabel>Usuário</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <Link href={'/comunidade/usuario'}> <DropdownMenuItem> Meus Dados </DropdownMenuItem> </Link>
-                        <DropdownMenuSeparator />
                         <DropdownMenuItem className="text-red-500">Sair</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

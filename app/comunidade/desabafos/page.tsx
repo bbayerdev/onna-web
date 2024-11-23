@@ -107,6 +107,7 @@ export function Desabafos() {
                                         reacoes={post.reacoes}
                                         hora={post.data_Postagem}
                                         data={post.hora}
+                                        tipoUser= {post.tipo_Usuario}
                                     />
                                 </section>
                             );
