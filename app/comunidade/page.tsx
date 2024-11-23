@@ -15,7 +15,7 @@ function Home() {
           <Button variant={'ghost'} className='text-xl font-bold'>Novos Posts</Button>
         </Link>
       </div>
-      <div className='relative mt-2'>
+      <div className='relative mt-4'>
         <CarrosselNewPosts />
       </div>
       <section className='flex mt-12 shadow-none'>

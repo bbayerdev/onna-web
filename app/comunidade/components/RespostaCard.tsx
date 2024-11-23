@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Flag, Heart } from 'lucide-react'
+import { Flag, Heart, Stethoscope } from 'lucide-react'
 import { toast } from '@/hooks/use-toast'
 import axios from 'axios'
 import {
@@ -14,6 +14,7 @@ import {
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { Badge } from '@/components/ui/badge'
 
 type Props = {
     id: number
@@ -104,6 +105,7 @@ const RespostaCard = ({ data, hora, likes, mensagem, nome, id, idPost }: Props) 
                     <div className='w-full flex gap-2'>
                         <figcaption className="font-bold text-base flex gap-2">
                             {nome}
+                            <Badge className='h-min rounded-full flex gap-1 pointer-events-none'> <Stethoscope className='size-4' /> Profissional</Badge>
                         </figcaption>
                     </div>
                     <div className='flex justify-end w-full text-sm'>

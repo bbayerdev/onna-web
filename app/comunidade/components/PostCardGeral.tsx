@@ -219,7 +219,7 @@ const PostCardGeral =
                                         )}
 
                                         {forum === '#Gravidez' ? (
-                                            <Badge className="rounded-full bg-blue-200 gap-1 text-blue-500 shadow-none bg-opacity-20">
+                                            <Badge className="rounded-full pointer-events-none bg-blue-200 gap-1 text-blue-500 shadow-none bg-opacity-20">
                                                 <Baby className="size-4" /> Gravidez
                                             </Badge>
                                         ) : forum === '#Maternidade' ? (
