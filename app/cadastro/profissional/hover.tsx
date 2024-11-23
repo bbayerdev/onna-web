@@ -6,7 +6,7 @@ export const Hover = () => {
     <p className="text-balance text-muted-foreground">
     Insira seus dados abaixo para finalizar seu cadastro como usuário
     <HoverCard>
-        <HoverCardTrigger className="underline hover:font-bold"> profissional.</HoverCardTrigger>
+        <HoverCardTrigger className="underline cursor-pointer"> profissional.</HoverCardTrigger>
         <HoverCardContent className="text-left text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             <h1>
                 O profissional ajuda com seus conhecimentos na área da saúde que se formou e <span className="text-green-500"> auxilia e responde </span>a paciente em perguntas recorrentes.

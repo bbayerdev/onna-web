@@ -4,12 +4,4 @@
 	- Page do user (dados)
 
 - Postagens 
-	- Exibicao:
-		- posts mais populares (mais curtidas)
-		- posts gravidez
-		- posts maternidade
-		- posts desabafos
-		- posts autocuidado
-	- Sistema de respostas de uma postagem
-	- Sistema de denuncia de uma postagem
 	- Obs: nao posso esquecer de deixar funcional os cards da home (novos posts)
