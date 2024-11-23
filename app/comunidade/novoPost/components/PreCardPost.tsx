@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { cn } from "@/lib/utils";
-import { Image, Heart, MessageCircle, CornerDownRight, Stethoscope } from 'lucide-react';
+import { Image, Heart, MessageCircle, CornerDownRight, Stethoscope, Baby, Flower2, Mic2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from '@/components/ui/badge';
 
@@ -73,7 +73,23 @@ const PreCardPost = ({
                                 )}
                             </div>
                             <div className='flex'>
-                                {forum ? (<Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>) : null}
+                                {forum === '#Gravidez' ? (
+                                    <Badge className="rounded-full bg-blue-200 gap-1 text-blue-500 shadow-none bg-opacity-20">
+                                        <Baby className="size-4" /> Gravidez
+                                    </Badge>
+                                ) : forum === '#Maternidade' ? (
+                                    <Badge className="rounded-full pointer-events-none bg-pink-400 gap-1 text-pink-500 shadow-none bg-opacity-20">
+                                        <Heart className="size-4" /> Maternidade
+                                    </Badge>
+                                ) : forum === '#Desabafos' ? (
+                                    <Badge className="rounded-full pointer-events-none bg-purple-400 gap-1 text-purple-500 shadow-none bg-opacity-20">
+                                        <Mic2 className="size-4" /> Desabafos
+                                    </Badge>
+                                ) : forum === '#Autocuidado' ? (
+                                    <Badge className="rounded-full pointer-events-none bg-yellow-400 gap-1 text-yellow-500 shadow-none bg-opacity-20">
+                                        <Flower2 className="size-4" /> Autocuidado
+                                    </Badge>
+                                ) : (null)}
                             </div>
                         </figcaption>
                     </div>

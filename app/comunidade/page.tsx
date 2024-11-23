@@ -10,16 +10,16 @@ function Home() {
 
   return (
     <main>
-      <div className='p-5'>
+      <div className='p-1'>
         <Link href={'/comunidade/popular'}>
           <Button variant={'ghost'} className='text-xl font-bold'>Novos Posts</Button>
         </Link>
       </div>
-      <div className='relative'>
+      <div className='relative mt-2'>
         <CarrosselNewPosts />
       </div>
       <section className='flex mt-12 shadow-none'>
-        <div className='w-1/2 mt-12 ml-10'>
+        <div className='w-1/2 mt-10 ml-10'>
           <CardUser />
           <Link href={'comunidade/novoPost'}>
             <Button className='mt-10 w-full gap-2 h-12 text-md hover:bg-green-400 shadow' variant={'outline'}>

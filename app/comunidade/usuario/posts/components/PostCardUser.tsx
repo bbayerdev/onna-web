@@ -1,5 +1,5 @@
 'use client'
-import { Clock, CornerDownRight, EllipsisVertical, Heart, MessageCircle, Send, Stethoscope, Trash2 } from 'lucide-react';
+import { Baby, Clock, CornerDownRight, EllipsisVertical, Flower2, Heart, MessageCircle, Mic2, Send, Stethoscope, Trash2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -73,9 +73,9 @@ const PostCardUser =
         const [forum, setForum] = useState('')
         useEffect(() => {
             const forumMap: Record<number, string> = {
-                1: '#Gravidez',
-                2: '#Maternidade',
-                3: '#Desabafos',
+                2: '#Gravidez',
+                4: '#Maternidade',
+                1: '#Desabafos',
             }
             setForum(forumMap[idForum] || '#Autocuidado')
         }, [])
@@ -181,26 +181,39 @@ const PostCardUser =
                         <img className="rounded-full size-12" alt="" src='/imgs/cachorra.png' />
                         <div className="flex flex-row w-full">
                             <div className='w-full flex gap-2'>
-                                <figcaption className="font-bold text-xl flex items-center gap-2">
-                                    <div className=''>
-                                        {dadosUsuario?.nome.split(" ").slice(0, 2).join(" ")}
-                                    </div>
-
+                            <figcaption className="font-bold text-xl flex items-center gap-2">
+                                    {dadosUsuario?.nome.split(" ").slice(0, 2).join(" ") || 'nao logado'}
                                     <div className='flex gap-1'>
                                         {tipoUser ? (
-                                            <Badge className=" rounded-full">
+                                            <Badge className="rounded-full">
                                                 <Stethoscope className='size-4 mr-1' />  Profissional
                                             </Badge>
 
                                         ) : (
                                             null
                                         )}
-                                        <Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>
+
+                                        {forum === '#Gravidez' ? (
+                                            <Badge className="rounded-full bg-blue-200 gap-1 text-blue-500 shadow-none bg-opacity-20">
+                                                <Baby className="size-4" /> Gravidez
+                                            </Badge>
+                                        ) : forum === '#Maternidade' ? (
+                                            <Badge className="rounded-full pointer-events-none bg-pink-400 gap-1 text-pink-500 shadow-none bg-opacity-20">
+                                                <Heart className="size-4" /> Maternidade
+                                            </Badge>
+                                        ) : forum === '#Desabafos' ? (
+                                            <Badge className="rounded-full pointer-events-none bg-purple-400 gap-1 text-purple-500 shadow-none bg-opacity-20">
+                                                <Mic2 className="size-4" /> Desabafos
+                                            </Badge>
+                                        ) : forum === '#Autocuidado' ? (
+                                            <Badge className="rounded-full pointer-events-none bg-yellow-400 gap-1 text-yellow-500 shadow-none bg-opacity-20">
+                                                <Flower2 className="size-4" /> Autocuidado
+                                            </Badge>
+                                        ):(null)}
+
                                     </div>
                                 </figcaption>
-                                <div className='w-1/3'>
-
-                                </div>
+                              
                             </div>
                             <div className='flex justify-end w-full text-sm'>
                                 <p className='px-2'>{data}</p>

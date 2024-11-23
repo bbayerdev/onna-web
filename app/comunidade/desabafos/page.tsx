@@ -61,12 +61,12 @@ export function Desabafos() {
         <main>
             <header className="flex gap-2 items-center">
                 <h1 className="text-xl font-bold">Posts do fórum</h1>
-                <div>
-                    <Badge className="rounded-2xl cursor-default hover:bg-stone-950">
-                        #Desabafos
+                <div className="flex">
+                    <Badge className="rounded-full pointer-events-none bg-purple-400 gap-1 text-purple-500 shadow-none bg-opacity-20">
+                        <Mic2 className="size-4" /> Desabafos
                     </Badge>
                 </div>
-                <div className="mt-1">
+                <div>
                     <HoverCard>
                         <HoverCardTrigger>
                             <CircleHelp className="size-4 cursor-pointer" color='#52525b' />
@@ -107,7 +107,7 @@ export function Desabafos() {
                                         reacoes={post.reacoes}
                                         hora={post.data_Postagem}
                                         data={post.hora}
-                                        tipoUser= {post.tipo_Usuario}
+                                        tipoUser={post.tipo_Usuario}
                                     />
                                 </section>
                             );

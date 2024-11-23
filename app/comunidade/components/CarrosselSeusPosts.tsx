@@ -158,18 +158,18 @@ export function CarrosselSeusPosts() {
                 </div>
             ) : error ? (
                 <div className="flex h-[500px] w-full flex-row ml-8">
-                    <div className="w-full flex flex-col mt-10 gap-5">
+                    <div className="w-full flex flex-col mt-8 gap-5">
                         <Card className="w-full rounded-3xl">
                             <CardHeader>
                                 <CardTitle className="text-xl">
                                     <TypingAnimation
                                         className="text-xl text-left font-bold text-black dark:text-white"
-                                        text={`${nome.split(" ")[0]}, aqui serão exibidos seus últimos posts criados.`}
+                                        text={`${nome.split(" ")[0]}, aqui serão exibidos seus últimos posts.`}
                                         duration={50}
                                     />
                                 </CardTitle>
                                 <CardDescription className="text-base">
-                                    Vamos começar? Compartilhe suas dúvidas, suas experiências ou desabafe com a comunidade!                                </CardDescription>
+                                    Vamos começar? Compartilhe dúvidas, experiências ou desabafe com a comunidade!                                </CardDescription>
                             </CardHeader>
                         </Card>
 

@@ -6,7 +6,7 @@ import {
     HoverCardContent,
     HoverCardTrigger,
 } from "@/components/ui/hover-card"
-import { Baby, BadgeCheck, CircleHelp, Heart } from "lucide-react"
+import { Baby, BadgeCheck, CircleHelp, Flower2, Heart } from "lucide-react"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import SkeletonCard from "../usuario/posts/components/SkeletonCard"
@@ -61,12 +61,12 @@ export function Autocuidado() {
         <main>
             <header className="flex gap-2 items-center">
                 <h1 className="text-xl font-bold">Posts do fórum</h1>
-                <div>
-                    <Badge className="rounded-2xl cursor-default hover:bg-stone-950">
-                        #Autocuidado
+                <div className="flex">
+                    <Badge className="rounded-full pointer-events-none bg-yellow-400 gap-1 text-yellow-500 shadow-none bg-opacity-20">
+                        <Flower2 className="size-4" /> Autocuidado
                     </Badge>
                 </div>
-                <div className="mt-1">
+                <div>
                     <HoverCard>
                         <HoverCardTrigger>
                             <CircleHelp className="size-4 cursor-pointer" color='#52525b' />
@@ -107,7 +107,7 @@ export function Autocuidado() {
                                         reacoes={post.reacoes}
                                         hora={post.data_Postagem}
                                         data={post.hora}
-                                        tipoUser= {post.tipo_Usuario}
+                                        tipoUser={post.tipo_Usuario}
                                     />
                                 </section>
                             );

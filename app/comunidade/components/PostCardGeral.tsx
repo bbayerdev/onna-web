@@ -1,5 +1,5 @@
 'use client'
-import { Baby, Clock, CornerDownRight, EllipsisVertical, Flag, Heart, MessageCircle, Send, Stethoscope, Trash2 } from 'lucide-react';
+import { Baby, Clock, CornerDownRight, EllipsisVertical, Flag, Flower2, Heart, MessageCircle, Mic2, Send, Stethoscope, Trash2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -210,7 +210,7 @@ const PostCardGeral =
                                     {nome.split(" ").slice(0, 2).join(" ") || 'nao logado'}
                                     <div className='flex gap-1'>
                                         {tipoUser ? (
-                                            <Badge className="bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full">
+                                            <Badge className="rounded-full">
                                                 <Stethoscope className='size-4 mr-1' />  Profissional
                                             </Badge>
 
@@ -218,12 +218,24 @@ const PostCardGeral =
                                             null
                                         )}
 
-                                        {forum === '#Gravidez' ?(
+                                        {forum === '#Gravidez' ? (
                                             <Badge className="rounded-full bg-blue-200 gap-1 text-blue-500 shadow-none bg-opacity-20">
                                                 <Baby className="size-4" /> Gravidez
                                             </Badge>
-                                        ) : (<Badge className='pointer-events-none rounded-2xl'>{forum}</Badge>)}
-                                        
+                                        ) : forum === '#Maternidade' ? (
+                                            <Badge className="rounded-full pointer-events-none bg-pink-400 gap-1 text-pink-500 shadow-none bg-opacity-20">
+                                                <Heart className="size-4" /> Maternidade
+                                            </Badge>
+                                        ) : forum === '#Desabafos' ? (
+                                            <Badge className="rounded-full pointer-events-none bg-purple-400 gap-1 text-purple-500 shadow-none bg-opacity-20">
+                                                <Mic2 className="size-4" /> Desabafos
+                                            </Badge>
+                                        ) : (
+                                            <Badge className="rounded-full pointer-events-none bg-yellow-400 gap-1 text-yellow-500 shadow-none bg-opacity-20">
+                                                <Flower2 className="size-4" /> Autocuidado
+                                            </Badge>
+                                        )}
+
                                     </div>
                                 </figcaption>
                             </div>

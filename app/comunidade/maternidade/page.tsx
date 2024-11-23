@@ -61,12 +61,12 @@ export function Maternidade() {
         <main>
             <header className="flex gap-2 items-center">
                 <h1 className="text-xl font-bold">Posts do fórum</h1>
+
+                <Badge className="rounded-full pointer-events-none bg-pink-400 gap-1 text-pink-500 shadow-none bg-opacity-20">
+                    <Heart className="size-4" /> Maternidade
+                </Badge>
+
                 <div>
-                    <Badge className="rounded-2xl cursor-default hover:bg-stone-950">
-                        #Maternidade
-                    </Badge>
-                </div>
-                <div className="mt-1">
                     <HoverCard>
                         <HoverCardTrigger>
                             <CircleHelp className="size-4 cursor-pointer" color='#52525b' />
@@ -107,7 +107,7 @@ export function Maternidade() {
                                         reacoes={post.reacoes}
                                         hora={post.data_Postagem}
                                         data={post.hora}
-                                        tipoUser= {post.tipo_Usuario}
+                                        tipoUser={post.tipo_Usuario}
                                     />
                                 </section>
                             );
