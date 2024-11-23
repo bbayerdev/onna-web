@@ -186,7 +186,7 @@ export function CarrosselSeusPosts() {
                                     <div className="flex gap-2 mt-1">
                                         <HoverCard>
                                             <HoverCardTrigger>
-                                                <Badge className="rounded-full pointer-events-none bg-blue-400 gap-1 text-blue-500 shadow-none bg-opacity-20">
+                                                <Badge className=" hover:!bg-blue-400 hover:!bg-opacity-50 rounded-full cursor-pointer bg-blue-400 gap-1 text-blue-500 shadow-none bg-opacity-20">
                                                     <Baby className="size-4" /> Gravidez
                                                 </Badge>
                                             </HoverCardTrigger>
@@ -202,7 +202,7 @@ export function CarrosselSeusPosts() {
 
                                         <HoverCard>
                                             <HoverCardTrigger>
-                                                <Badge className="rounded-full pointer-events-none bg-pink-400 gap-1 text-pink-500 shadow-none bg-opacity-20">
+                                                <Badge className="hover:!bg-pink-400 hover:!bg-opacity-50 rounded-full cursor-pointer bg-pink-400 gap-1 text-pink-500 shadow-none bg-opacity-20">
                                                     <Heart className="size-4" /> Maternidade
                                                 </Badge>
                                             </HoverCardTrigger>
@@ -218,7 +218,7 @@ export function CarrosselSeusPosts() {
 
                                         <HoverCard>
                                             <HoverCardTrigger>
-                                                <Badge className="rounded-full pointer-events-none bg-purple-400 gap-1 text-purple-500 shadow-none bg-opacity-20">
+                                                <Badge className=" hover:!bg-purple-400 hover:!bg-opacity-50 rounded-full cursor-pointer bg-purple-400 gap-1 text-purple-500 shadow-none bg-opacity-20">
                                                     <Mic2 className="size-4" /> Desabafos
                                                 </Badge>
                                             </HoverCardTrigger>
@@ -235,7 +235,7 @@ export function CarrosselSeusPosts() {
 
                                         <HoverCard>
                                             <HoverCardTrigger>
-                                                <Badge className="rounded-full pointer-events-none bg-yellow-400 gap-1 text-yellow-500 shadow-none bg-opacity-20">
+                                                <Badge className=" cursor-pointer hover:!bg-yellow-400 hover:!bg-opacity-50 rounded-full bg-yellow-400 gap-1 text-yellow-500 shadow-none bg-opacity-20">
                                                     <Flower2 className="size-4" /> Autocuidado
                                                 </Badge>  
                                             </HoverCardTrigger>

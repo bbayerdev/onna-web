@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { TooltipProvider } from "@radix-ui/react-tooltip"
 import { Separator } from "@/components/ui/separator"
@@ -30,7 +30,34 @@ type Props = {
     atualizar: (index: number) => void
 }
 
+
+
 function Header({ atualizar, exibir }: Props) {
+
+    const [dadosUsuario, setDadosUsuario] = useState<{
+        email: string
+        nome: string
+        tipo_Usuario: number
+    } | null>(null)
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const data = localStorage.getItem('usuarioData')
+        try {
+            if (data) {
+                const usuario = JSON.parse(data) // verifica e passa os dados do local para essa variavel
+                setDadosUsuario(usuario) // leva pro useState
+            }
+        }
+        catch (erro) {
+
+        }
+        finally {
+            setLoading(false)
+        }
+    }, [])
+    
     return (
         <header className="bg-white p-2 sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0  sm:px-6">
             <Sheet>
@@ -111,7 +138,7 @@ function Header({ atualizar, exibir }: Props) {
             </Sheet>
 
             <div className="relative ml-auto flex-1 sm:grow-0">
-             
+
             </div>
 
             <TooltipProvider>
@@ -151,7 +178,7 @@ function Header({ atualizar, exibir }: Props) {
                                     className="overflow-hidden rounded-full"
                                 >
                                     <Avatar>
-                                        <AvatarImage src='/imgs/cachorra.png' alt="@shadcn" />
+                                        <AvatarImage src={`https://ui-avatars.com/api/?name=${dadosUsuario?.nome}&background=random`} />
                                         <AvatarFallback className='bg-zinc-300'></AvatarFallback>
                                     </Avatar>
                                 </Button>

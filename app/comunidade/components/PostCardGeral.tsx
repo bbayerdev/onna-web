@@ -203,7 +203,8 @@ const PostCardGeral =
 
                 <figure className=" relative cursor-pointer overflow-hidden rounded-3xl border p-4 border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05] shadow w-full">
                     <div className="flex flex-row items-center gap-4">
-                        <img className="rounded-full size-12" alt="" src='/imgs/cachorra.png' />
+                        <img className="rounded-full size-12" alt="" src={`https://ui-avatars.com/api/?name=${nome}&background=random`}  />
+                      
                         <div className="flex flex-row w-full">
                             <div className='w-full flex gap-2'>
                                 <figcaption className="font-bold text-xl flex items-center gap-2">

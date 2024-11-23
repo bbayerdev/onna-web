@@ -52,7 +52,7 @@ const CardUser = () => {
             <Card className='bg-gray-950/[.01] flex rounded-3xl'>
                 <CardHeader>
                     <Avatar className='size-32 shadow'>
-                        <AvatarImage src='/imgs/cachorra.png' alt="@shadcn" />
+                        <AvatarImage src={`https://ui-avatars.com/api/?name=${dadosUsuario?.nome}&background=random`} alt="@shadcn" />
                         <AvatarFallback className='bg-zinc-300'></AvatarFallback>
                     </Avatar>
                 </CardHeader>
