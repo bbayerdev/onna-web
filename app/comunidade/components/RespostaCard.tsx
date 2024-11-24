@@ -81,7 +81,7 @@ const RespostaCard = ({ data, hora, likes, mensagem, nome, id, idPost, tipoUser 
 
                 setTimeout(() => {
                     window.location.reload()
-                }, 3001);
+                }, 2001);
 
 
             }
