@@ -24,10 +24,11 @@ type Props = {
     hora: string
     mensagem: string
     likes: number
+    tipoUser: number
 }
 
 
-const RespostaCard = ({ data, hora, likes, mensagem, nome, id, idPost }: Props) => {
+const RespostaCard = ({ data, hora, likes, mensagem, nome, id, idPost, tipoUser }: Props) => {
 
     //puxa o nome do user do local storage
     const [dadosUsuario, setDadosUsuario] = useState<{
@@ -114,7 +115,8 @@ const RespostaCard = ({ data, hora, likes, mensagem, nome, id, idPost }: Props) 
                     <div className='w-full flex gap-2'>
                         <figcaption className="font-bold text-base flex gap-2">
                             {nome}
-                            <Badge className='h-min rounded-full flex gap-1 pointer-events-none'> <Stethoscope className='size-4' /> Profissional</Badge>
+                            {tipoUser ? (  <Badge className='h-min rounded-full flex gap-1 pointer-events-none'> <Stethoscope className='size-4' /> Profissional</Badge>) : (null)}
+                          
                         </figcaption>
                     </div>
                     <div className='flex justify-end w-full text-sm'>

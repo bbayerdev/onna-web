@@ -329,6 +329,7 @@ const PostCardGeral =
                                         hora={resposta.hora}
                                         likes={resposta.reacoes}
                                         mensagem={resposta.mensagem}
+                                        tipoUser={resposta.tipo_Usuario}
                                     />
                                 )
                             })
