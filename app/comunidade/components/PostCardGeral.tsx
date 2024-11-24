@@ -198,89 +198,63 @@ const PostCardGeral =
             }
         }
 
+        //curtida (fake por enquanto)
+        const [curtidas, setcurtidas] = useState(reacoes)
+        const [hasReacted, setHasReacted] = useState(false)
+
+        const handleReact = () => {
+            if (!hasReacted) { 
+                setcurtidas(curtidas + 1)
+                setHasReacted(true)
+            }
+        }
+        
         return (
             <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex w-full flex-col space-y-2">
-
-                <figure className=" relative cursor-pointer overflow-hidden rounded-3xl border p-4 border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05] shadow w-full">
+                <figure className="relative cursor-pointer overflow-hidden rounded-3xl border p-4 border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05] shadow w-full">
                     <div className="flex flex-row items-center gap-4">
-                        <img className="rounded-full size-12" alt="" src={`https://api.dicebear.com/9.x/glass/svg?seed=${nome.split(" ").pop()}`}  />
-                      
+                        <img
+                            className="rounded-full size-12"
+                            alt=""
+                            src={`https://api.dicebear.com/9.x/glass/svg?seed=${nome ? nome.split(" ").pop() : 'default'}`}
+                        />
                         <div className="flex flex-row w-full">
                             <div className='w-full flex gap-2'>
                                 <figcaption className="font-bold text-xl flex items-center gap-2">
-                                    {nome.split(" ").slice(0, 2).join(" ") || 'nao logado'}
+                                    {nome.split(" ").slice(0, 2).join(" ") || 'Não Logado'}
                                     <div className='flex gap-1'>
-                                        {tipoUser ? (
+                                        {tipoUser && (
                                             <Badge className="rounded-full">
-                                                <Stethoscope className='size-4 mr-1' />  Profissional
+                                                <Stethoscope className='size-4 mr-1' /> Profissional
                                             </Badge>
-
-                                        ) : (
-                                            null
                                         )}
-
-                                        {forum === '#Gravidez' ? (
+                                        {forum === '#Gravidez' && (
                                             <Badge className="rounded-full pointer-events-none bg-blue-200 gap-1 text-blue-500 shadow-none bg-opacity-20">
                                                 <Baby className="size-4" /> Gravidez
                                             </Badge>
-                                        ) : forum === '#Maternidade' ? (
+                                        )}
+                                        {forum === '#Maternidade' && (
                                             <Badge className="rounded-full pointer-events-none bg-pink-400 gap-1 text-pink-500 shadow-none bg-opacity-20">
                                                 <Heart className="size-4" /> Maternidade
                                             </Badge>
-                                        ) : forum === '#Desabafos' ? (
+                                        )}
+                                        {forum === '#Desabafos' && (
                                             <Badge className="rounded-full pointer-events-none bg-purple-400 gap-1 text-purple-500 shadow-none bg-opacity-20">
                                                 <Mic2 className="size-4" /> Desabafos
                                             </Badge>
-                                        ) : (
+                                        )}
+                                        {forum === '#Autocuidado' && (
                                             <Badge className="rounded-full pointer-events-none bg-yellow-400 gap-1 text-yellow-500 shadow-none bg-opacity-20">
                                                 <Flower2 className="size-4" /> Autocuidado
                                             </Badge>
                                         )}
-
                                     </div>
                                 </figcaption>
                             </div>
                             <div className='flex justify-end w-full text-sm'>
                                 <p className='px-2'>{data}</p>
                                 <p>•</p>
-                                <p className='px-2 font-bold'> {hora}</p>
-                                <Dialog>
-                                    <DialogTrigger>
-                                        <Button className=' hover:bg-zinc-200 rounded-full' variant="secondary" size="icon">
-                                            <Flag className="h-5 w-5" />
-                                        </Button>
-                                    </DialogTrigger>
-                                    <DialogContent>
-                                        <DialogHeader>
-                                            <DialogTitle>Nova denúncia</DialogTitle>
-                                            <DialogDescription>
-                                                Especifique sua denúncia <span className='text-red-500'>*</span>
-                                            </DialogDescription>
-                                        </DialogHeader>
-                                        <div className="px-4 gap-1 flex flex-col">
-                                            {options.map(option => (
-                                                <div key={option.id} className="flex items-center gap-1">
-                                                    <Checkbox
-                                                        checked={selected === option.id} // Sem conflitos de tipo
-                                                        onCheckedChange={() => handleCheckboxChange(option.id)}
-                                                    />
-                                                    <Label>{option.label}</Label>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <div>
-                                            <Textarea
-                                                maxLength={1000}
-                                                onChange={(e) => setBody(e.target.value)}
-                                                className='h-[190px]'
-                                                placeholder="Detalhe sua denúncia (opcional)." />
-                                            <p className="text-right text-xs mr-2">
-                                                <span className={body.length >= maxBody ? 'text-red-500' : 'text-black'}>{body.length}/{maxBody}</span>
-                                            </p>
-                                        </div>
-                                        <Button onClick={denuncia_Post} variant={'destructive'}>Enviar denúncia</Button>
-                                    </DialogContent>
-                                </Dialog>
+                                <p className='px-2 font-bold'>{hora}</p>
                             </div>
                         </div>
                     </div>
@@ -297,17 +271,19 @@ const PostCardGeral =
                             </CollapsibleTrigger>
                         </div>
                         <div className='flex gap-2 justify-center items-center mr-4'>
-                            <p className='text-sm text-right font-bold'> {quantidadeRespostas} </p>
-
+                            <p className='text-sm text-right font-bold'>{quantidadeRespostas}</p>
                             <MessageCircle className="h-4 w-4 " />
-
-                            <p className='text-sm text-right font-bold'> {reacoes} </p>
-                            <Button variant={'outline'} size={'icon'} className='rounded-full hover:bg-red-100'>
+                            <p className='text-sm text-right font-bold'>{curtidas}</p>
+                            <Button
+                                onClick={handleReact}
+                                variant={'outline'}
+                                size={'icon'}
+                                className={`rounded-full hover:bg-red-100 ${hasReacted ? 'bg-red-100' : ''}`}
+                            >
                                 <Heart color="#ef4444" fill='#ef4444' className="h-4 w-4 " />
                             </Button>
                         </div>
                     </div>
-
                 </figure>
                 <CollapsibleContent className="space-y-2 flex flex-row gap-3">
                     <aside className='ml-8'>  <Separator className='h-5/6 w-[2px] bg-zinc-200 rounded-lg' orientation="vertical" /> </aside>

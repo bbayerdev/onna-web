@@ -94,10 +94,22 @@ const RespostaCard = ({ data, hora, likes, mensagem, nome, id, idPost }: Props) 
         }
     }
 
+    //curtida (fake por enquanto)
+    const [curtidas, setcurtidas] = useState(likes)
+    const [hasReacted, setHasReacted] = useState(false)
+
+    const handleReact = () => {
+        if (!hasReacted) {
+            setcurtidas(curtidas + 1)
+            setHasReacted(true)
+        }
+    }
+
+
     return (
         <figure className="relative overflow-hidden rounded-3xl border p-4 border-gray-950/[.1]  shadow w-4/5">
             <div className="flex flex-row items-center gap-4">
-                <img className="rounded-full size-8" alt="" src={`https://api.dicebear.com/9.x/glass/svg?seed=${nome.split(" ").pop()}`}  />
+                <img className="rounded-full size-8" alt="" src={`https://api.dicebear.com/9.x/glass/svg?seed=${nome.split(" ").pop()}`} />
                 <div className="flex flex-row w-full">
                     <div className='w-full flex gap-2'>
                         <figcaption className="font-bold text-base flex gap-2">
@@ -161,8 +173,15 @@ const RespostaCard = ({ data, hora, likes, mensagem, nome, id, idPost }: Props) 
             </blockquote>
             <footer className='justify-end flex '>
                 <div className='flex gap-1 px-2 justify-center items-center'>
-                    <p className='text-sm text-right font-bold'> {likes} </p>
-                    <Button variant={'outline'} size={'icon'} className='rounded-full'> <Heart color="#ef4444" fill='#ef4444' className="h-4 w-4 " /> </Button>
+                    <p className='text-sm text-right font-bold'> {curtidas} </p>
+                    <Button
+                        onClick={handleReact}
+                        variant={'outline'}
+                        size={'icon'}
+                        className={`rounded-full hover:bg-red-100 ${hasReacted ? 'bg-red-100' : ''}`}
+                    >
+                        <Heart color="#ef4444" fill='#ef4444' className="h-4 w-4 " />
+                    </Button>
                 </div>
             </footer>
         </figure>
