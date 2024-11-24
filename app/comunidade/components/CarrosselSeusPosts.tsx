@@ -91,9 +91,9 @@ export function CarrosselSeusPosts() {
 
         useEffect(() => {
             const forumMap: Record<number, string> = {
-                1: '#Gravidez',
-                2: '#Maternidade',
-                3: '#Desabafos',
+                2: '#Gravidez',
+                4: '#Maternidade',
+                1: '#Desabafos',
             };
             setForum(forumMap[forumId] || '#Autocuidado');  // Define o nome do fórum
         }, [forumId]);  // Executa o useEffect sempre que forumId mudar
@@ -113,8 +113,23 @@ export function CarrosselSeusPosts() {
                             <figcaption className="font-bold text-xl">
                                 {name.split(" ").slice(0, 2).join(" ") || 'Nome do usuário'}
                             </figcaption>
-                            {forum && <Badge className='pointer-events-none text-xs mt-1 h-min rounded-2xl'>{forum}</Badge>}  {/* Mostra o fórum */}
-                        </div>
+                            {forum === '#Gravidez' ? (
+                                    <Badge className="rounded-full pointer-events-none bg-blue-200 gap-1 text-blue-500 shadow-none bg-opacity-20">
+                                        <Baby className="size-4" /> Gravidez
+                                    </Badge>
+                                ) : forum === '#Maternidade' ? (
+                                    <Badge className="rounded-full pointer-events-none bg-pink-400 gap-1 text-pink-500 shadow-none bg-opacity-20">
+                                        <Heart className="size-4" /> Maternidade
+                                    </Badge>
+                                ) : forum === '#Desabafos' ? (
+                                    <Badge className="rounded-full pointer-events-none bg-purple-400 gap-1 text-purple-500 shadow-none bg-opacity-20">
+                                        <Mic2 className="size-4" /> Desabafos
+                                    </Badge>
+                                ) : forum === '#Autocuidado' ? (
+                                    <Badge className="rounded-full pointer-events-none bg-yellow-400 gap-1 text-yellow-500 shadow-none bg-opacity-20">
+                                        <Flower2 className="size-4" /> Autocuidado
+                                    </Badge>
+                                ) : (null)}                        </div>
                         <div className='flex justify-end text-sm'>
                             <p className='px-2'>{data}</p>
                             <p>•</p>
@@ -122,7 +137,7 @@ export function CarrosselSeusPosts() {
                         </div>
                     </div>
                 </div>
-                <blockquote className="mt-4 ml-10 text-base font-bold">{body}</blockquote>
+                <blockquote className="mt-4 ml-10 text-base font-semibold">{body}</blockquote>
                 <div className='flex justify-end'>
                     <div className="flex flex-row justify-center items-center gap-2 mr-2">
                         <p className='ml-1 text-xs text-right font-bold'>{curtidas}</p>

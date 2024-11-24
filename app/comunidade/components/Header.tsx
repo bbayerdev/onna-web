@@ -10,7 +10,6 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -166,7 +165,7 @@ function Header({ atualizar, exibir }: Props) {
                     </DropdownMenuContent>
                 </DropdownMenu>
             </TooltipProvider>
-            
+
             <Avatar>
                 <AvatarImage src={`https://ui-avatars.com/api/?name=${dadosUsuario?.nome}&background=random`} />
                 <AvatarFallback className='bg-zinc-300'></AvatarFallback>

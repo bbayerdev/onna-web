@@ -1,13 +1,12 @@
 'use client'
-
-import Marquee from "@/components/ui/marquee";
+import { useEffect, useState } from 'react';
 import { cn } from "@/lib/utils";
-import axios from "axios";
-import { Heart } from "lucide-react";
-import { useEffect, useState } from "react";
+import Marquee from '@/components/ui/marquee';
+import { Heart } from 'lucide-react';
+import axios from 'axios';
 
+export function CarrosselNewPosts() {
 
-export function CarrosselNewsPosts() {
     const [posts, setPosts] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -52,66 +51,62 @@ export function CarrosselNewsPosts() {
         }
     }, []);
 
-    // Mapeamento do idForum para o nome do fórum
+
+
     const ReviewCard = ({
-        id,
         img,
         name,
         forumId,
         body,
         hora,
         curtidas,
-        data,
     }: {
-        id: string;
         img: string;
         name: string;
-        forumId: number;  // Agora usamos o forumId
+        forumId: number;
         body: string;
         hora: string;
         curtidas: number;
-        data: string
     }) => {
+
         const [forum, setForum] = useState('');  // Estado para o nome do fórum
 
         useEffect(() => {
             const forumMap: Record<number, string> = {
-                1: '#Gravidez',
-                2: '#Maternidade',
-                3: '#Desabafos',
+                2: '#Gravidez',
+                4: '#Maternidade',
+                1: '#Desabafos',
             };
             setForum(forumMap[forumId] || '#Autocuidado');  // Define o nome do fórum
         }, [forumId]);  // Executa o useEffect sempre que forumId mudar
 
         return (
             <figure
-            className={cn(
-                "relative w-72 overflow-hidden cursor-pointer rounded-3xl border p-4",
-                "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05] shadow"
-            )}
-        >
-            <div className="flex flex-row justify-between items-center gap-2">
-                <img className="rounded-full" width="32" height="32" alt="" src={`https://ui-avatars.com/api/?name=${name}&background=random`} />
-                <div className="flex flex-row w-full">
-                    <div className="w-full">
-                        <figcaption className="text-sm w-full">{name}</figcaption>
-                        <p className="text-xs text-zinc-700">{forum}</p>
-                    </div>
-                    <div className="flex">
-                        <p className="text-xs mt-1">{hora}</p>
+                className={cn(
+                    "relative w-72 cursor-pointer overflow-hidden rounded-3xl border p-4",
+                    "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05] shadow"
+                )}
+            >
+                <div className="flex flex-row items-center gap-2">
+                    <img className="rounded-full" width="32" height="32" alt="" src={img} />
+                    <div className="flex flex-row w-full">
+                        <div className="w-full">
+                            <figcaption className="text-sm w-full">{name}</figcaption>
+                            <p className="text-xs text-zinc-700">{forum}</p>
+                        </div>
+                        <div className="flex">
+                            <p className="text-xs font-bold mt-1">{hora}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="flex flex-col h-full">
-                <blockquote className="mt-2 text-sm flex">{body}</blockquote>
-        
-                <div className="flex items-center">
-                    <p className="ml-1 text-xs">{curtidas}</p>
+                <blockquote className="mt-2 text-sm p-2">
+                    {body.length > 50 ? body.slice(0, 50) + "..." : body}
+                </blockquote>
+                <div className="absolute bottom-2 right-4 flex items-center">
                     <Heart size={16} color="#ef4444" fill="#ef4444" />
+                    <p className="ml-1 text-xs">{curtidas}</p>
                 </div>
-            </div>
-        </figure>
-        
+            </figure>
         );
     };
 
@@ -121,13 +116,11 @@ export function CarrosselNewsPosts() {
                 {posts.map((post) => (
                     <ReviewCard
                         key={post.idPostagem}
-                        id={post.idPostagem}
+                        forumId={post.idForum}
                         img={post.img || '/imgs/cachorra.png'}
                         name={post.nome || 'Nome do usuário'}
-                        forumId={post.idForum}
-                        body={post.titulo || 'Sem título'}
-                        hora={post.hora || '00:00'}
-                        data={post.data_Postagem}
+                        body={post.titulo}
+                        hora={post.data_Postagem || '00:00'}
                         curtidas={post.reacoes || 0}
                     />
                 ))}
@@ -137,4 +130,4 @@ export function CarrosselNewsPosts() {
         </div>
     )
 }
-export default CarrosselNewsPosts
+export default CarrosselNewPosts
