@@ -223,11 +223,12 @@ const PostCardGeral =
                                 <figcaption className="font-bold text-xl flex items-center gap-2">
                                     {nome.split(" ").slice(0, 2).join(" ") || 'Não Logado'}
                                     <div className='flex gap-1'>
-                                        {tipoUser && (
+                                        {tipoUser ? (
                                             <Badge className="rounded-full">
                                                 <Stethoscope className='size-4 mr-1' /> Profissional
                                             </Badge>
-                                        )}
+                                        ):(null)}
+
                                         {forum === '#Gravidez' && (
                                             <Badge className="rounded-full pointer-events-none bg-blue-200 gap-1 text-blue-500 shadow-none bg-opacity-20">
                                                 <Baby className="size-4" /> Gravidez
