@@ -107,8 +107,8 @@ const PostCardGeral =
 
                 if (response.status === 200) {
                     toast({
-                        title: "Resposta enviada com sucesso!.",
-                        className: 'bg-green-400',
+                        title: "Resposta enviada com sucesso!",
+                        className: 'bg-green-400 shadow-none border-none',
                         duration: 2000,
                     })
 

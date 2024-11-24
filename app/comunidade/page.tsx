@@ -4,7 +4,7 @@ import CardUser from './components/CardUser';
 import { Newspaper, PencilLine } from 'lucide-react';
 import Link from 'next/link';
 import CarrosselSeusPosts from './components/CarrosselSeusPosts';
-import { CarrosselNewPosts } from './components/carrosselNewPosts';
+import CarrosselNewsPosts from './components/carrosselNewPosts';
 
 function Home() {
 
@@ -16,7 +16,7 @@ function Home() {
         </Link>
       </div>
       <div className='relative mt-4'>
-        <CarrosselNewPosts />
+        <CarrosselNewsPosts/>
       </div>
       <section className='flex mt-12 shadow-none'>
         <div className='w-1/2 mt-10 ml-10'>
