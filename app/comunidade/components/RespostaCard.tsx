@@ -94,9 +94,6 @@ const RespostaCard = ({ data, hora, likes, mensagem, nome, id, idPost }: Props) 
         }
     }
 
-
-
-
     return (
         <figure className="relative overflow-hidden rounded-3xl border p-4 border-gray-950/[.1]  shadow w-4/5">
             <div className="flex flex-row items-center gap-4">

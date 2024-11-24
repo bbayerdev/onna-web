@@ -5,6 +5,7 @@ import Marquee from '@/components/ui/marquee';
 import { Heart } from 'lucide-react';
 import axios from 'axios';
 import { Skeleton } from '@/components/ui/skeleton';
+import Link from 'next/link';
 
 export function CarrosselNewPosts() {
 
@@ -84,7 +85,7 @@ export function CarrosselNewPosts() {
         return (
             <figure
                 className={cn(
-                    "relative w-72 cursor-pointer overflow-hidden rounded-3xl border p-4",
+                    "relative w-72 min-h-[135px] min-h cursor-pointer overflow-hidden rounded-3xl border p-4",
                     "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05] shadow"
                 )}
             >
@@ -126,17 +127,38 @@ export function CarrosselNewPosts() {
                     </div>
                 </div>
             ) : (<Marquee pauseOnHover className="[--duration:180s]">
-                {posts.map((post) => (
-                    <ReviewCard
-                        key={post.idPostagem}
-                        forumId={post.idForum}
-                        img={post.img || '/imgs/cachorra.png'}
-                        name={post.nome || 'Nome do usuário'}
-                        body={post.titulo}
-                        hora={post.data_Postagem || '00:00'}
-                        curtidas={post.reacoes || 0}
-                    />
-                ))}
+
+                {posts.map((post) => {
+                    // Define o caminho com base no idForum
+                    let path = "/comunidade";
+
+                    if (post.idForum === 2) {
+                        path = "/comunidade/gravidez";
+                    } else if (post.idForum === 4) {
+                        path = "/comunidade/maternidade";
+                    } else if (post.idForum === 1) {
+                        path = "/comunidade/desabafos";
+                    } else if (post.idForum === 3) {
+                        path = "/comunidade/autocuidado";
+                    }
+
+                    return (
+                        <Link
+                            href={path} // Usamos a variável 'path' como destino
+                            key={post.idPostagem}
+                            className="block h-full w-full"
+                        >
+                            <ReviewCard
+                                forumId={post.idForum}
+                                img={post.img || '/imgs/cachorra.png'}
+                                name={post.nome || 'Nome do usuário'}
+                                body={post.titulo}
+                                hora={post.data_Postagem || '00:00'}
+                                curtidas={post.reacoes || 0}
+                            />
+                        </Link>
+                    );
+                })}
             </Marquee>)}
 
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-white"></div>
