@@ -164,7 +164,7 @@ export function page() {
                 toast({
                     title: "Cadastro realizado!",
                     description: "Seu perfil foi cadastrado com sucesso.",
-                    className: 'bg-green-400',
+                    className: 'bg-green-400 border-none',
                     duration: 2000,
                 });
                 setTimeout(() => {

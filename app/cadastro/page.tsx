@@ -101,7 +101,7 @@ export function Page() {
       toast({
         title: "Sucesso!",
         description: "Sua conta foi criada com sucesso. Agora faça seu login.",
-        className: 'bg-green-400',
+        className: 'bg-green-400 border-none',
         duration: 1100
       })
     }

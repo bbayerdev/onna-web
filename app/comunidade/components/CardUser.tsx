@@ -9,7 +9,7 @@ import {
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
-import { Pencil, Stethoscope } from 'lucide-react';
+import { LogOut, Stethoscope } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import CountPosts from './countPosts';
@@ -17,6 +17,17 @@ import CountEntrada from './countEntrada';
 import { Skeleton } from '@/components/ui/skeleton';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 const CardUser = () => {
 
@@ -51,12 +62,12 @@ const CardUser = () => {
         <div>
             <Card className='bg-gray-950/[.01] flex rounded-3xl'>
                 <CardHeader>
-                    <Avatar className='size-32 shadow'>
+                    <Avatar className='size-32 ml-2 shadow'>
                         <AvatarImage src={`https://ui-avatars.com/api/?name=${dadosUsuario?.nome}&background=random`} alt="@shadcn" />
                         <AvatarFallback className='bg-zinc-300'></AvatarFallback>
                     </Avatar>
                 </CardHeader>
-                <CardContent className='p-2 mt-7 w-full'>
+                <CardContent className='p-2 flex flex-col justify-center mt-8 w-full'>
                     {loading ?
                         (
                             <Skeleton className='h-4 w-3/4 mt-1' />
@@ -70,7 +81,7 @@ const CardUser = () => {
                                 <div className=''>
                                     {dadosUsuario?.tipo_Usuario ? (
                                         <Badge className=" rounded-full">
-                                           <Stethoscope className='size-4 mr-1' />  Profissional
+                                            <Stethoscope className='size-4 mr-1' />  Profissional
                                         </Badge>
 
                                     ) : (
@@ -102,9 +113,30 @@ const CardUser = () => {
                         </div>
                     </div>
                     <div className='flex justify-end'>
-                        <Button className='mr-2 rounded-full' variant="outline" size="icon">
-                            <Link href={'/comunidade/usuario'}> <Pencil className="h-4 w-4" /> </Link>
-                        </Button>
+
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button className='mr-2 rounded-full hover:bg-red-100' variant="outline" size="icon">
+                                    <LogOut color='#ef4444' />
+                                </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle className='text-xl'>{dadosUsuario?.nome}, já vai embora?</AlertDialogTitle>
+                                    <AlertDialogDescription className='text-base'>
+                                        Você está prestes a sair da sua conta. Esperamos te ver de volta em breve! Deseja continuar?
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>Não, quero ficar</AlertDialogCancel>
+                                    <AlertDialogAction className='bg-red-500 hover:bg-red-600'>
+                                        <Link href={'/'}>
+                                            Sair agora
+                                        </Link>
+                                    </AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                     </div>
                 </CardContent>
             </Card>

@@ -57,7 +57,7 @@ export function page() {
                 toast({
                     title: "Login realizado!",
                     description: "Você será redirecionado em 2 segundos.",
-                    className: 'bg-green-400',
+                    className: 'bg-green-400 border-none',
                     duration: 2000,
                 })
 

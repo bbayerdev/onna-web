@@ -57,7 +57,7 @@ function Header({ atualizar, exibir }: Props) {
             setLoading(false)
         }
     }, [])
-    
+
     return (
         <header className="bg-white p-2 sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0  sm:px-6">
             <Sheet>
@@ -166,34 +166,11 @@ function Header({ atualizar, exibir }: Props) {
                     </DropdownMenuContent>
                 </DropdownMenu>
             </TooltipProvider>
-
-            <TooltipProvider>
-                <DropdownMenu>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <DropdownMenuTrigger asChild>
-                                <Button
-                                    variant="outline"
-                                    size="icon"
-                                    className="overflow-hidden rounded-full"
-                                >
-                                    <Avatar>
-                                        <AvatarImage src={`https://ui-avatars.com/api/?name=${dadosUsuario?.nome}&background=random`} />
-                                        <AvatarFallback className='bg-zinc-300'></AvatarFallback>
-                                    </Avatar>
-                                </Button>
-                            </DropdownMenuTrigger>
-                        </TooltipTrigger>
-                        <TooltipContent className="font-bold" side="bottom">Usuário</TooltipContent>
-                    </Tooltip>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Usuário</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <Link href={'/comunidade/usuario'}> <DropdownMenuItem> Meus Dados </DropdownMenuItem> </Link>
-                        <DropdownMenuItem className="text-red-500">Sair</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            </TooltipProvider>
+            
+            <Avatar>
+                <AvatarImage src={`https://ui-avatars.com/api/?name=${dadosUsuario?.nome}&background=random`} />
+                <AvatarFallback className='bg-zinc-300'></AvatarFallback>
+            </Avatar>
         </header>
     )
 }
