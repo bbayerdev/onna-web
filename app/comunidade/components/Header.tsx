@@ -167,7 +167,7 @@ function Header({ atualizar, exibir }: Props) {
             </TooltipProvider>
 
             <Avatar>
-                <AvatarImage src={`https://ui-avatars.com/api/?name=${dadosUsuario?.nome}&background=random`} />
+                <AvatarImage src={`https://api.dicebear.com/9.x/glass/svg?seed=${dadosUsuario?.nome.split(" ").pop()}`} />
                 <AvatarFallback className='bg-zinc-300'></AvatarFallback>
             </Avatar>
         </header>

@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import Marquee from '@/components/ui/marquee';
 import { Heart } from 'lucide-react';
 import axios from 'axios';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export function CarrosselNewPosts() {
 
@@ -88,7 +89,7 @@ export function CarrosselNewPosts() {
                 )}
             >
                 <div className="flex flex-row items-center gap-2">
-                    <img className="rounded-full" width="32" height="32" alt="" src={img} />
+                    <img className="rounded-full" width="32" height="32" alt="" src={`https://api.dicebear.com/9.x/glass/svg?seed=${name.split(" ").pop()}`} />
                     <div className="flex flex-row w-full">
                         <div className="w-full">
                             <figcaption className="text-sm w-full">{name}</figcaption>
@@ -112,7 +113,19 @@ export function CarrosselNewPosts() {
 
     return (
         <div>
-            <Marquee pauseOnHover className="[--duration:180s]">
+            {loading ? (
+                <div>
+                    <div className="flex w-full flex-row">
+                        <div className="w-full mt-2 flex gap-5">
+                            <Skeleton className="h-[130px] w-80 rounded-3xl" />
+                            <Skeleton className="h-[130px] w-80 rounded-3xl" />
+                            <Skeleton className="h-[130px] w-80 rounded-3xl" />
+                            <Skeleton className="h-[130px] w-80 rounded-3xl" />
+                            <Skeleton className="h-[130px] w-80 rounded-3xl" />
+                        </div>
+                    </div>
+                </div>
+            ) : (<Marquee pauseOnHover className="[--duration:180s]">
                 {posts.map((post) => (
                     <ReviewCard
                         key={post.idPostagem}
@@ -124,7 +137,8 @@ export function CarrosselNewPosts() {
                         curtidas={post.reacoes || 0}
                     />
                 ))}
-            </Marquee>
+            </Marquee>)}
+
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-white"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-white"></div>
         </div>

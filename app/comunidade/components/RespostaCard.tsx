@@ -100,7 +100,7 @@ const RespostaCard = ({ data, hora, likes, mensagem, nome, id, idPost }: Props) 
     return (
         <figure className="relative overflow-hidden rounded-3xl border p-4 border-gray-950/[.1]  shadow w-4/5">
             <div className="flex flex-row items-center gap-4">
-                <img className="rounded-full size-8" alt="" src={`https://ui-avatars.com/api/?name=${nome}&background=random`}  />
+                <img className="rounded-full size-8" alt="" src={`https://api.dicebear.com/9.x/glass/svg?seed=${nome.split(" ").pop()}`}  />
                 <div className="flex flex-row w-full">
                     <div className='w-full flex gap-2'>
                         <figcaption className="font-bold text-base flex gap-2">

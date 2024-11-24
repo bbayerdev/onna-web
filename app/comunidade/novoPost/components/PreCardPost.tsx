@@ -57,7 +57,7 @@ const PreCardPost = ({
             )}
         >
             <div className="flex flex-row items-center gap-4 w-full">
-                <img className="rounded-full" width="42" height="42" alt="" src='/imgs/cachorra.png' />
+                <img className="rounded-full" width="42" height="42" alt="" src={`https://api.dicebear.com/9.x/glass/svg?seed=${dadosUsuario?.nome.split(" ").pop()}`} />
                 <div className="flex flex-row w-full justify-between">
                     <div className='flex'>
                         <figcaption className="font-bold text-xl flex items-center gap-2">

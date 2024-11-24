@@ -30,14 +30,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import RespostaCard from '../../../components/RespostaCard';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import SkeletonResposta from './SkeletonResposta';
 import Link from 'next/link';
 
@@ -178,7 +170,7 @@ const PostCardUser =
 
                 <figure className="relative cursor-pointer overflow-hidden rounded-3xl border p-4 border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05] shadow w-full">
                     <div className="flex flex-row items-center gap-4">
-                        <img className="rounded-full size-12" alt="" src='/imgs/cachorra.png' />
+                        <img className="rounded-full size-12" alt="" src={`https://api.dicebear.com/9.x/glass/svg?seed=${dadosUsuario?.nome.split(" ").pop()}`} />
                         <div className="flex flex-row w-full">
                             <div className='w-full flex gap-2'>
                             <figcaption className="font-bold text-xl flex items-center gap-2">

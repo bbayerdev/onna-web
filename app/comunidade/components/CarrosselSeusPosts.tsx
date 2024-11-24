@@ -107,7 +107,7 @@ export function CarrosselSeusPosts() {
                 )}
             >
                 <div className="flex flex-row items-center gap-4">
-                    <img className="rounded-full" width="36" height="36" alt="" src={img} />
+                    <img className="rounded-full" width="36" height="36" alt="" src={`https://api.dicebear.com/9.x/glass/svg?seed=${name.split(" ").pop()}`} />
                     <div className="flex flex-row w-full justify-between">
                         <div className='flex gap-2'>
                             <figcaption className="font-bold text-xl">
