@@ -173,7 +173,7 @@ const PostCardUser =
                         <img className="rounded-full size-12" alt="" src={`https://api.dicebear.com/9.x/glass/svg?seed=${dadosUsuario?.nome.split(" ").pop()}`} />
                         <div className="flex flex-row w-full">
                             <div className='w-full flex gap-2'>
-                            <figcaption className="font-bold text-xl flex items-center gap-2">
+                                <figcaption className="font-bold text-xl flex items-center gap-2">
                                     {dadosUsuario?.nome.split(" ").slice(0, 2).join(" ") || 'nao logado'}
                                     <div className='flex gap-1'>
                                         {tipoUser ? (
@@ -186,7 +186,7 @@ const PostCardUser =
                                         )}
 
                                         {forum === '#Gravidez' ? (
-                                            <Badge className="rounded-full bg-blue-200 gap-1 text-blue-500 shadow-none bg-opacity-20">
+                                            <Badge className="rounded-full pointer-events-none bg-blue-200 gap-1 text-blue-500 shadow-none bg-opacity-20">
                                                 <Baby className="size-4" /> Gravidez
                                             </Badge>
                                         ) : forum === '#Maternidade' ? (
@@ -201,11 +201,11 @@ const PostCardUser =
                                             <Badge className="rounded-full pointer-events-none bg-yellow-400 gap-1 text-yellow-500 shadow-none bg-opacity-20">
                                                 <Flower2 className="size-4" /> Autocuidado
                                             </Badge>
-                                        ):(null)}
+                                        ) : (null)}
 
                                     </div>
                                 </figcaption>
-                              
+
                             </div>
                             <div className='flex justify-end w-full text-sm'>
                                 <p className='px-2'>{data}</p>
@@ -299,6 +299,7 @@ const PostCardUser =
                             resposta.map((resposta) => {
                                 return (
                                     <RespostaCard
+                                        tipoUser={0}
                                         id={resposta.idResposta_Postagem}
                                         idPost={id}
                                         nome={resposta.nome}
